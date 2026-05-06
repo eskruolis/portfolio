@@ -89,7 +89,7 @@ public/
 
 ### Git
 - Branch from `dev`, not `main`
-- Branch naming: `feat/`, `fix/`, `chore/`, `content/`, `refactor/`
+- Branch naming: `feat/`, `fix/`, `chore/`
 - Conventional commits: `feat(sidebar): add active section highlight`
 - Never commit directly to `main` or `dev`
 - PRs require passing build before merge
