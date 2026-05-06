@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { buttonVariants } from '@/components/ui/button'
+import { BrandLogo } from '@/components/shared/BrandLogo'
 import { cn } from '@/lib/utils'
 
 export function Hero() {
   return (
     <section id="hero" aria-label="Introduction" className="py-24 px-8 lg:px-16 max-w-3xl">
+      <BrandLogo size={48} className="mb-6 lg:hidden" />
       <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
         Hello, I&apos;m
       </p>
@@ -19,7 +21,7 @@ export function Hero() {
       <div className="flex flex-wrap gap-4">
         <a
           href="mailto:eskruolis@gmail.com"
-          className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'gap-2')}
+          className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'btn-gradient gap-2')}
         >
           <FontAwesomeIcon icon={faEnvelope} className="h-4 w-4" />
           Get in touch
