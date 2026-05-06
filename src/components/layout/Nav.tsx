@@ -2,16 +2,8 @@
 
 import Link from 'next/link'
 import { useActiveSection } from '@/hooks/use-active-section'
+import { NAV_ITEMS } from '@/lib/nav'
 import { cn } from '@/lib/utils'
-import type { NavItem } from '@/types'
-
-const NAV_ITEMS: NavItem[] = [
-  { label: 'About', href: '#hero', sectionId: 'hero' },
-  { label: 'Skills', href: '#skills', sectionId: 'skills' },
-  { label: 'Experience', href: '#experience', sectionId: 'experience' },
-  { label: 'Projects', href: '#projects', sectionId: 'projects' },
-  { label: 'Blog', href: '#blog', sectionId: 'blog' },
-]
 
 interface NavProps {
   onItemClick?: () => void

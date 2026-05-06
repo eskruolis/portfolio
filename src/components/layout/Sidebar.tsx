@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark, faEnvelope, faMoon, faSun, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -9,6 +9,8 @@ import Link from 'next/link'
 import { Nav } from './Nav'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+
+const DRAWER_ID = 'mobile-nav-drawer'
 
 function SidebarContent({ onClose }: { onClose?: () => void }) {
   const { resolvedTheme, setTheme } = useTheme()
@@ -84,12 +86,45 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
 export function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const drawerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (!mobileOpen) return
+
+    // Move focus into the drawer when it opens
+    closeButtonRef.current?.focus()
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileOpen(false)
+      if (e.key === 'Escape') {
+        setMobileOpen(false)
+        hamburgerRef.current?.focus()
+        return
+      }
+
+      // Focus trap: keep Tab cycling within the drawer
+      if (e.key === 'Tab' && drawerRef.current) {
+        const focusable = Array.from(
+          drawerRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        )
+        if (!focusable.length) return
+
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
+
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [mobileOpen])
@@ -106,8 +141,10 @@ export function Sidebar() {
 
       {/* Mobile hamburger button */}
       <button
+        ref={hamburgerRef}
         aria-label="Open navigation menu"
         aria-expanded={mobileOpen}
+        aria-controls={DRAWER_ID}
         onClick={() => setMobileOpen(true)}
         className="lg:hidden fixed top-4 right-4 z-40 rounded-md bg-background p-2 text-foreground shadow-sm ring-1 ring-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
@@ -125,22 +162,36 @@ export function Sidebar() {
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-            onClick={() => setMobileOpen(false)}
+            onClick={() => {
+              setMobileOpen(false)
+              hamburgerRef.current?.focus()
+            }}
             aria-hidden="true"
           />
           {/* Drawer panel */}
           <aside
+            id={DRAWER_ID}
+            ref={drawerRef}
             aria-label="Site navigation"
             className="absolute left-0 top-0 h-full w-72 overflow-y-auto bg-sidebar border-r border-sidebar-border"
           >
             <button
+              ref={closeButtonRef}
               aria-label="Close navigation menu"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => {
+                setMobileOpen(false)
+                hamburgerRef.current?.focus()
+              }}
               className="absolute top-4 right-4 rounded-md p-2 text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
             >
               <FontAwesomeIcon icon={faXmark} className="h-4 w-4" />
             </button>
-            <SidebarContent onClose={() => setMobileOpen(false)} />
+            <SidebarContent
+              onClose={() => {
+                setMobileOpen(false)
+                hamburgerRef.current?.focus()
+              }}
+            />
           </aside>
         </div>
       )}
