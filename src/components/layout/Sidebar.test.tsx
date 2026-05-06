@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Sidebar } from './Sidebar'
@@ -42,10 +42,22 @@ beforeEach(() => {
   )
 })
 
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
+
 describe('Sidebar', () => {
   it('renders the hamburger button on mobile', () => {
     render(<Sidebar />)
     expect(screen.getByRole('button', { name: /open navigation menu/i })).toBeInTheDocument()
+  })
+
+  it('hamburger has aria-controls pointing at the drawer id', () => {
+    render(<Sidebar />)
+    expect(screen.getByRole('button', { name: /open navigation menu/i })).toHaveAttribute(
+      'aria-controls',
+      'mobile-nav-drawer',
+    )
   })
 
   it('opens the mobile drawer when the hamburger is clicked', async () => {
@@ -55,6 +67,15 @@ describe('Sidebar', () => {
     await user.click(screen.getByRole('button', { name: /open navigation menu/i }))
 
     expect(screen.getByRole('dialog', { name: /navigation menu/i })).toBeInTheDocument()
+  })
+
+  it('drawer panel has the id that aria-controls references', async () => {
+    const user = userEvent.setup()
+    render(<Sidebar />)
+
+    await user.click(screen.getByRole('button', { name: /open navigation menu/i }))
+
+    expect(document.getElementById('mobile-nav-drawer')).toBeInTheDocument()
   })
 
   it('closes the drawer when the close button is clicked', async () => {
