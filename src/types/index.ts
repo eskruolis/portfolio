@@ -10,3 +10,12 @@ export interface NavItem {
   href: string
   sectionId: string
 }
+
+export interface BlogPost {
+  slug: string
+  title: string
+  date: string
+  summary: string
+  tags: string[]
+  readingTime: number
+}
