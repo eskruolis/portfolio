@@ -7,10 +7,10 @@ export function BrandLogo({ size = 32, className }: BrandLogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 32 32"
+      viewBox="0 0 32 34"
       fill="none"
       width={size}
-      height={size}
+      height={size * (34 / 32)}
       className={className}
       aria-hidden="true"
     >
