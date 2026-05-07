@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import type { Metadata } from 'next'
 import { getBlogPost, getBlogSlugs } from '@/lib/mdx'
@@ -38,8 +39,14 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16 lg:py-24">
+    <div className="mx-auto max-w-2xl px-6 py-16 lg:py-24">
       <article aria-label={meta.title}>
+        <Link
+          href="/#blog"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <span aria-hidden>←</span> All posts
+        </Link>
         <header className="mb-10">
           <div className="mb-3 flex items-center gap-3 text-sm text-muted-foreground">
             <time dateTime={meta.date}>
@@ -72,6 +79,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           <MDXRemote source={content} />
         </div>
       </article>
-    </main>
+    </div>
   )
 }
