@@ -26,6 +26,15 @@ export const ProjectSchema = z.object({
   featured: z.boolean().default(false),
 })
 
+export const WorkProjectSchema = z.object({
+  title: z.string(),
+  company: z.string(),
+  description: z.string(),
+  tags: z.array(z.string()),
+  url: z.url().optional(),
+  private: z.boolean().default(true),
+})
+
 export const experience: z.infer<typeof ExperienceSchema>[] = [
   {
     company: 'Hypt AG',
@@ -89,23 +98,43 @@ export const projects: z.infer<typeof ProjectSchema>[] = [
     description:
       'This site — a single-scrollable portfolio with sidebar nav, MDX blog, view counters, and OG image generation. Built with Next.js 16, Tailwind v4, and Upstash Redis.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MDX', 'Upstash Redis'],
-    repo: 'https://github.com/eskruolis/my-portfolio',
+    repo: 'https://github.com/eskruolis/portfolio',
     featured: true,
   },
+]
+
+export const workProjects: z.infer<typeof WorkProjectSchema>[] = [
   {
-    title: 'Angular to React Migration',
-    slug: 'angular-to-react-migration',
+    title: 'Chatbot Builder',
+    company: 'Hypt AG',
     description:
-      'Case study: incrementally migrating a 200k-LOC Angular monolith to React without a big-bang rewrite. Covered module federation, shared state, and testing strategy.',
-    tags: ['React', 'Angular', 'Module Federation', 'TypeScript'],
-    featured: true,
+      'A fully customisable conversational funnel builder — drag-and-drop question flows, real-time preview, brand theming, and analytics dashboards. Built from scratch as sole frontend engineer; served UBS, Raiffeisen, Generali, and Nestle.',
+    tags: ['Angular', 'Angular Material', 'RxJS', 'TypeScript', 'Figma'],
+    url: 'https://hypt.io',
+    private: true,
   },
   {
-    title: 'Component Library',
-    slug: 'component-library',
+    title: 'React + Next.js Migration',
+    company: 'Hypt AG',
     description:
-      'A private design-system built with Radix UI primitives, Tailwind, and Storybook. Consumed by three product teams; ships typed tokens and full a11y coverage.',
-    tags: ['React', 'Radix UI', 'Tailwind CSS', 'Storybook', 'TypeScript'],
-    featured: false,
+      'Proposed and led the full migration of the product frontend from Angular to React + Next.js + Tailwind CSS within a Turborepo monorepo. Defined architecture, migration strategy, and shipped to production.',
+    tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Turborepo'],
+    private: true,
+  },
+  {
+    title: 'Design System & Figma Migration',
+    company: 'Hypt AG',
+    description:
+      'Co-established a Figma-based design system with the in-house designer. Led the team transition from Adobe XD to Figma as single source of design truth, including component libraries and design tokens.',
+    tags: ['Figma', 'Design Systems', 'Storybook'],
+    private: true,
+  },
+  {
+    title: 'Corporate & E-commerce Platforms',
+    company: 'Two Flamingos Ltd.',
+    description:
+      '15+ end-to-end platforms for global brand clients — from architecture to deployment. Specialised in performance optimisation, third-party API integrations, and WordPress custom development.',
+    tags: ['WordPress', 'PHP', 'JavaScript', 'MySQL', 'CSS'],
+    private: true,
   },
 ]
