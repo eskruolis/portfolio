@@ -26,61 +26,69 @@ export const ProjectSchema = z.object({
   featured: z.boolean().default(false),
 })
 
+export const WorkProjectSchema = z.object({
+  title: z.string(),
+  company: z.string(),
+  description: z.string(),
+  tags: z.array(z.string()),
+  url: z.url().optional(),
+  private: z.boolean().default(true),
+})
+
 export const experience: z.infer<typeof ExperienceSchema>[] = [
   {
-    company: 'Acme Corp',
+    company: 'Hypt AG',
     role: 'Senior Frontend Engineer',
-    startDate: '2022',
+    startDate: '2023',
     current: true,
     description:
-      'Leading frontend architecture for a SaaS platform serving 50k+ users. Migrated a legacy Angular app to React/Next.js, reducing bundle size by 40% and improving Lighthouse scores from 58 to 94. Introduced Vitest + RTL across the team and established code review standards.',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vitest', 'AWS'],
-    url: 'https://example.com',
+      "Joined as the sole frontend engineer at a Swiss AI SaaS startup and built the entire product from scratch alongside a single backend engineer. Engineered the Chatbot Builder end-to-end — a fully customisable funnel builder in Angular + Angular Material with RxJS-based state management. Co-designed the REST API, implemented the full auth flow using Ory SDK, and proposed and drove the stack migration to React + Next.js + Tailwind CSS within a Turborepo monorepo. Co-established the Figma design system and led the team's move from Adobe XD to Figma.",
+    skills: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Turborepo', 'RxJS', 'Ory SDK', 'Figma'],
+    url: 'https://hypt.io',
   },
   {
-    company: 'TechStart',
-    role: 'Frontend Engineer',
-    startDate: '2019',
+    company: 'Two Flamingos Ltd.',
+    role: 'Full Stack Developer & WordPress Expert',
+    startDate: '2018',
     endDate: '2022',
     current: false,
     description:
-      'Built and maintained Angular applications for fintech clients. Owned the component library shared across three product teams, authored Storybook documentation, and drove the adoption of strict TypeScript across the codebase.',
-    skills: ['Angular', 'TypeScript', 'RxJS', 'NgRx', 'Storybook', 'SCSS'],
-    url: 'https://example.com',
+      'Delivered 15+ corporate and e-commerce platforms end-to-end, from architecture to deployment. Specialised in performance optimisation for global brand clients and integrated complex third-party APIs into production environments. Worked directly with clients to translate business requirements into technical decisions.',
+    skills: ['JavaScript', 'TypeScript', 'WordPress', 'PHP', 'MySQL', 'REST APIs', 'CSS'],
   },
   {
     company: 'Freelance',
-    role: 'Frontend Developer',
+    role: 'Junior Frontend Developer',
     startDate: '2017',
-    endDate: '2019',
+    endDate: '2018',
     current: false,
     description:
-      'Delivered bespoke web applications for small businesses and startups. Worked across the full stack with Vue and Node.js, managing projects from discovery through deployment.',
-    skills: ['Vue.js', 'JavaScript', 'Node.js', 'CSS', 'Figma'],
+      'Web development and UI services for London-based clients. Foundation built entirely through self-directed learning and real project delivery.',
+    skills: ['JavaScript', 'HTML & CSS', 'WordPress'],
   },
 ]
 
 export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'React', category: 'frontend' },
   { name: 'Next.js', category: 'frontend' },
-  { name: 'TypeScript', category: 'frontend' },
   { name: 'Angular', category: 'frontend' },
+  { name: 'TypeScript', category: 'frontend' },
+  { name: 'JavaScript (ES6+)', category: 'frontend' },
   { name: 'Tailwind CSS', category: 'frontend' },
-  { name: 'Framer Motion', category: 'frontend' },
   { name: 'HTML & CSS', category: 'frontend' },
+  { name: 'RxJS', category: 'frontend' },
+  { name: 'Turborepo', category: 'tooling' },
   { name: 'Git', category: 'tooling' },
-  { name: 'Vite / Webpack', category: 'tooling' },
   { name: 'CI/CD', category: 'tooling' },
-  { name: 'Docker', category: 'tooling' },
+  { name: 'AWS', category: 'tooling' },
+  { name: 'Figma', category: 'tooling' },
+  { name: 'Storybook', category: 'tooling' },
   { name: 'Vitest', category: 'testing' },
-  { name: 'Jest', category: 'testing' },
   { name: 'React Testing Library', category: 'testing' },
-  { name: 'Cypress', category: 'testing' },
-  { name: 'Node.js', category: 'backend' },
   { name: 'REST APIs', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'Figma', category: 'other' },
-  { name: 'Agile / Scrum', category: 'other' },
+  { name: 'PHP', category: 'backend' },
+  { name: 'MySQL', category: 'backend' },
+  { name: 'WordPress', category: 'other' },
 ]
 
 export const projects: z.infer<typeof ProjectSchema>[] = [
@@ -90,23 +98,43 @@ export const projects: z.infer<typeof ProjectSchema>[] = [
     description:
       'This site — a single-scrollable portfolio with sidebar nav, MDX blog, view counters, and OG image generation. Built with Next.js 16, Tailwind v4, and Upstash Redis.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MDX', 'Upstash Redis'],
-    repo: 'https://github.com/eskruolis/my-portfolio',
+    repo: 'https://github.com/eskruolis/portfolio',
     featured: true,
   },
+]
+
+export const workProjects: z.infer<typeof WorkProjectSchema>[] = [
   {
-    title: 'Angular → React Migration',
-    slug: 'angular-to-react-migration',
+    title: 'Chatbot Builder',
+    company: 'Hypt AG',
     description:
-      'Case study: incrementally migrating a 200k-LOC Angular monolith to React without a big-bang rewrite. Covered module federation, shared state, and testing strategy.',
-    tags: ['React', 'Angular', 'Module Federation', 'TypeScript'],
-    featured: true,
+      'A fully customisable conversational funnel builder — drag-and-drop question flows, real-time preview, brand theming, and analytics dashboards. Built from scratch as sole frontend engineer; served UBS, Raiffeisen, Generali, and Nestle.',
+    tags: ['Angular', 'Angular Material', 'RxJS', 'TypeScript', 'Figma'],
+    url: 'https://hypt.io',
+    private: true,
   },
   {
-    title: 'Component Library',
-    slug: 'component-library',
+    title: 'React + Next.js Migration',
+    company: 'Hypt AG',
     description:
-      'A private design-system built with Radix UI primitives, Tailwind, and Storybook. Consumed by three product teams; ships typed tokens and full a11y coverage.',
-    tags: ['React', 'Radix UI', 'Tailwind CSS', 'Storybook', 'TypeScript'],
-    featured: false,
+      'Proposed and led the full migration of the product frontend from Angular to React + Next.js + Tailwind CSS within a Turborepo monorepo. Defined architecture, migration strategy, and shipped to production.',
+    tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Turborepo'],
+    private: true,
+  },
+  {
+    title: 'Design System & Figma Migration',
+    company: 'Hypt AG',
+    description:
+      'Co-established a Figma-based design system with the in-house designer. Led the team transition from Adobe XD to Figma as single source of design truth, including component libraries and design tokens.',
+    tags: ['Figma', 'Design Systems', 'Storybook'],
+    private: true,
+  },
+  {
+    title: 'Corporate & E-commerce Platforms',
+    company: 'Two Flamingos Ltd.',
+    description:
+      '15+ end-to-end platforms for global brand clients — from architecture to deployment. Specialised in performance optimisation, third-party API integrations, and WordPress custom development.',
+    tags: ['WordPress', 'PHP', 'JavaScript', 'MySQL', 'CSS'],
+    private: true,
   },
 ]

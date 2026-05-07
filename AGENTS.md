@@ -83,6 +83,21 @@ public/
 - Responsive: mobile-first (`sm:`, `md:`, `lg:`)
 - shadcn component variants over custom CSS when possible
 
+### Buttons and interactive elements — gradient rule
+Every primary call-to-action (default variant buttons, primary `<a>` styled as a button) **must** include the `btn-gradient` class alongside the shadcn variant:
+
+```tsx
+// correct
+className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'btn-gradient gap-2')}
+
+// wrong — missing gradient
+className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'gap-2')}
+```
+
+The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gradient` / `--btn-gradient-hover` CSS variables (warm amber/terracotta, both light and dark modes covered). Do **not** apply it to:
+- `outline` or `ghost` variant buttons — these intentionally have no fill
+- Icon-only utility buttons (theme toggle, close/hamburger icons)
+
 ### Naming
 - Components: `PascalCase` (`ExperienceTimeline.tsx`)
 - Hooks: `camelCase` prefixed with `use-` in filename (`use-active-section.ts`)

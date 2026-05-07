@@ -1,0 +1,73 @@
+---
+title: "Migrating a 200k-LOC Angular App to React Without a Big Bang"
+date: "2025-04-10"
+summary: "How we incrementally moved a large Angular monolith to React using module federation — without stopping feature delivery or rewriting everything at once."
+tags: ["React", "Angular", "Module Federation", "TypeScript"]
+---
+
+After three years on a large Angular codebase, my team was asked to move to React. The app had 200,000 lines of TypeScript, twelve lazy-loaded modules, and a CI pipeline that took 18 minutes to pass. A big-bang rewrite was out of the question.
+
+Here's what we actually did.
+
+## The constraint that shaped everything
+
+We couldn't stop shipping features. The product team had a roadmap, and "we're rewriting the frontend" wasn't an acceptable blocker for six months. That constraint ruled out any approach that required freezing the Angular codebase while we rebuilt in React.
+
+## Module federation as the seam
+
+We used Webpack Module Federation to let both apps live side by side and share dependencies. The Angular shell remained the host. New feature modules were written in React and loaded as remotes.
+
+```ts
+// webpack.config.js (React remote)
+new ModuleFederationPlugin({
+  name: 'newFeature',
+  filename: 'remoteEntry.js',
+  exposes: {
+    './App': './src/App',
+  },
+  shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+})
+```
+
+This meant day one of a new feature could be in React, while the surrounding navigation and shell stayed Angular. No user noticed.
+
+## Shared state was the hard part
+
+Angular services are singletons injected via DI. React doesn't have that. We bridged state using a small vanilla TypeScript event bus that both apps subscribed to:
+
+```ts
+type EventMap = {
+  'auth:logout': void
+  'cart:updated': { count: number }
+}
+
+class EventBus {
+  private emitter = new EventTarget()
+
+  emit<K extends keyof EventMap>(event: K, detail: EventMap[K]) {
+    this.emitter.dispatchEvent(new CustomEvent(event, { detail }))
+  }
+
+  on<K extends keyof EventMap>(event: K, handler: (detail: EventMap[K]) => void) {
+    const listener = (e: Event) => handler((e as CustomEvent).detail)
+    this.emitter.addEventListener(event, listener)
+    return () => this.emitter.removeEventListener(event, listener)
+  }
+}
+
+export const bus = new EventBus()
+```
+
+It's not elegant, but it's typed, testable, and doesn't require either app to know about the other's internals.
+
+## Testing strategy
+
+We kept both test suites running. Angular unit tests stayed in Jasmine/Karma. New React components used Vitest + RTL. The shared event bus had its own integration tests that both suites imported.
+
+The one rule: any state shared via the event bus needed a contract test — a test that both apps ran against the same event schema.
+
+## Outcome
+
+After eight months, 70% of user-facing code lived in React. The Angular shell was eventually replaced with a React root during a two-week maintenance window. Total downtime: zero. Feature velocity was maintained throughout.
+
+The lesson: migration is a product problem, not just a technical one. Frame it as "we're building new things in React" rather than "we're rewriting old things," and you'll get buy-in from everyone who matters.

@@ -1,11 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export function useActiveSection() {
+  const pathname = usePathname()
   const [activeSection, setActiveSection] = useState<string | null>(null)
 
   useEffect(() => {
+    if (pathname !== '/') {
+      setActiveSection(null)
+      return
+    }
+
     const sections = Array.from(document.querySelectorAll('section[id]'))
     if (sections.length === 0) return
 
@@ -22,7 +29,7 @@ export function useActiveSection() {
 
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return activeSection
 }
