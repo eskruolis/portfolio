@@ -23,7 +23,7 @@ export const viewport: Viewport = {
   ],
 }
 
-const SITE_URL = 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
 
 export const metadata: Metadata = {
   title: {
