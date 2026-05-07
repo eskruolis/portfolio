@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faEnvelope, faXmark, faEye } from '@fortawesome/free-solid-svg-icons'
@@ -78,6 +79,12 @@ function HeroSVG() {
 }
 
 function CVModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [onClose])
+
   return (
     <AnimatePresence>
       <motion.div
@@ -212,13 +219,13 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="hidden lg:block shrink-0"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/profile.png"
               alt="Eigirdas Skruolis"
               width={300}
               height={360}
               className="rounded-2xl object-cover object-top"
+              priority
             />
           </motion.div>
         </div>

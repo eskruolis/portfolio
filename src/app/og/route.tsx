@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 export const runtime = 'edge'
 
-const SITE_URL = 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
               marginTop: '8px',
             }}
           >
-            portfolio-liart-three-r17ce5t2q7.vercel.app
+            {SITE_URL.replace(/^https?:\/\//, '')}
           </div>
         </div>
       </div>
