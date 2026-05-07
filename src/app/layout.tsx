@@ -23,6 +23,8 @@ export const viewport: Viewport = {
   ],
 }
 
+const SITE_URL = 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
+
 export const metadata: Metadata = {
   title: {
     default: 'Eigirdas Skruolis — Senior Frontend Engineer',
@@ -30,6 +32,30 @@ export const metadata: Metadata = {
   },
   description:
     'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
+    title: 'Eigirdas Skruolis — Senior Frontend Engineer',
+    description:
+      'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+    url: SITE_URL,
+    siteName: 'Eigirdas Skruolis',
+    images: [
+      {
+        url: `/og`,
+        width: 1200,
+        height: 630,
+        alt: 'Eigirdas Skruolis — Senior Frontend Engineer',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Eigirdas Skruolis — Senior Frontend Engineer',
+    description:
+      'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+    images: [`/og`],
+  },
 }
 
 export default function RootLayout({

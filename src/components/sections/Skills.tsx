@@ -18,7 +18,7 @@ const CATEGORY_ORDER = ['frontend', 'tooling', 'testing', 'backend', 'other'] as
 
 function PillGroup({ names, baseDelay }: { names: string[]; baseDelay: number }) {
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-60px 0px' })
+  const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
     <div ref={ref} className="flex flex-wrap gap-2">
