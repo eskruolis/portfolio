@@ -1,4 +1,5 @@
 import { skills } from '@/lib/data'
+import { TechPill } from '@/components/shared/TechPill'
 
 const CATEGORY_LABELS: Record<string, string> = {
   frontend: 'Frontend',
@@ -28,12 +29,7 @@ export function Skills() {
             </p>
             <div className="flex flex-wrap gap-2">
               {grouped[category].map((name) => (
-                <span
-                  key={name}
-                  className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
-                >
-                  {name}
-                </span>
+                <TechPill key={name} name={name} gradient />
               ))}
             </div>
           </div>
