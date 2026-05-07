@@ -23,7 +23,7 @@ function TimelineLine() {
 
 function JobEntry({ job, index }: { job: typeof experience[0]; index: number }) {
   const ref = useRef<HTMLLIElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-60px 0px' })
+  const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
     <motion.li
