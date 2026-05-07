@@ -14,9 +14,11 @@ export function Hero() {
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-3">Eigirdas Skruolis</h1>
       <p className="text-xl text-muted-foreground mb-6">Senior Frontend Engineer</p>
       <p className="text-base leading-8 text-muted-foreground mb-10 max-w-xl">
-        I build fast, accessible web applications with React, Next.js, and TypeScript. Formerly deep
-        in Angular — now fully invested in the React ecosystem and obsessed with DX, performance,
-        and clean component APIs.
+        I build fast, accessible web applications with React, Next.js, and TypeScript — and reach
+        for shadcn/ui and Figma when the design side needs attention. Formerly deep in Angular, now
+        fully invested in the React ecosystem. I genuinely enjoy understanding how things work under
+        the hood, communicating across teams, and never shy away from a hard problem. That curiosity
+        is what makes this job exciting.
       </p>
       <div className="flex flex-wrap gap-4">
         <a

@@ -33,7 +33,7 @@ export const experience: z.infer<typeof ExperienceSchema>[] = [
     startDate: '2023',
     current: true,
     description:
-      "Joined as the sole frontend engineer at a Swiss AI SaaS startup and built the entire product from scratch alongside a single backend engineer. Engineered the Chatbot Builder end-to-end — a fully customisable funnel builder in Angular + Angular Material with RxJS-based state management. Co-designed the REST API, implemented the full auth flow using Ory SDK, and proposed and drove the stack migration to React + Next.js + Tailwind CSS within a Turborepo monorepo. Co-established the Figma design system and led the team's move from Adobe XD to Figma. The company has since grown 3x serving UBS, Raiffeisen, Generali, and Nestle.",
+      "Joined as the sole frontend engineer at a Swiss AI SaaS startup and built the entire product from scratch alongside a single backend engineer. Engineered the Chatbot Builder end-to-end — a fully customisable funnel builder in Angular + Angular Material with RxJS-based state management. Co-designed the REST API, implemented the full auth flow using Ory SDK, and proposed and drove the stack migration to React + Next.js + Tailwind CSS within a Turborepo monorepo. Co-established the Figma design system and led the team's move from Adobe XD to Figma.",
     skills: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Turborepo', 'RxJS', 'Ory SDK', 'Figma'],
     url: 'https://hypt.io',
   },
