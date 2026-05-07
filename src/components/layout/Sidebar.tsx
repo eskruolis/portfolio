@@ -7,6 +7,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { Nav } from './Nav'
+import { BrandLogo } from '@/components/shared/BrandLogo'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -17,15 +18,12 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
   return (
     <div className="flex h-full flex-col gap-8 px-6 py-8">
-      <div className="flex flex-col gap-1">
-        <p className="text-xs font-medium uppercase tracking-widest text-sidebar-foreground/50">
-          Portfolio
-        </p>
-        <Link
-          href="/"
-          className="text-lg font-semibold text-sidebar-foreground hover:text-sidebar-primary transition-colors"
-        >
-          Eigirdas Skruolis
+      <div className="flex flex-col gap-2">
+        <Link href="/" className="flex items-center gap-2.5 group w-fit">
+          <BrandLogo size={28} />
+          <span className="text-lg font-semibold text-sidebar-foreground group-hover:text-sidebar-primary transition-colors">
+            Eigirdas Skruolis
+          </span>
         </Link>
         <p className="text-sm text-sidebar-foreground/60">Senior Frontend Engineer</p>
       </div>
@@ -74,7 +72,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         <a
           href="/cv.pdf"
           download="Eigirdas_Skruolis_CV.pdf"
-          className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'w-full gap-2')}
+          className={cn(buttonVariants({ variant: 'default', size: 'sm' }), 'btn-gradient w-full gap-2')}
         >
           <FontAwesomeIcon icon={faDownload} className="h-3.5 w-3.5" />
           Download CV
