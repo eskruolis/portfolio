@@ -1,4 +1,5 @@
 import { experience } from '@/lib/data'
+import { TechPill } from '@/components/shared/TechPill'
 
 export function Experience() {
   return (
@@ -31,12 +32,7 @@ export function Experience() {
               <p className="text-sm leading-7 text-muted-foreground">{job.description}</p>
               <div className="flex flex-wrap gap-2">
                 {job.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
-                  >
-                    {skill}
-                  </span>
+                  <TechPill key={skill} name={skill} />
                 ))}
               </div>
             </div>
