@@ -6,7 +6,7 @@ export function BlogTeaser() {
   const posts = getAllBlogPosts().slice(0, 3)
 
   return (
-    <section id="blog" aria-label="Blog" className="py-16 px-8 lg:px-16 max-w-3xl min-h-screen">
+    <section id="blog" aria-label="Blog" className="py-16 px-8 lg:px-16 max-w-3xl">
       <ScrollReveal>
         <h2 className="text-2xl font-bold tracking-tight mb-8">Writing</h2>
       </ScrollReveal>

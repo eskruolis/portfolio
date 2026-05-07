@@ -4,6 +4,7 @@ import { Skills } from '@/components/sections/Skills'
 import { Experience } from '@/components/sections/Experience'
 import { Projects } from '@/components/sections/Projects'
 import { BlogTeaser } from '@/components/sections/BlogTeaser'
+import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/layout/Footer'
 import { SectionDivider } from '@/components/shared/SectionDivider'
 
@@ -31,6 +32,11 @@ export default function HomePage() {
 
       <SectionDivider flip />
       <BlogTeaser />
+
+      <SectionDivider />
+      <div className="bg-muted/30">
+        <Contact />
+      </div>
 
       <Footer />
     </>
