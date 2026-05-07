@@ -5,6 +5,7 @@ import { Experience } from '@/components/sections/Experience'
 import { Projects } from '@/components/sections/Projects'
 import { BlogTeaser } from '@/components/sections/BlogTeaser'
 import { Footer } from '@/components/layout/Footer'
+import { SectionDivider } from '@/components/shared/SectionDivider'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -14,10 +15,23 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Skills />
+
+      <SectionDivider />
+      <div className="bg-muted/30">
+        <Skills />
+      </div>
+
+      <SectionDivider flip />
       <Experience />
-      <Projects />
+
+      <SectionDivider />
+      <div className="bg-muted/30">
+        <Projects />
+      </div>
+
+      <SectionDivider flip />
       <BlogTeaser />
+
       <Footer />
     </>
   )
