@@ -1,0 +1,89 @@
+---
+title: "Component API Design: What I Wish I'd Known Earlier"
+date: "2025-02-20"
+summary: "The patterns I've settled on after building component libraries for multiple teams — covering prop naming, composition, and when to reach for context vs. props."
+tags: ["React", "TypeScript", "Design Systems", "Components"]
+---
+
+After building component libraries for three different product teams, I've made most of the classic mistakes. Prop explosion. Incompatible variants. Components that seemed flexible but locked teams into patterns they didn't want.
+
+These are the principles I actually apply now.
+
+## Start with the consuming code
+
+Before writing a single line of component implementation, write the JSX that consumes it:
+
+```tsx
+// Write this first
+<Button variant="primary" size="lg" loading={isSubmitting}>
+  Save changes
+</Button>
+
+// Then implement Button to satisfy it
+```
+
+This forces you to think about the API from the caller's perspective. You'll catch awkward prop names and missing flexibility before you've committed to an implementation.
+
+## Prefer composition over configuration
+
+A component with twelve boolean props is doing too much. The classic example:
+
+```tsx
+// Avoid: configuration hell
+<Card showHeader showFooter headerTitle="Details" footerActions={[...]} collapsible />
+
+// Prefer: composition
+<Card>
+  <Card.Header>Details</Card.Header>
+  <Card.Body>{children}</Card.Body>
+  <Card.Footer>{actions}</Card.Footer>
+</Card>
+```
+
+The compound component pattern means callers can use the pieces they need and ignore the rest. Adding new layout variations doesn't require touching the parent component's API.
+
+## Be explicit about variants
+
+Use discriminated unions for mutually exclusive states:
+
+```ts
+type ButtonProps =
+  | { variant: 'primary'; href?: never }
+  | { variant: 'link'; href: string }
+```
+
+Now TypeScript enforces that `href` only appears on link buttons. You get compile-time safety instead of runtime guards.
+
+## When to reach for context
+
+Props are right for: values that change per-instance, required configuration, things callers will always customize.
+
+Context is right for: theme tokens, locale, auth state — things that are genuinely ambient and shared by an entire subtree.
+
+The mistake I made early was using context for convenience — to avoid passing a prop two levels down. Prop drilling two levels is fine. Context adds indirection that makes components harder to test and reuse outside their original tree.
+
+## Naming conventions that aged well
+
+- `on*` for event handlers (`onClose`, `onSelect`)
+- `is*` / `has*` for booleans (`isLoading`, `hasError`)
+- `default*` for uncontrolled defaults (`defaultValue`, `defaultOpen`)
+- Never abbreviate: `btn` → `button`, `msg` → `message`
+
+The last one sounds obvious but saves real time during code review when nobody has to mentally expand abbreviations.
+
+## Testing the API, not the implementation
+
+The most useful component tests verify the public API:
+
+```tsx
+it('calls onClose when Escape is pressed', async () => {
+  const onClose = vi.fn()
+  render(<Dialog open onClose={onClose}><p>Content</p></Dialog>)
+  await userEvent.keyboard('{Escape}')
+  expect(onClose).toHaveBeenCalledOnce()
+})
+```
+
+This test survives a full internal rewrite. Tests that assert on class names or internal DOM structure break every refactor and give false confidence.
+
+Good component APIs are invisible. When callers don't have to think about your component, you've done it right.
