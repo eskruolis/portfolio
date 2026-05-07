@@ -2,6 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { useActiveSection } from './use-active-section'
 
+vi.mock('next/navigation', () => ({ usePathname: () => '/' }))
+
 const mockObserve = vi.fn()
 const mockDisconnect = vi.fn()
 let intersectionCallback: IntersectionObserverCallback | null = null
