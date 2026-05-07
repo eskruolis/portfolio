@@ -26,33 +26,36 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Folder structure
 
 ```
-app/
-  layout.tsx              Root layout — ThemeProvider, Sidebar, fonts
-  page.tsx                Single scrollable homepage
-  blog/[slug]/            Blog post pages (SSG via generateStaticParams)
-  projects/[slug]/        Case study pages (SSG via generateStaticParams)
-  uses/                   Dev setup / workflow page
-  og/route.tsx            OG image generation API route
-actions/
-  views.ts                Server Action: increment Upstash view counter
-components/
-  layout/                 Sidebar, Nav, Footer — shared shell
-  sections/               Hero, Skills, Experience, Projects, BlogTeaser
-  ui/                     shadcn components — DO NOT EDIT
-  shared/                 Reusable project-specific components
-content/
-  blog/                   .mdx blog posts
-  projects/               .mdx case study pages
-hooks/
-  use-active-section.ts   IntersectionObserver — tracks active sidebar nav item
-  use-media-query.ts      Responsive breakpoint detection
-lib/
-  data.ts                 Zod-typed experience, skills, projects data
-  mdx.ts                  MDX parsing helpers
-  redis.ts                Upstash Redis client
-  utils.ts                cn() and shared utilities
-types/
-  index.ts                Shared TypeScript interfaces and types
+src/
+  app/
+    layout.tsx              Root layout — ThemeProvider, Sidebar, fonts
+    page.tsx                Single scrollable homepage
+    blog/[slug]/            Blog post pages (SSG via generateStaticParams)
+    projects/[slug]/        Case study pages (SSG via generateStaticParams)
+    uses/                   Dev setup / workflow page
+    og/route.tsx            OG image generation API route
+  actions/
+    views.ts                Server Action: increment Upstash view counter
+  components/
+    layout/                 Sidebar, Nav, Footer, ThemeProvider — shared shell
+    sections/               Hero, Skills, Experience, Projects, BlogTeaser
+    ui/                     shadcn components — DO NOT EDIT
+    shared/                 Reusable project-specific components
+  content/
+    blog/                   .mdx blog posts
+    projects/               .mdx case study pages
+  hooks/
+    use-active-section.ts   IntersectionObserver — tracks active sidebar nav item
+    use-media-query.ts      Responsive breakpoint detection
+  lib/
+    data.ts                 Zod-typed experience, skills, projects data
+    mdx.ts                  MDX parsing helpers
+    redis.ts                Upstash Redis client
+    utils.ts                cn() and shared utilities
+  types/
+    index.ts                Shared TypeScript interfaces and types
+  test/
+    setup.ts                Vitest global setup
 public/
   cv.pdf                  Downloadable CV
 ```
@@ -80,6 +83,21 @@ public/
 - Responsive: mobile-first (`sm:`, `md:`, `lg:`)
 - shadcn component variants over custom CSS when possible
 
+### Buttons and interactive elements — gradient rule
+Every primary call-to-action (default variant buttons, primary `<a>` styled as a button) **must** include the `btn-gradient` class alongside the shadcn variant:
+
+```tsx
+// correct
+className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'btn-gradient gap-2')}
+
+// wrong — missing gradient
+className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'gap-2')}
+```
+
+The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gradient` / `--btn-gradient-hover` CSS variables (warm amber/terracotta, both light and dark modes covered). Do **not** apply it to:
+- `outline` or `ghost` variant buttons — these intentionally have no fill
+- Icon-only utility buttons (theme toggle, close/hamburger icons)
+
 ### Naming
 - Components: `PascalCase` (`ExperienceTimeline.tsx`)
 - Hooks: `camelCase` prefixed with `use-` in filename (`use-active-section.ts`)
@@ -89,7 +107,7 @@ public/
 
 ### Git
 - Branch from `dev`, not `main`
-- Branch naming: `feat/`, `fix/`, `chore/`, `content/`, `refactor/`
+- Branch naming: `feat/`, `fix/`, `chore/`
 - Conventional commits: `feat(sidebar): add active section highlight`
 - Never commit directly to `main` or `dev`
 - PRs require passing build before merge
