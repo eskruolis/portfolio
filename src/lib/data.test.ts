@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { ExperienceSchema, ProjectSchema, SkillSchema } from './data'
+import { describe, expect, it } from 'vitest';
+import { ExperienceSchema, ProjectSchema, SkillSchema } from './data';
 
 describe('ExperienceSchema', () => {
   it('accepts a valid entry', () => {
@@ -9,22 +9,22 @@ describe('ExperienceSchema', () => {
       startDate: '2022-01',
       description: 'Built things.',
       skills: ['React', 'TypeScript'],
-    })
-    expect(result.success).toBe(true)
-  })
+    });
+    expect(result.success).toBe(true);
+  });
 
   it('rejects an entry missing required fields', () => {
-    const result = ExperienceSchema.safeParse({ company: 'Acme' })
-    expect(result.success).toBe(false)
-  })
-})
+    const result = ExperienceSchema.safeParse({ company: 'Acme' });
+    expect(result.success).toBe(false);
+  });
+});
 
 describe('SkillSchema', () => {
   it('rejects an unknown category', () => {
-    const result = SkillSchema.safeParse({ name: 'React', category: 'magic' })
-    expect(result.success).toBe(false)
-  })
-})
+    const result = SkillSchema.safeParse({ name: 'React', category: 'magic' });
+    expect(result.success).toBe(false);
+  });
+});
 
 describe('ProjectSchema', () => {
   it('rejects a non-URL value for url field', () => {
@@ -34,7 +34,7 @@ describe('ProjectSchema', () => {
       description: 'A project.',
       tags: ['Next.js'],
       url: 'not-a-url',
-    })
-    expect(result.success).toBe(false)
-  })
-})
+    });
+    expect(result.success).toBe(false);
+  });
+});

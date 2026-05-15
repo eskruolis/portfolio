@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer
       aria-label="Site footer"
-      className="px-8 py-12 lg:px-16 max-w-3xl text-sm text-muted-foreground"
+      className="text-muted-foreground max-w-3xl px-8 py-12 text-sm lg:px-16"
     >
       <p>
         Built with{' '}
@@ -10,7 +10,8 @@ export function Footer() {
           href="https://nextjs.org"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground hover:underline underline-offset-4"
+          className="text-foreground font-medium underline-offset-4
+            hover:underline"
         >
           Next.js
         </a>
@@ -19,7 +20,8 @@ export function Footer() {
           href="https://tailwindcss.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground hover:underline underline-offset-4"
+          className="text-foreground font-medium underline-offset-4
+            hover:underline"
         >
           Tailwind CSS
         </a>
@@ -28,7 +30,8 @@ export function Footer() {
           href="https://ui.shadcn.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground hover:underline underline-offset-4"
+          className="text-foreground font-medium underline-offset-4
+            hover:underline"
         >
           shadcn/ui
         </a>
@@ -37,12 +40,13 @@ export function Footer() {
           href="https://vercel.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground hover:underline underline-offset-4"
+          className="text-foreground font-medium underline-offset-4
+            hover:underline"
         >
           Vercel
         </a>
         .
       </p>
     </footer>
-  )
+  );
 }

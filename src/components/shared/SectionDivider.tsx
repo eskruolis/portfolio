@@ -1,15 +1,21 @@
-'use client'
+'use client';
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 export function SectionDivider({ flip = false }: { flip?: boolean }) {
-  const ref = useRef<SVGSVGElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.5 })
+  const ref = useRef<SVGSVGElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
 
   const dotPositions = flip
-    ? [{ cx: 80, delay: 0.6 }, { cx: 40, delay: 0.8 }]
-    : [{ cx: 320, delay: 0.6 }, { cx: 360, delay: 0.8 }]
+    ? [
+        { cx: 80, delay: 0.6 },
+        { cx: 40, delay: 0.8 },
+      ]
+    : [
+        { cx: 320, delay: 0.6 },
+        { cx: 360, delay: 0.8 },
+      ];
 
   return (
     <div aria-hidden="true" className="mx-8 lg:mx-16">
@@ -54,11 +60,15 @@ export function SectionDivider({ flip = false }: { flip?: boolean }) {
             r="1.5"
             className="fill-primary/20"
             initial={{ opacity: 0, scale: 0 }}
-            animate={inView ? {
-              opacity: [0, 0.6, 0.3],
-              scale: [0, 1, 1],
-              cy: [8, 5, 8],
-            } : {}}
+            animate={
+              inView
+                ? {
+                    opacity: [0, 0.6, 0.3],
+                    scale: [0, 1, 1],
+                    cy: [8, 5, 8],
+                  }
+                : {}
+            }
             transition={{
               duration: 3,
               delay,
@@ -69,5 +79,5 @@ export function SectionDivider({ flip = false }: { flip?: boolean }) {
         ))}
       </svg>
     </div>
-  )
+  );
 }

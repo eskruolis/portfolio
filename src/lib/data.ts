@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const ExperienceSchema = z.object({
   company: z.string(),
@@ -9,12 +9,12 @@ export const ExperienceSchema = z.object({
   description: z.string(),
   skills: z.array(z.string()),
   url: z.url().optional(),
-})
+});
 
 export const SkillSchema = z.object({
   name: z.string(),
   category: z.enum(['frontend', 'tooling', 'testing', 'backend', 'other']),
-})
+});
 
 export const ProjectSchema = z.object({
   title: z.string(),
@@ -24,7 +24,7 @@ export const ProjectSchema = z.object({
   url: z.url().optional(),
   repo: z.url().optional(),
   featured: z.boolean().default(false),
-})
+});
 
 export const WorkProjectSchema = z.object({
   title: z.string(),
@@ -33,7 +33,7 @@ export const WorkProjectSchema = z.object({
   tags: z.array(z.string()),
   url: z.url().optional(),
   private: z.boolean().default(true),
-})
+});
 
 export const experience: z.infer<typeof ExperienceSchema>[] = [
   {
@@ -43,7 +43,17 @@ export const experience: z.infer<typeof ExperienceSchema>[] = [
     current: true,
     description:
       "Joined as the sole frontend engineer at a Swiss AI SaaS startup and built the entire product from scratch alongside a single backend engineer. Engineered the Chatbot Builder end-to-end — a fully customisable funnel builder in Angular + Angular Material with RxJS-based state management. Co-designed the REST API, implemented the full auth flow using Ory SDK, and proposed and drove the stack migration to React + Next.js + Tailwind CSS within a Turborepo monorepo. Co-established the Figma design system and led the team's move from Adobe XD to Figma.",
-    skills: ['React', 'Next.js', 'Angular', 'TypeScript', 'Tailwind CSS', 'Turborepo', 'RxJS', 'Ory SDK', 'Figma'],
+    skills: [
+      'React',
+      'Next.js',
+      'Angular',
+      'TypeScript',
+      'Tailwind CSS',
+      'Turborepo',
+      'RxJS',
+      'Ory SDK',
+      'Figma',
+    ],
     url: 'https://hypt.io',
   },
   {
@@ -54,7 +64,15 @@ export const experience: z.infer<typeof ExperienceSchema>[] = [
     current: false,
     description:
       'Delivered 15+ corporate and e-commerce platforms end-to-end, from architecture to deployment. Specialised in performance optimisation for global brand clients and integrated complex third-party APIs into production environments. Worked directly with clients to translate business requirements into technical decisions.',
-    skills: ['JavaScript', 'TypeScript', 'WordPress', 'PHP', 'MySQL', 'REST APIs', 'CSS'],
+    skills: [
+      'JavaScript',
+      'TypeScript',
+      'WordPress',
+      'PHP',
+      'MySQL',
+      'REST APIs',
+      'CSS',
+    ],
   },
   {
     company: 'Freelance',
@@ -66,7 +84,7 @@ export const experience: z.infer<typeof ExperienceSchema>[] = [
       'Web development and UI services for London-based clients. Foundation built entirely through self-directed learning and real project delivery.',
     skills: ['JavaScript', 'HTML & CSS', 'WordPress'],
   },
-]
+];
 
 export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'React', category: 'frontend' },
@@ -89,7 +107,7 @@ export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'PHP', category: 'backend' },
   { name: 'MySQL', category: 'backend' },
   { name: 'WordPress', category: 'other' },
-]
+];
 
 export const projects: z.infer<typeof ProjectSchema>[] = [
   {
@@ -101,7 +119,7 @@ export const projects: z.infer<typeof ProjectSchema>[] = [
     repo: 'https://github.com/eskruolis/portfolio',
     featured: true,
   },
-]
+];
 
 export const workProjects: z.infer<typeof WorkProjectSchema>[] = [
   {
@@ -137,4 +155,4 @@ export const workProjects: z.infer<typeof WorkProjectSchema>[] = [
     tags: ['WordPress', 'PHP', 'JavaScript', 'MySQL', 'CSS'],
     private: true,
   },
-]
+];

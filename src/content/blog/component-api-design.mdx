@@ -1,8 +1,8 @@
 ---
 title: "Component API Design: What I Wish I'd Known Earlier"
-date: "2025-02-20"
+date: '2025-02-20'
 summary: "The patterns I've settled on after building component libraries for multiple teams — covering prop naming, composition, and when to reach for context vs. props."
-tags: ["React", "TypeScript", "Design Systems", "Components"]
+tags: ['React', 'TypeScript', 'Design Systems', 'Components']
 ---
 
 After building component libraries for three different product teams, I've made most of the classic mistakes. Prop explosion. Incompatible variants. Components that seemed flexible but locked teams into patterns they didn't want.
@@ -49,7 +49,7 @@ Use discriminated unions for mutually exclusive states:
 ```ts
 type ButtonProps =
   | { variant: 'primary'; href?: never }
-  | { variant: 'link'; href: string }
+  | { variant: 'link'; href: string };
 ```
 
 Now TypeScript enforces that `href` only appears on link buttons. You get compile-time safety instead of runtime guards.
@@ -77,11 +77,15 @@ The most useful component tests verify the public API:
 
 ```tsx
 it('calls onClose when Escape is pressed', async () => {
-  const onClose = vi.fn()
-  render(<Dialog open onClose={onClose}><p>Content</p></Dialog>)
-  await userEvent.keyboard('{Escape}')
-  expect(onClose).toHaveBeenCalledOnce()
-})
+  const onClose = vi.fn();
+  render(
+    <Dialog open onClose={onClose}>
+      <p>Content</p>
+    </Dialog>,
+  );
+  await userEvent.keyboard('{Escape}');
+  expect(onClose).toHaveBeenCalledOnce();
+});
 ```
 
 This test survives a full internal rewrite. Tests that assert on class names or internal DOM structure break every refactor and give false confidence.

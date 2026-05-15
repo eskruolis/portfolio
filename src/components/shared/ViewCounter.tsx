@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { incrementViews } from '@/actions/views'
+import { useEffect, useState } from 'react';
+import { incrementViews } from '@/actions/views';
 
 interface ViewCounterProps {
-  slug: string
+  slug: string;
 }
 
 export function ViewCounter({ slug }: ViewCounterProps) {
-  const [views, setViews] = useState<number | null>(null)
+  const [views, setViews] = useState<number | null>(null);
 
   useEffect(() => {
-    incrementViews(slug).then(setViews)
-  }, [slug])
+    incrementViews(slug).then(setViews);
+  }, [slug]);
 
-  if (views === null) return null
+  if (views === null) return null;
 
   return (
-    <span className="text-sm text-muted-foreground">
+    <span className="text-muted-foreground text-sm">
       {views.toLocaleString()} {views === 1 ? 'view' : 'views'}
     </span>
-  )
+  );
 }

@@ -1,29 +1,31 @@
-import type { Metadata, Viewport } from 'next'
-import { DM_Sans, DM_Mono } from 'next/font/google'
-import { ThemeProvider } from '@/components/layout/ThemeProvider'
-import { Sidebar } from '@/components/layout/Sidebar'
-import './globals.css'
+import type { Metadata, Viewport } from 'next';
+import { DM_Sans, DM_Mono } from 'next/font/google';
+import { ThemeProvider } from '@/components/layout/ThemeProvider';
+import { Sidebar } from '@/components/layout/Sidebar';
+import './globals.css';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
   subsets: ['latin'],
   axes: ['opsz'],
-})
+});
 
 const dmMono = DM_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
   weight: ['400', '500'],
-})
+});
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#f2ede3' },
     { media: '(prefers-color-scheme: dark)', color: '#1e1712' },
   ],
-}
+};
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-liart-three-r17ce5t2q7.vercel.app'
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  'https://portfolio-liart-three-r17ce5t2q7.vercel.app';
 
 export const metadata: Metadata = {
   title: {
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
       'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
     images: [`/og`],
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -67,10 +69,13 @@ export default function RootLayout({
       className={`${dmSans.variable} ${dmMono.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-background text-foreground antialiased">
+      <body className="bg-background text-foreground min-h-full antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:ring-2 focus:ring-ring"
+          className="focus:bg-background focus:ring-ring sr-only
+            focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50
+            focus:rounded-md focus:px-4 focus:py-2 focus:text-sm
+            focus:font-medium focus:ring-2"
         >
           Skip to content
         </a>
@@ -84,5 +89,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

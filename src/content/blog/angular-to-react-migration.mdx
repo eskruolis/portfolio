@@ -1,8 +1,8 @@
 ---
-title: "Migrating a 200k-LOC Angular App to React Without a Big Bang"
-date: "2025-04-10"
-summary: "How we incrementally moved a large Angular monolith to React using module federation — without stopping feature delivery or rewriting everything at once."
-tags: ["React", "Angular", "Module Federation", "TypeScript"]
+title: 'Migrating a 200k-LOC Angular App to React Without a Big Bang'
+date: '2025-04-10'
+summary: 'How we incrementally moved a large Angular monolith to React using module federation — without stopping feature delivery or rewriting everything at once.'
+tags: ['React', 'Angular', 'Module Federation', 'TypeScript']
 ---
 
 After three years on a large Angular codebase, my team was asked to move to React. The app had 200,000 lines of TypeScript, twelve lazy-loaded modules, and a CI pipeline that took 18 minutes to pass. A big-bang rewrite was out of the question.
@@ -26,7 +26,7 @@ new ModuleFederationPlugin({
     './App': './src/App',
   },
   shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
-})
+});
 ```
 
 This meant day one of a new feature could be in React, while the surrounding navigation and shell stayed Angular. No user noticed.
@@ -37,25 +37,28 @@ Angular services are singletons injected via DI. React doesn't have that. We bri
 
 ```ts
 type EventMap = {
-  'auth:logout': void
-  'cart:updated': { count: number }
-}
+  'auth:logout': void;
+  'cart:updated': { count: number };
+};
 
 class EventBus {
-  private emitter = new EventTarget()
+  private emitter = new EventTarget();
 
   emit<K extends keyof EventMap>(event: K, detail: EventMap[K]) {
-    this.emitter.dispatchEvent(new CustomEvent(event, { detail }))
+    this.emitter.dispatchEvent(new CustomEvent(event, { detail }));
   }
 
-  on<K extends keyof EventMap>(event: K, handler: (detail: EventMap[K]) => void) {
-    const listener = (e: Event) => handler((e as CustomEvent).detail)
-    this.emitter.addEventListener(event, listener)
-    return () => this.emitter.removeEventListener(event, listener)
+  on<K extends keyof EventMap>(
+    event: K,
+    handler: (detail: EventMap[K]) => void,
+  ) {
+    const listener = (e: Event) => handler((e as CustomEvent).detail);
+    this.emitter.addEventListener(event, listener);
+    return () => this.emitter.removeEventListener(event, listener);
   }
 }
 
-export const bus = new EventBus()
+export const bus = new EventBus();
 ```
 
 It's not elegant, but it's typed, testable, and doesn't require either app to know about the other's internals.

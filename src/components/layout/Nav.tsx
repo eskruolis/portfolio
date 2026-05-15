@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { useActiveSection } from '@/hooks/use-active-section'
-import { NAV_ITEMS } from '@/lib/nav'
-import { cn } from '@/lib/utils'
+import Link from 'next/link';
+import { useActiveSection } from '@/hooks/use-active-section';
+import { NAV_ITEMS } from '@/lib/nav';
+import { cn } from '@/lib/utils';
 
 interface NavProps {
-  onItemClick?: () => void
+  onItemClick?: () => void;
 }
 
 export function Nav({ onItemClick }: NavProps) {
-  const activeSection = useActiveSection()
+  const activeSection = useActiveSection();
 
   return (
     <nav aria-label="Page sections">
@@ -20,11 +20,15 @@ export function Nav({ onItemClick }: NavProps) {
             <Link
               href={item.href}
               onClick={onItemClick}
-              aria-current={activeSection === item.sectionId ? 'location' : undefined}
+              aria-current={
+                activeSection === item.sectionId ? 'location' : undefined
+              }
               className={cn(
-                'flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                `flex items-center rounded-md px-3 py-2 text-sm font-medium
+                transition-colors`,
                 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring',
+                `focus-visible:ring-sidebar-ring focus-visible:ring-2
+                focus-visible:outline-none`,
                 activeSection === item.sectionId
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                   : 'text-sidebar-foreground/70',
@@ -36,5 +40,5 @@ export function Nav({ onItemClick }: NavProps) {
         ))}
       </ul>
     </nav>
-  )
+  );
 }

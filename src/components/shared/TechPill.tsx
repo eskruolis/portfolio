@@ -16,45 +16,48 @@ import {
   siWordpress,
   siOry,
   siCss,
-} from 'simple-icons'
+} from 'simple-icons';
 
-type SimpleIcon = { path: string; hex: string; title: string }
+type SimpleIcon = { path: string; hex: string; title: string };
 
 const ICON_MAP: Record<string, SimpleIcon> = {
-  'React': siReact,
+  React: siReact,
   'Next.js': siNextdotjs,
-  'Angular': siAngular,
-  'TypeScript': siTypescript,
-  'JavaScript': siJavascript,
+  Angular: siAngular,
+  TypeScript: siTypescript,
+  JavaScript: siJavascript,
   'JavaScript (ES6+)': siJavascript,
   'Tailwind CSS': siTailwindcss,
   'HTML & CSS': siHtml5,
-  'Turborepo': siTurborepo,
-  'Git': siGit,
-  'Figma': siFigma,
-  'Storybook': siStorybook,
-  'Vitest': siVitest,
-  'PHP': siPhp,
-  'MySQL': siMysql,
-  'WordPress': siWordpress,
+  Turborepo: siTurborepo,
+  Git: siGit,
+  Figma: siFigma,
+  Storybook: siStorybook,
+  Vitest: siVitest,
+  PHP: siPhp,
+  MySQL: siMysql,
+  WordPress: siWordpress,
   'Ory SDK': siOry,
-  'CSS': siCss,
-}
+  CSS: siCss,
+};
 
 interface TechPillProps {
-  name: string
-  gradient?: boolean
+  name: string;
+  gradient?: boolean;
 }
 
 export function TechPill({ name, gradient = false }: TechPillProps) {
-  const icon = ICON_MAP[name]
+  const icon = ICON_MAP[name];
 
   return (
     <span
       className={
         gradient
-          ? 'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium btn-gradient text-white'
-          : 'inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground'
+          ? `btn-gradient inline-flex items-center gap-1.5 rounded-full px-3
+            py-1 text-xs font-medium text-white`
+          : `border-border bg-muted text-muted-foreground inline-flex
+            items-center gap-1.5 rounded-full border px-3 py-1 text-xs
+            font-medium`
       }
     >
       {icon && (
@@ -70,5 +73,5 @@ export function TechPill({ name, gradient = false }: TechPillProps) {
       )}
       {name}
     </span>
-  )
+  );
 }
