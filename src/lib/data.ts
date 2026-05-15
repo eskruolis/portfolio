@@ -26,6 +26,15 @@ export const ProjectSchema = z.object({
   featured: z.boolean().default(false),
 });
 
+export const SiteConfigSchema = z.object({
+  showBlog: z.boolean().default(true),
+});
+
+export const siteConfig: z.infer<typeof SiteConfigSchema> =
+  SiteConfigSchema.parse({
+    showBlog: true,
+  });
+
 export const WorkProjectSchema = z.object({
   title: z.string(),
   company: z.string(),
