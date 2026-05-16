@@ -7,6 +7,7 @@ import { BlogTeaser } from '@/components/sections/BlogTeaser';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/layout/Footer';
 import { SectionDivider } from '@/components/shared/SectionDivider';
+import { siteConfig } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -30,8 +31,12 @@ export default function HomePage() {
         <Projects />
       </div>
 
-      <SectionDivider flip />
-      <BlogTeaser />
+      {siteConfig.showBlog && (
+        <>
+          <SectionDivider flip />
+          <BlogTeaser />
+        </>
+      )}
 
       <SectionDivider />
       <div className="bg-muted/30">
