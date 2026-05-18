@@ -32,7 +32,7 @@ export const SiteConfigSchema = z.object({
 
 export const siteConfig: z.infer<typeof SiteConfigSchema> =
   SiteConfigSchema.parse({
-    showBlog: true,
+    showBlog: false,
   });
 
 export const WorkProjectSchema = z.object({
