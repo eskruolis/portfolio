@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
+import { Services } from '@/components/sections/Services';
+import { HowIWork } from '@/components/sections/HowIWork';
 import { Skills } from '@/components/sections/Skills';
 import { Experience } from '@/components/sections/Experience';
 import { Projects } from '@/components/sections/Projects';
@@ -10,7 +12,9 @@ import { SectionDivider } from '@/components/shared/SectionDivider';
 import { siteConfig } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: {
+    absolute: 'Eigirdas Skruolis — Senior Full-Stack Engineer · Freelance',
+  },
 };
 
 export default function HomePage() {
@@ -19,17 +23,19 @@ export default function HomePage() {
       <Hero />
 
       <SectionDivider />
-      <div className="bg-muted/30">
-        <Skills />
-      </div>
+      <Services />
+
+      <SectionDivider flip />
+      <HowIWork />
+
+      <SectionDivider />
+      <Skills />
 
       <SectionDivider flip />
       <Experience />
 
       <SectionDivider />
-      <div className="bg-muted/30">
-        <Projects />
-      </div>
+      <Projects />
 
       {siteConfig.showBlog && (
         <>
@@ -39,9 +45,7 @@ export default function HomePage() {
       )}
 
       <SectionDivider />
-      <div className="bg-muted/30">
-        <Contact />
-      </div>
+      <Contact />
 
       <Footer />
     </>

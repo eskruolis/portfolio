@@ -5,21 +5,24 @@ import { motion, useInView } from 'framer-motion';
 import { skills } from '@/lib/data';
 import { TechPill } from '@/components/shared/TechPill';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 
 const CATEGORY_LABELS: Record<string, string> = {
+  languages: 'Languages & Core',
   frontend: 'Frontend',
-  tooling: 'Tooling & DevOps',
-  testing: 'Testing',
-  backend: 'Backend',
-  other: 'Other',
+  backend: 'Backend & Data',
+  infra: 'Auth & Infrastructure',
+  practices: 'Engineering Practices',
+  ai: 'AI-Assisted Development',
 };
 
 const CATEGORY_ORDER = [
   'frontend',
-  'tooling',
-  'testing',
   'backend',
-  'other',
+  'languages',
+  'infra',
+  'practices',
+  'ai',
 ] as const;
 
 function PillGroup({
@@ -41,11 +44,11 @@ function PillGroup({
           animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
           transition={{
             duration: 0.35,
-            delay: baseDelay + i * 0.05,
+            delay: baseDelay + i * 0.04,
             ease: 'easeOut',
           }}
         >
-          <TechPill name={name} gradient />
+          <TechPill name={name} />
         </motion.div>
       ))}
     </div>
@@ -63,22 +66,28 @@ export function Skills() {
     <section
       id="skills"
       aria-label="Skills"
-      className="max-w-3xl px-8 py-16 lg:px-16"
+      className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
-        <h2 className="mb-8 text-2xl font-bold tracking-tight">Skills</h2>
+        <SectionHeading
+          label="Skills"
+          title="A full-stack toolkit"
+          intro="Most of the technologies out there, one engineer. If your
+            stack isn't listed, I've probably shipped something adjacent to
+            it — adapting fast is the actual skill."
+        />
       </ScrollReveal>
-      <div className="flex flex-col gap-6">
+      <div className="grid gap-x-12 gap-y-8 sm:grid-cols-2">
         {CATEGORY_ORDER.filter((cat) => grouped[cat]?.length).map(
           (category, catIdx) => (
-            <ScrollReveal key={category} delay={catIdx * 0.08}>
+            <ScrollReveal key={category} delay={catIdx * 0.06}>
               <p
-                className="text-muted-foreground mb-3 text-xs font-medium
-                  tracking-widest uppercase"
+                className="text-muted-foreground mb-3 font-mono text-xs
+                  font-medium tracking-widest uppercase"
               >
                 {CATEGORY_LABELS[category]}
               </p>
-              <PillGroup names={grouped[category]} baseDelay={catIdx * 0.05} />
+              <PillGroup names={grouped[category]} baseDelay={catIdx * 0.04} />
             </ScrollReveal>
           ),
         )}

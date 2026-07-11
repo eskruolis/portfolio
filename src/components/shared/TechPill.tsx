@@ -16,6 +16,13 @@ import {
   siWordpress,
   siOry,
   siCss,
+  siNodedotjs,
+  siPostgresql,
+  siRedis,
+  siVercel,
+  siClaude,
+  siFramer,
+  siReactivex,
 } from 'simple-icons';
 
 type SimpleIcon = { path: string; hex: string; title: string };
@@ -34,11 +41,20 @@ const ICON_MAP: Record<string, SimpleIcon> = {
   Figma: siFigma,
   Storybook: siStorybook,
   Vitest: siVitest,
+  'Testing (Vitest / RTL)': siVitest,
   PHP: siPhp,
   MySQL: siMysql,
+  SQL: siPostgresql,
   WordPress: siWordpress,
   'Ory SDK': siOry,
   CSS: siCss,
+  'Node.js': siNodedotjs,
+  PostgreSQL: siPostgresql,
+  Redis: siRedis,
+  Vercel: siVercel,
+  Claude: siClaude,
+  'Framer Motion': siFramer,
+  RxJS: siReactivex,
 };
 
 interface TechPillProps {

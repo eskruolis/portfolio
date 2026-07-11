@@ -8,10 +8,7 @@ export function useActiveSection() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    if (pathname !== '/') {
-      setActiveSection(null);
-      return;
-    }
+    if (pathname !== '/') return;
 
     const sections = Array.from(document.querySelectorAll('section[id]'));
     if (sections.length === 0) return;
@@ -31,5 +28,6 @@ export function useActiveSection() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  return activeSection;
+  // Off the homepage there are no observed sections — report none active.
+  return pathname === '/' ? activeSection : null;
 }

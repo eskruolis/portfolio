@@ -1,44 +1,59 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, DM_Mono } from 'next/font/google';
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { Sidebar } from '@/components/layout/Sidebar';
 import './globals.css';
 
-const dmSans = DM_Sans({
-  variable: '--font-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
-  axes: ['opsz'],
 });
 
-const dmMono = DM_Mono({
-  variable: '--font-mono',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
+  subsets: ['latin'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
   subsets: ['latin'],
   weight: ['400', '500'],
 });
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f2ede3' },
-    { media: '(prefers-color-scheme: dark)', color: '#1e1712' },
-  ],
+  themeColor: '#0e0f13',
 };
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
   'https://portfolio-liart-three-r17ce5t2q7.vercel.app';
 
+const TITLE = 'Eigirdas Skruolis — Senior Full-Stack Engineer';
+const DESCRIPTION =
+  'Senior full-stack engineer — React, Next.js, TypeScript, Node.js, PostgreSQL. ' +
+  'Open to freelance and full-time work. AI-accelerated delivery, engineer-directed at every step.';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Eigirdas Skruolis — Senior Frontend Engineer',
+    default: TITLE,
     template: '%s | Eigirdas Skruolis',
   },
-  description:
-    'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+  description: DESCRIPTION,
   metadataBase: new URL(SITE_URL),
+  keywords: [
+    'Senior Software Engineer',
+    'Full-Stack Developer',
+    'Freelance Developer',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Node.js',
+    'PostgreSQL',
+    'AI-assisted development',
+  ],
   openGraph: {
-    title: 'Eigirdas Skruolis — Senior Frontend Engineer',
-    description:
-      'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+    title: TITLE,
+    description: DESCRIPTION,
     url: SITE_URL,
     siteName: 'Eigirdas Skruolis',
     images: [
@@ -46,18 +61,41 @@ export const metadata: Metadata = {
         url: `/og`,
         width: 1200,
         height: 630,
-        alt: 'Eigirdas Skruolis — Senior Frontend Engineer',
+        alt: TITLE,
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eigirdas Skruolis — Senior Frontend Engineer',
-    description:
-      'Senior Frontend Engineer specialising in React, Next.js, and TypeScript. Portfolio, blog, and case studies.',
+    title: TITLE,
+    description: DESCRIPTION,
     images: [`/og`],
   },
+};
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Eigirdas Skruolis',
+  jobTitle: 'Senior Software Engineer',
+  description: DESCRIPTION,
+  url: SITE_URL,
+  email: 'mailto:eskruolis@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Valencia',
+    addressCountry: 'ES',
+  },
+  sameAs: ['https://github.com/eskruolis', 'https://linkedin.com/in/eskruolis'],
+  knowsAbout: [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Node.js',
+    'PostgreSQL',
+    'AI-assisted software development',
+  ],
 };
 
 export default function RootLayout({
@@ -66,10 +104,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${dmMono.variable} h-full`}
+      className={`${inter.variable} ${spaceGrotesk.variable}
+        ${jetbrainsMono.variable} dark h-full`}
       suppressHydrationWarning
     >
       <body className="bg-background text-foreground min-h-full antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <a
           href="#main-content"
           className="focus:bg-background focus:ring-ring sr-only

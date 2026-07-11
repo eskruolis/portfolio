@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { experience } from '@/lib/data';
 import { TechPill } from '@/components/shared/TechPill';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 
 function TimelineLine() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ function TimelineLine() {
     >
       <motion.div
         style={{ scaleY, transformOrigin: 'top' }}
-        className="from-primary/60 to-primary/20 absolute inset-0
+        className="from-primary/60 to-primary/10 absolute inset-0
           bg-linear-to-b"
       />
     </div>
@@ -37,7 +38,7 @@ function JobEntry({
   index: number;
 }) {
   const ref = useRef<HTMLLIElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
     <motion.li
@@ -61,33 +62,51 @@ function JobEntry({
       />
 
       <p
-        className="text-muted-foreground shrink-0 text-xs font-medium
-          tracking-widest uppercase sm:w-28 sm:pt-1"
+        className="text-muted-foreground shrink-0 font-mono text-xs font-medium
+          tracking-wider uppercase sm:w-28 sm:pt-1"
       >
         {job.startDate}
         {' — '}
         {job.current ? 'Present' : job.endDate}
       </p>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex min-w-0 flex-col gap-3">
         <div>
           {job.url ? (
             <a
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary font-semibold transition-colors"
+              className="hover:text-primary font-display text-lg font-semibold
+                transition-colors"
             >
               {job.company}
             </a>
           ) : (
-            <span className="font-semibold">{job.company}</span>
+            <span className="font-display text-lg font-semibold">
+              {job.company}
+            </span>
           )}
-          <p className="text-muted-foreground text-sm">{job.role}</p>
+          <p className="text-primary text-sm font-medium">{job.role}</p>
         </div>
         <p className="text-muted-foreground text-sm leading-7">
           {job.description}
         </p>
+        {job.highlights.length > 0 && (
+          <ul className="flex flex-col gap-2" role="list">
+            {job.highlights.map((highlight) => (
+              <li
+                key={highlight}
+                className="text-muted-foreground before:bg-primary/50 relative
+                  pl-5 text-sm leading-6 before:absolute before:top-2.5
+                  before:left-0 before:h-1 before:w-2.5 before:rounded-full
+                  before:content-['']"
+              >
+                {highlight}
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="flex flex-wrap gap-2">
           {job.skills.map((skill) => (
             <TechPill key={skill} name={skill} />
@@ -103,14 +122,14 @@ export function Experience() {
     <section
       id="experience"
       aria-label="Work experience"
-      className="max-w-3xl px-8 py-16 lg:px-16"
+      className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
-        <h2 className="mb-8 text-2xl font-bold tracking-tight">Experience</h2>
+        <SectionHeading label="Experience" title="Where I've shipped" />
       </ScrollReveal>
       <div className="relative">
         <TimelineLine />
-        <ol className="flex flex-col gap-12 sm:pl-6" aria-label="Work history">
+        <ol className="flex flex-col gap-14 sm:pl-6" aria-label="Work history">
           {experience.map((job, i) => (
             <JobEntry key={job.company} job={job} index={i} />
           ))}
