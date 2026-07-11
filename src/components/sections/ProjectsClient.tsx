@@ -1,15 +1,18 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowUpRightFromSquare,
+  faArrowRight,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TechPill } from '@/components/shared/TechPill';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 import { cn } from '@/lib/utils';
 import type { WorkProject } from '@/types';
 import type { GitHubRepo } from '@/lib/github';
@@ -52,8 +55,8 @@ function CardShell({
         });
       }}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-      className="border-border bg-card flex flex-col gap-3 rounded-xl border p-5
-        transition-shadow duration-300 hover:shadow-lg"
+      className="border-border bg-card card-glow flex flex-col gap-3 rounded-xl
+        border p-5"
     >
       {children}
     </motion.li>
@@ -161,6 +164,20 @@ function WorkCard({ project, index }: { project: WorkProject; index: number }) {
           <TechPill key={tag} name={tag} />
         ))}
       </div>
+      {project.caseStudy && (
+        <Link
+          href={`/work/${project.caseStudy}`}
+          className="text-primary group/link mt-1 inline-flex w-fit items-center
+            gap-1.5 text-sm font-medium underline-offset-4 hover:underline"
+        >
+          Read case study
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            className="h-3 w-3 transition-transform
+              group-hover/link:translate-x-0.5"
+          />
+        </Link>
+      )}
     </CardShell>
   );
 }
@@ -187,7 +204,7 @@ function TagFilter({
         className={cn(
           'rounded-full border px-3 py-1 text-xs font-medium transition-colors',
           active === null
-            ? 'btn-gradient border-transparent text-white'
+            ? 'bg-primary text-primary-foreground border-transparent'
             : 'border-border bg-muted text-muted-foreground hover:bg-muted/80',
         )}
       >
@@ -201,7 +218,7 @@ function TagFilter({
             `rounded-full border px-3 py-1 text-xs font-medium
             transition-colors`,
             active === tag
-              ? 'btn-gradient border-transparent text-white'
+              ? 'bg-primary text-primary-foreground border-transparent'
               : 'border-border bg-muted text-muted-foreground hover:bg-muted/80',
           )}
         >
@@ -247,10 +264,15 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
     <section
       id="projects"
       aria-label="Projects"
-      className="max-w-3xl px-8 py-16 lg:px-16"
+      className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
-        <h2 className="mb-6 text-2xl font-bold tracking-tight">Projects</h2>
+        <SectionHeading
+          label="Work"
+          title="Selected work & projects"
+          intro="Client work lives behind NDAs and logins — the case studies
+            tell the story. The GitHub tab pulls my public repos live."
+        />
       </ScrollReveal>
 
       {/* Tab switcher */}

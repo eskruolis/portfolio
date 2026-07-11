@@ -21,6 +21,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 | Validation | Zod | All data shapes validated — including `lib/data.ts` |
 | DB | Upstash Redis | View counters only. Client in `lib/redis.ts` |
 | Testing | Vitest + React Testing Library | Integration tests over unit tests |
+| Component dev | Storybook (`@storybook/nextjs-vite`) | Vite builder (webpack `@storybook/nextjs` breaks on Next 16). Stories co-located as `*.stories.tsx`. Run with `pnpm storybook` |
 | Deploy | Vercel | `main` = production, `dev` = staging |
 
 ## Folder structure
@@ -28,25 +29,23 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ```
 src/
   app/
-    layout.tsx              Root layout — ThemeProvider, Sidebar, fonts
+    layout.tsx              Root layout — ThemeProvider (dark forced), Sidebar, fonts, JSON-LD
     page.tsx                Single scrollable homepage
-    blog/[slug]/            Blog post pages (SSG via generateStaticParams)
-    projects/[slug]/        Case study pages (SSG via generateStaticParams)
-    uses/                   Dev setup / workflow page
+    blog/[slug]/            Blog post pages (SSG via generateStaticParams; hidden via siteConfig.showBlog)
+    work/[slug]/            Case study pages (SSG, data-driven from lib/data.ts caseStudies)
     og/route.tsx            OG image generation API route
   actions/
     views.ts                Server Action: increment Upstash view counter
   components/
     layout/                 Sidebar, Nav, Footer, ThemeProvider — shared shell
-    sections/               Hero, Skills, Experience, Projects, BlogTeaser
+    sections/               Hero, Services, HowIWork, Skills, Experience, Projects, Contact, BlogTeaser
     ui/                     shadcn components — DO NOT EDIT
-    shared/                 Reusable project-specific components
+    shared/                 Reusable project-specific components (AvailabilityBadge, SectionHeading, TechPill, ScrollReveal…)
   content/
     blog/                   .mdx blog posts
-    projects/               .mdx case study pages
   hooks/
     use-active-section.ts   IntersectionObserver — tracks active sidebar nav item
-    use-media-query.ts      Responsive breakpoint detection
+    use-media-query.ts      Responsive breakpoint detection (useSyncExternalStore)
   lib/
     data.ts                 Zod-typed experience, skills, projects data
     mdx.ts                  MDX parsing helpers
@@ -79,7 +78,9 @@ public/
 ### Styling
 - Tailwind utility classes only
 - No arbitrary values (`w-[347px]`) unless genuinely necessary
-- Dark mode via `dark:` prefix — ThemeProvider handles the toggle
+- **Dark-only theme** — ThemeProvider forces `dark`; the palette in `globals.css` is a single dark set (near-black canvas, emerald `--primary` accent). No light mode, no toggle
+- Display font: Space Grotesk (`font-display`, auto-applied to h1–h3); body: Inter; mono accents: JetBrains Mono (`.section-label`)
+- Reusable theme classes in `globals.css`: `.section-label`, `.text-gradient`, `.accent-glow`, `.grid-pattern`, `.card-glow`, `.availability-dot`
 - Responsive: mobile-first (`sm:`, `md:`, `lg:`)
 - shadcn component variants over custom CSS when possible
 
@@ -94,7 +95,7 @@ className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'btn-gradient 
 className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'gap-2')}
 ```
 
-The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gradient` / `--btn-gradient-hover` CSS variables (warm amber/terracotta, both light and dark modes covered). Do **not** apply it to:
+The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gradient` / `--btn-gradient-hover` CSS variables (emerald → teal accent gradient). Do **not** apply it to:
 - `outline` or `ghost` variant buttons — these intentionally have no fill
 - Icon-only utility buttons (theme toggle, close/hamburger icons)
 

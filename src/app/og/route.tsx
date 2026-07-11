@@ -10,7 +10,8 @@ const SITE_URL =
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const title = searchParams.get('title') ?? 'Eigirdas Skruolis';
-  const subtitle = searchParams.get('subtitle') ?? 'Senior Frontend Engineer';
+  const subtitle =
+    searchParams.get('subtitle') ?? 'Senior Software Engineer · Full-Stack';
 
   return new ImageResponse(
     <div
@@ -18,7 +19,9 @@ export async function GET(req: NextRequest) {
         display: 'flex',
         width: '1200px',
         height: '630px',
-        backgroundColor: '#1e1712',
+        backgroundColor: '#0e0f13',
+        backgroundImage:
+          'radial-gradient(ellipse at top left, rgba(52,211,153,0.12) 0%, transparent 55%)',
         padding: '64px',
         alignItems: 'center',
         gap: '56px',
@@ -30,7 +33,12 @@ export async function GET(req: NextRequest) {
         src={`${SITE_URL}/profile.png`}
         width={200}
         height={200}
-        style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+        style={{
+          borderRadius: '50%',
+          objectFit: 'cover',
+          flexShrink: 0,
+          border: '2px solid rgba(52,211,153,0.4)',
+        }}
         alt=""
       />
 
@@ -38,9 +46,31 @@ export async function GET(req: NextRequest) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <div
           style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontSize: '18px',
+            color: '#34d399',
+            fontWeight: 500,
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+          }}
+        >
+          <div
+            style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: '#34d399',
+            }}
+          />
+          Open to freelance & full-time
+        </div>
+        <div
+          style={{
             fontSize: '56px',
             fontWeight: 700,
-            color: '#f2ede3',
+            color: '#eceef2',
             lineHeight: 1.1,
           }}
         >
@@ -48,8 +78,8 @@ export async function GET(req: NextRequest) {
         </div>
         <div
           style={{
-            fontSize: '28px',
-            color: '#c97b4b',
+            fontSize: '26px',
+            color: '#9aa1ad',
             fontWeight: 500,
           }}
         >
@@ -58,7 +88,7 @@ export async function GET(req: NextRequest) {
         <div
           style={{
             fontSize: '20px',
-            color: '#9c8f84',
+            color: '#5d6470',
             marginTop: '8px',
           }}
         >

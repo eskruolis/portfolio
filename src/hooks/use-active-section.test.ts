@@ -51,7 +51,7 @@ describe('useActiveSection', () => {
           {
             isIntersecting: true,
             target: document.getElementById('skills')!,
-          } as IntersectionObserverEntry,
+          } as unknown as IntersectionObserverEntry,
         ],
         {} as IntersectionObserver,
       );
@@ -69,7 +69,7 @@ describe('useActiveSection', () => {
           {
             isIntersecting: true,
             target: document.getElementById('hero')!,
-          } as IntersectionObserverEntry,
+          } as unknown as IntersectionObserverEntry,
         ],
         {} as IntersectionObserver,
       );
@@ -82,7 +82,7 @@ describe('useActiveSection', () => {
           {
             isIntersecting: true,
             target: document.getElementById('experience')!,
-          } as IntersectionObserverEntry,
+          } as unknown as IntersectionObserverEntry,
         ],
         {} as IntersectionObserver,
       );
@@ -99,7 +99,7 @@ describe('useActiveSection', () => {
           {
             isIntersecting: false,
             target: document.getElementById('skills')!,
-          } as IntersectionObserverEntry,
+          } as unknown as IntersectionObserverEntry,
         ],
         {} as IntersectionObserver,
       );
