@@ -1,11 +1,17 @@
-export function Footer() {
+import type { Dictionary } from '@/i18n/dictionaries';
+
+interface FooterProps {
+  dict: Dictionary;
+}
+
+export function Footer({ dict }: FooterProps) {
   return (
     <footer
       aria-label="Site footer"
       className="text-muted-foreground max-w-5xl px-8 py-12 text-sm lg:px-16"
     >
       <p>
-        © {new Date().getFullYear()} Eigirdas Skruolis. Designed and built with{' '}
+        © {new Date().getFullYear()} Eigirdas Skruolis. {dict.footer.builtWith}{' '}
         <a
           href="https://nextjs.org"
           target="_blank"
@@ -15,7 +21,7 @@ export function Footer() {
         >
           Next.js
         </a>{' '}
-        and{' '}
+        {dict.footer.and}{' '}
         <a
           href="https://tailwindcss.com"
           target="_blank"

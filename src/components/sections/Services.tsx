@@ -7,9 +7,10 @@ import {
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { services } from '@/lib/data';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/shared/SectionHeading';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { PortfolioData } from '@/lib/data';
 
 const SERVICE_ICONS: IconDefinition[] = [
   faLayerGroup,
@@ -18,26 +19,28 @@ const SERVICE_ICONS: IconDefinition[] = [
   faWandMagicSparkles,
 ];
 
-export function Services() {
+interface SectionProps {
+  dict: Dictionary;
+  data: PortfolioData;
+}
+
+export function Services({ dict, data }: SectionProps) {
   return (
     <section
       id="services"
-      aria-label="Services"
+      aria-label={dict.services.label}
       className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
         <SectionHeading
-          label="Services"
-          title="What I can build for you"
-          intro="I work across the full stack — greenfield products, rescues,
-            migrations, and performance work on existing codebases. Available
-            as a freelancer or contractor, and equally open to committing
-            full-time to one ambitious product."
+          label={dict.services.label}
+          title={dict.services.title}
+          intro={dict.services.intro}
         />
       </ScrollReveal>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        {services.map((service, i) => (
+        {data.services.map((service, i) => (
           <ScrollReveal key={service.title} delay={i * 0.08}>
             <article
               className="border-border bg-card card-glow flex h-full flex-col

@@ -2,11 +2,13 @@ import { siteConfig } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 interface AvailabilityBadgeProps {
+  label: string;
   className?: string;
   compact?: boolean;
 }
 
 export function AvailabilityBadge({
+  label,
   className,
   compact = false,
 }: AvailabilityBadgeProps) {
@@ -26,7 +28,7 @@ export function AvailabilityBadge({
         className="availability-dot bg-primary h-1.5 w-1.5 shrink-0
           rounded-full"
       />
-      Open to freelance &amp; full-time
+      {label}
     </span>
   );
 }

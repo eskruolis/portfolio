@@ -1,39 +1,50 @@
 import Link from 'next/link';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
+import { localePath } from '@/i18n/routing';
 
-export function BlogTeaser() {
+interface BlogTeaserProps {
+  dict: Dictionary;
+  locale: Locale;
+}
+
+export function BlogTeaser({ dict, locale }: BlogTeaserProps) {
   const posts = getAllBlogPosts().slice(0, 3);
+  const dateLocale = locale === 'lt' ? 'lt-LT' : 'en-GB';
 
   return (
     <section
       id="blog"
-      aria-label="Blog"
+      aria-label={dict.blog.ariaLabel}
       className="max-w-3xl px-8 py-16 lg:px-16"
     >
       <ScrollReveal>
-        <h2 className="mb-8 text-2xl font-bold tracking-tight">Writing</h2>
+        <h2 className="mb-8 text-2xl font-bold tracking-tight">
+          {dict.blog.title}
+        </h2>
       </ScrollReveal>
-      <ul className="space-y-8" aria-label="Blog posts">
+      <ul className="space-y-8" aria-label={dict.blog.ariaLabel}>
         {posts.map((post, i) => (
           <ScrollReveal key={post.slug} delay={i * 0.1}>
             <li>
               <Link
-                href={`/blog/${post.slug}`}
+                href={localePath(locale, `/blog/${post.slug}`)}
                 className="group hover:bg-muted/50 focus-visible:ring-ring -mx-4
                   block space-y-1 rounded-lg p-4 transition-colors
                   focus-visible:ring-2 focus-visible:outline-none"
               >
                 <p className="text-muted-foreground text-xs">
                   <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString('en-GB', {
+                    {new Date(post.date).toLocaleDateString(dateLocale, {
                       day: 'numeric',
                       month: 'long',
                       year: 'numeric',
                     })}
                   </time>
                   <span aria-hidden> · </span>
-                  {post.readingTime} min read
+                  {post.readingTime} {dict.blog.minRead}
                 </p>
                 <h3
                   className="group-hover:text-foreground/80 font-semibold
@@ -44,7 +55,10 @@ export function BlogTeaser() {
                 <p className="text-muted-foreground line-clamp-2 text-sm">
                   {post.summary}
                 </p>
-                <ul className="flex flex-wrap gap-1.5 pt-1" aria-label="Tags">
+                <ul
+                  className="flex flex-wrap gap-1.5 pt-1"
+                  aria-label={dict.blog.tagsAria}
+                >
                   {post.tags.map((tag) => (
                     <li
                       key={tag}

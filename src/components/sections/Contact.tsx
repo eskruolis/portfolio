@@ -10,34 +10,33 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { AvailabilityBadge } from '@/components/shared/AvailabilityBadge';
 import { cn } from '@/lib/utils';
+import type { Dictionary } from '@/i18n/dictionaries';
 
-const PLACEHOLDERS = [
-  'We need a full-stack engineer for...',
-  "Here's the product we're building...",
-  'Our frontend needs rescuing...',
-  'Can we grab a virtual coffee?',
-];
+interface ContactProps {
+  dict: Dictionary;
+}
 
-export function Contact() {
+export function Contact({ dict }: ContactProps) {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [focused, setFocused] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [placeholderIdx, setPlaceholderIdx] = useState(0);
+  const placeholders = dict.contact.placeholders;
 
   // Rotate the message placeholder while the field is untouched
   useEffect(() => {
     const id = setInterval(
-      () => setPlaceholderIdx((i) => (i + 1) % PLACEHOLDERS.length),
+      () => setPlaceholderIdx((i) => (i + 1) % placeholders.length),
       6000,
     );
     return () => clearInterval(id);
-  }, []);
+  }, [placeholders.length]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `Hey Eigirdas — from ${name || 'your portfolio'}`,
+      `${dict.contact.emailSubjectFrom} ${name || dict.contact.emailSubjectFallback}`,
     );
     const body = encodeURIComponent(message);
     window.location.href = `mailto:eskruolis@gmail.com?subject=${subject}&body=${body}`;
@@ -48,19 +47,15 @@ export function Contact() {
   return (
     <section
       id="contact"
-      aria-label="Contact"
+      aria-label={dict.contact.ariaLabel}
       className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
-        <AvailabilityBadge className="mb-6" />
+        <AvailabilityBadge label={dict.common.availability} className="mb-6" />
         <SectionHeading
-          label="Contact"
-          title="Let's build something"
-          intro="I'm open to freelance and contract work — or committing my
-            time fully to one big project as part of your team. Full products,
-            migrations, performance rescues, or a senior full-stack hire. Tell
-            me what you're building and I'll tell you honestly whether I'm the
-            right person for it."
+          label={dict.contact.label}
+          title={dict.contact.title}
+          intro={dict.contact.intro}
         />
       </ScrollReveal>
 
@@ -82,7 +77,7 @@ export function Contact() {
                     : 'top-3.5 text-sm',
                 )}
               >
-                Your name
+                {dict.contact.yourName}
               </label>
               <input
                 id="contact-name"
@@ -111,7 +106,7 @@ export function Contact() {
                     : 'top-3.5 text-sm',
                 )}
               >
-                {PLACEHOLDERS[placeholderIdx]}
+                {placeholders[placeholderIdx]}
               </label>
               <textarea
                 id="contact-message"
@@ -142,7 +137,7 @@ export function Contact() {
               >
                 <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4" />
               </motion.span>
-              {sent ? 'Opening your mail app...' : 'Send message'}
+              {sent ? dict.contact.sending : dict.contact.sendMessage}
             </motion.button>
           </form>
         </ScrollReveal>
@@ -153,7 +148,7 @@ export function Contact() {
               className="text-muted-foreground font-mono text-xs tracking-wider
                 uppercase"
             >
-              Or reach me directly
+              {dict.contact.orReach}
             </p>
             <a
               href="mailto:eskruolis@gmail.com"
@@ -184,8 +179,7 @@ export function Contact() {
               github.com/eskruolis
             </a>
             <p className="text-muted-foreground mt-2 max-w-xs leading-6">
-              Based in Valencia, Spain (CET) — working with teams across Europe
-              and beyond.
+              {dict.contact.basedIn}
             </p>
           </div>
         </ScrollReveal>
