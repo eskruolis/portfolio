@@ -1,28 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 34" fill="none">
   <defs>
     <linearGradient id="a" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#c8956b"/>
-      <stop offset="100%" stop-color="#8a5c42"/>
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#0d9488"/>
     </linearGradient>
     <linearGradient id="b" x1="32" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#e8b48a"/>
-      <stop offset="100%" stop-color="#c07848"/>
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
     </linearGradient>
     <linearGradient id="c" x1="0" y1="32" x2="32" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6b3e2a"/>
-      <stop offset="100%" stop-color="#8a5038"/>
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#0f766e"/>
     </linearGradient>
   </defs>
-
-  <!-- Back-left face (dark) -->
-  <polygon points="4,10 16,4 16,22 4,28" fill="url(#c)" opacity="0.85"/>
-
-  <!-- Top face (light) -->
+  <!-- Back-left face -->
+  <polygon points="4,10 16,4 16,22 4,28" fill="url(#c)"/>
+  <!-- Top face -->
   <polygon points="4,10 16,4 28,10 16,16" fill="url(#b)"/>
-
-  <!-- Front-right face (mid) -->
+  <!-- Front-right face -->
   <polygon points="16,16 28,10 28,28 16,22" fill="url(#a)"/>
-
-  <!-- Thin horizontal slice — accent edge -->
-  <polygon points="4,28 16,22 28,28 16,34" fill="#6b3e2a" opacity="0.4"/>
+  <!-- Bottom accent edge -->
+  <polygon points="4,28 16,22 28,28 16,34" fill="#064e3b"/>
 </svg>
