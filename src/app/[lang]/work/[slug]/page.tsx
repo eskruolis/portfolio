@@ -3,36 +3,41 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { caseStudies, getCaseStudy } from '@/lib/data';
+import { getCaseStudy, caseStudySlugs } from '@/lib/data';
+import { isEnabledLocale, DEFAULT_LOCALE, type Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
+import { localePath } from '@/i18n/routing';
 import { TechPill } from '@/components/shared/TechPill';
 import { Footer } from '@/components/layout/Footer';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface CaseStudyPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
 export function generateStaticParams() {
-  return caseStudies.map((cs) => ({ slug: cs.slug }));
+  return caseStudySlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: CaseStudyPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const caseStudy = getCaseStudy(slug);
+  const { lang, slug } = await params;
+  const locale: Locale = isEnabledLocale(lang) ? lang : DEFAULT_LOCALE;
+  const caseStudy = getCaseStudy(locale, slug);
   if (!caseStudy) return {};
+  const dict = getDictionary(locale);
 
   return {
-    title: `${caseStudy.title} — Case Study`,
+    title: `${caseStudy.title} — ${dict.caseStudy.metaSuffix}`,
     description: caseStudy.subtitle,
     openGraph: {
-      title: `${caseStudy.title} — Case Study | Eigirdas Skruolis`,
+      title: `${caseStudy.title} — ${dict.caseStudy.metaSuffix} | Eigirdas Skruolis`,
       description: caseStudy.subtitle,
       images: [
         {
-          url: `/og?title=${encodeURIComponent(caseStudy.title)}&subtitle=${encodeURIComponent('Case Study')}`,
+          url: `/og?title=${encodeURIComponent(caseStudy.title)}&subtitle=${encodeURIComponent(dict.caseStudy.metaSuffix)}`,
           width: 1200,
           height: 630,
         },
@@ -57,24 +62,27 @@ function Block({
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
-  const { slug } = await params;
-  const caseStudy = getCaseStudy(slug);
+  const { lang, slug } = await params;
+  if (!isEnabledLocale(lang)) notFound();
+  const locale: Locale = lang;
+  const caseStudy = getCaseStudy(locale, slug);
   if (!caseStudy) notFound();
+  const dict = getDictionary(locale);
 
   return (
     <>
       <article className="max-w-3xl px-8 py-20 lg:px-16">
         <Link
-          href="/#projects"
+          href={localePath(locale, '/#projects')}
           className="text-muted-foreground hover:text-primary mb-10 inline-flex
             items-center gap-2 text-sm font-medium transition-colors"
         >
           <FontAwesomeIcon icon={faArrowLeft} className="h-3.5 w-3.5" />
-          Back to work
+          {dict.caseStudy.back}
         </Link>
 
         <header className="mb-12">
-          <p className="section-label mb-3">Case study</p>
+          <p className="section-label mb-3">{dict.caseStudy.label}</p>
           <h1
             className="text-gradient mb-4 text-3xl font-bold tracking-tight
               sm:text-4xl"
@@ -94,7 +102,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 className="text-muted-foreground mb-1 font-mono text-xs
                   tracking-wider uppercase"
               >
-                Company
+                {dict.caseStudy.company}
               </dt>
               <dd className="text-sm font-medium">{caseStudy.company}</dd>
             </div>
@@ -103,7 +111,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 className="text-muted-foreground mb-1 font-mono text-xs
                   tracking-wider uppercase"
               >
-                Timeline
+                {dict.caseStudy.timeline}
               </dt>
               <dd className="text-sm font-medium">{caseStudy.year}</dd>
             </div>
@@ -112,20 +120,20 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 className="text-muted-foreground mb-1 font-mono text-xs
                   tracking-wider uppercase"
               >
-                Role
+                {dict.caseStudy.role}
               </dt>
               <dd className="text-sm font-medium">{caseStudy.role}</dd>
             </div>
           </dl>
         </header>
 
-        <Block label="The challenge">
+        <Block label={dict.caseStudy.challenge}>
           <p className="text-muted-foreground leading-8">
             {caseStudy.challenge}
           </p>
         </Block>
 
-        <Block label="The approach">
+        <Block label={dict.caseStudy.approach}>
           <ul className="flex flex-col gap-4" role="list">
             {caseStudy.approach.map((item) => (
               <li
@@ -141,7 +149,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </ul>
         </Block>
 
-        <Block label="The outcome">
+        <Block label={dict.caseStudy.outcome}>
           <ul className="flex flex-col gap-3" role="list">
             {caseStudy.outcomes.map((item) => (
               <li
@@ -155,7 +163,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </ul>
         </Block>
 
-        <Block label="Stack">
+        <Block label={dict.caseStudy.stack}>
           <div className="flex flex-wrap gap-2">
             {caseStudy.tags.map((tag) => (
               <TechPill key={tag} name={tag} />
@@ -165,11 +173,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
         <div className="border-border mt-16 rounded-xl border p-8">
           <h2 className="font-display mb-2 text-xl font-semibold">
-            Have a similar problem?
+            {dict.caseStudy.ctaTitle}
           </h2>
           <p className="text-muted-foreground mb-6 text-sm leading-7">
-            I&apos;m open to freelance, contract, and full-time work — happy to
-            talk through your situation and whether I can help.
+            {dict.caseStudy.ctaBody}
           </p>
           <a
             href="mailto:eskruolis@gmail.com?subject=Project%20enquiry"
@@ -179,11 +186,11 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
           >
             <FontAwesomeIcon icon={faEnvelope} className="h-4 w-4" />
-            Get in touch
+            {dict.caseStudy.ctaButton}
           </a>
         </div>
       </article>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

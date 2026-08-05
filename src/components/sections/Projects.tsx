@@ -1,8 +1,23 @@
 import { getGitHubRepos } from '@/lib/github';
-import { workProjects } from '@/lib/data';
 import { ProjectsClient } from './ProjectsClient';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { PortfolioData } from '@/lib/data';
+import type { Locale } from '@/i18n/config';
 
-export async function Projects() {
+interface ProjectsProps {
+  dict: Dictionary;
+  data: PortfolioData;
+  locale: Locale;
+}
+
+export async function Projects({ dict, data, locale }: ProjectsProps) {
   const repos = await getGitHubRepos();
-  return <ProjectsClient repos={repos} workProjects={workProjects} />;
+  return (
+    <ProjectsClient
+      repos={repos}
+      workProjects={data.workProjects}
+      dict={dict}
+      locale={locale}
+    />
+  );
 }

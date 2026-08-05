@@ -2,10 +2,12 @@
 
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { experience } from '@/lib/data';
 import { TechPill } from '@/components/shared/TechPill';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/shared/SectionHeading';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { PortfolioData } from '@/lib/data';
+import type { Experience as ExperienceEntry } from '@/types';
 
 function TimelineLine() {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,9 +35,11 @@ function TimelineLine() {
 function JobEntry({
   job,
   index,
+  presentLabel,
 }: {
-  job: (typeof experience)[0];
+  job: ExperienceEntry;
   index: number;
+  presentLabel: string;
 }) {
   const ref = useRef<HTMLLIElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.05 });
@@ -67,7 +71,7 @@ function JobEntry({
       >
         {job.startDate}
         {' — '}
-        {job.current ? 'Present' : job.endDate}
+        {job.current ? presentLabel : job.endDate}
       </p>
 
       <div className="flex min-w-0 flex-col gap-3">
@@ -117,21 +121,37 @@ function JobEntry({
   );
 }
 
-export function Experience() {
+interface ExperienceProps {
+  dict: Dictionary;
+  data: PortfolioData;
+}
+
+export function Experience({ dict, data }: ExperienceProps) {
   return (
     <section
       id="experience"
-      aria-label="Work experience"
+      aria-label={dict.experience.ariaLabel}
       className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
-        <SectionHeading label="Experience" title="Where I've shipped" />
+        <SectionHeading
+          label={dict.experience.label}
+          title={dict.experience.title}
+        />
       </ScrollReveal>
       <div className="relative">
         <TimelineLine />
-        <ol className="flex flex-col gap-14 sm:pl-6" aria-label="Work history">
-          {experience.map((job, i) => (
-            <JobEntry key={job.company} job={job} index={i} />
+        <ol
+          className="flex flex-col gap-14 sm:pl-6"
+          aria-label={dict.experience.historyLabel}
+        >
+          {data.experience.map((job, i) => (
+            <JobEntry
+              key={job.company}
+              job={job}
+              index={i}
+              presentLabel={dict.experience.present}
+            />
           ))}
         </ol>
       </div>

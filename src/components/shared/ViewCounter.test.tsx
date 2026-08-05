@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { ViewCounter } from './ViewCounter';
+import { getDictionary } from '@/i18n/dictionaries';
 
 vi.mock('@/actions/views', () => ({
   incrementViews: vi.fn(),
@@ -8,6 +9,7 @@ vi.mock('@/actions/views', () => ({
 
 import { incrementViews } from '@/actions/views';
 const mockIncrementViews = vi.mocked(incrementViews);
+const dict = getDictionary('en');
 
 beforeEach(() => {
   mockIncrementViews.mockReset();
@@ -16,13 +18,13 @@ beforeEach(() => {
 describe('ViewCounter', () => {
   it('renders nothing before incrementViews resolves', () => {
     mockIncrementViews.mockReturnValue(new Promise(() => {}));
-    const { container } = render(<ViewCounter slug="test-post" />);
+    const { container } = render(<ViewCounter slug="test-post" dict={dict} />);
     expect(container).toBeEmptyDOMElement();
   });
 
   it('calls incrementViews with the slug on mount', async () => {
     mockIncrementViews.mockResolvedValue(6);
-    render(<ViewCounter slug="test-post" />);
+    render(<ViewCounter slug="test-post" dict={dict} />);
     await waitFor(() =>
       expect(mockIncrementViews).toHaveBeenCalledWith('test-post'),
     );
@@ -30,7 +32,7 @@ describe('ViewCounter', () => {
 
   it('displays the count after incrementViews resolves', async () => {
     mockIncrementViews.mockResolvedValue(42);
-    render(<ViewCounter slug="test-post" />);
+    render(<ViewCounter slug="test-post" dict={dict} />);
     await waitFor(() =>
       expect(screen.getByText(/42 views/i)).toBeInTheDocument(),
     );
@@ -38,7 +40,7 @@ describe('ViewCounter', () => {
 
   it('uses singular "view" when count is 1', async () => {
     mockIncrementViews.mockResolvedValue(1);
-    render(<ViewCounter slug="test-post" />);
+    render(<ViewCounter slug="test-post" dict={dict} />);
     await waitFor(() =>
       expect(screen.getByText(/1 view$/i)).toBeInTheDocument(),
     );

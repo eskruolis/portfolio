@@ -13,10 +13,17 @@ import {
 import { buttonVariants } from '@/components/ui/button';
 import { BrandLogo } from '@/components/shared/BrandLogo';
 import { AvailabilityBadge } from '@/components/shared/AvailabilityBadge';
-import { stats, clients } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { PortfolioData } from '@/lib/data';
 
-function CVModal({ onClose }: { onClose: () => void }) {
+function CVModal({
+  onClose,
+  dict,
+}: {
+  onClose: () => void;
+  dict: Dictionary;
+}) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -48,7 +55,9 @@ function CVModal({ onClose }: { onClose: () => void }) {
             className="border-border flex shrink-0 items-center justify-between
               border-b px-5 py-4"
           >
-            <p className="text-sm font-medium">Eigirdas Skruolis — CV</p>
+            <p className="text-sm font-medium">
+              Eigirdas Skruolis — {dict.hero.cvModalTitle}
+            </p>
             <div className="flex items-center gap-2">
               <a
                 href="/cv.pdf"
@@ -59,11 +68,11 @@ function CVModal({ onClose }: { onClose: () => void }) {
                 )}
               >
                 <FontAwesomeIcon icon={faDownload} className="h-3.5 w-3.5" />
-                Download
+                {dict.hero.cvDownload}
               </a>
               <button
                 onClick={onClose}
-                aria-label="Close CV preview"
+                aria-label={dict.hero.cvClose}
                 className="text-muted-foreground hover:text-foreground
                   hover:bg-muted focus-visible:ring-ring rounded-md p-2
                   transition-colors focus-visible:ring-2
@@ -86,14 +95,20 @@ function CVModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-export function Hero() {
+interface HeroProps {
+  dict: Dictionary;
+  data: PortfolioData;
+}
+
+export function Hero({ dict, data }: HeroProps) {
   const [cvOpen, setCvOpen] = useState(false);
+  const { stats, clients } = data;
 
   return (
     <>
       <section
         id="hero"
-        aria-label="Introduction"
+        aria-label={dict.hero.ariaLabel}
         className="relative max-w-5xl overflow-hidden px-8 pt-24 pb-16 lg:px-16"
       >
         {/* Backdrop: grid + glow */}
@@ -117,7 +132,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="mb-6"
             >
-              <AvailabilityBadge />
+              <AvailabilityBadge label={dict.common.availability} />
             </motion.div>
 
             <motion.h1
@@ -136,7 +151,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="section-label mb-6"
             >
-              Senior Software Engineer · Full-Stack
+              {dict.hero.role}
             </motion.p>
 
             <motion.p
@@ -146,13 +161,9 @@ export function Hero() {
               className="text-muted-foreground mb-10 max-w-xl text-base
                 leading-8"
             >
-              I build and ship production web software end to end — React and
-              Next.js frontends, Node.js APIs, PostgreSQL, auth, and cloud
-              deployment. Most recently the first frontend engineer at a Swiss
-              SaaS platform trusted by major banks and insurers — built from
-              zero to production. I deliver at AI speed with agentic workflows —{' '}
+              {dict.hero.intro}
               <span className="text-foreground font-medium">
-                directed and reviewed by me at every step
+                {dict.hero.introEmphasis}
               </span>
               .
             </motion.p>
@@ -171,7 +182,7 @@ export function Hero() {
                 )}
               >
                 <FontAwesomeIcon icon={faEnvelope} className="h-4 w-4" />
-                Start a project
+                {dict.hero.startProject}
               </a>
               <button
                 onClick={() => setCvOpen(true)}
@@ -181,7 +192,7 @@ export function Hero() {
                 )}
               >
                 <FontAwesomeIcon icon={faEye} className="h-4 w-4" />
-                View CV
+                {dict.hero.viewCv}
               </button>
             </motion.div>
           </div>
@@ -242,7 +253,7 @@ export function Hero() {
           className="relative z-10 mt-12"
         >
           <p className="text-muted-foreground/70 mb-3 text-xs">
-            Built products relied on by teams at
+            {dict.hero.trustStrip}
           </p>
           <ul
             className="flex flex-wrap items-center gap-x-8 gap-y-2"
@@ -261,7 +272,7 @@ export function Hero() {
         </motion.div>
       </section>
 
-      {cvOpen && <CVModal onClose={() => setCvOpen(false)} />}
+      {cvOpen && <CVModal onClose={() => setCvOpen(false)} dict={dict} />}
     </>
   );
 }

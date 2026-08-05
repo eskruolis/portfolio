@@ -1,16 +1,28 @@
 import type { NavItem } from '@/types';
 import { siteConfig } from '@/lib/data';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
+import { localePath } from '@/i18n/routing';
 
-// Section IDs here must match the id attributes on the corresponding <section> elements in app/page.tsx
-export const NAV_ITEMS: NavItem[] = [
-  { label: 'About', href: '/#hero', sectionId: 'hero' },
-  { label: 'Services', href: '/#services', sectionId: 'services' },
-  { label: 'How I Work', href: '/#how-i-work', sectionId: 'how-i-work' },
-  { label: 'Skills', href: '/#skills', sectionId: 'skills' },
-  { label: 'Experience', href: '/#experience', sectionId: 'experience' },
-  { label: 'Work', href: '/#projects', sectionId: 'projects' },
-  ...(siteConfig.showBlog
-    ? [{ label: 'Blog', href: '/#blog', sectionId: 'blog' }]
-    : []),
-  { label: 'Contact', href: '/#contact', sectionId: 'contact' },
-];
+/**
+ * Build the localized nav. Section IDs must match the `id` attributes on the
+ * corresponding <section> elements in app/[lang]/page.tsx. Hrefs are prefixed
+ * with the active locale so in-page anchors stay within the current language.
+ */
+export function getNavItems(dict: Dictionary, locale: Locale): NavItem[] {
+  return [
+    { label: dict.nav.about, sectionId: 'hero' },
+    { label: dict.nav.services, sectionId: 'services' },
+    { label: dict.nav.howIWork, sectionId: 'how-i-work' },
+    { label: dict.nav.skills, sectionId: 'skills' },
+    { label: dict.nav.experience, sectionId: 'experience' },
+    { label: dict.nav.work, sectionId: 'projects' },
+    ...(siteConfig.showBlog
+      ? [{ label: dict.nav.blog, sectionId: 'blog' }]
+      : []),
+    { label: dict.nav.contact, sectionId: 'contact' },
+  ].map((item) => ({
+    ...item,
+    href: localePath(locale, `/#${item.sectionId}`),
+  }));
+}
