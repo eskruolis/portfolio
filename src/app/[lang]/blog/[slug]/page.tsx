@@ -4,9 +4,12 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { Metadata } from 'next';
 import { getBlogPost, getBlogSlugs } from '@/lib/mdx';
 import { ViewCounter } from '@/components/shared/ViewCounter';
+import { isEnabledLocale, type Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
+import { localePath } from '@/i18n/routing';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -43,7 +46,11 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  if (!isEnabledLocale(lang)) notFound();
+  const locale: Locale = lang;
+  const dict = getDictionary(locale);
+  const dateLocale = locale === 'lt' ? 'lt-LT' : 'en-GB';
 
   let meta, content;
   try {
@@ -56,11 +63,11 @@ export default async function BlogPostPage({ params }: PageProps) {
     <div className="mx-auto max-w-2xl px-6 py-16 lg:py-24">
       <article aria-label={meta.title}>
         <Link
-          href="/#blog"
+          href={localePath(locale, '/#blog')}
           className="text-muted-foreground hover:text-foreground mb-8
             inline-flex items-center gap-1.5 text-sm transition-colors"
         >
-          <span aria-hidden>←</span> All posts
+          <span aria-hidden>←</span> {dict.blog.allPosts}
         </Link>
         <header className="mb-10">
           <div
@@ -68,22 +75,27 @@ export default async function BlogPostPage({ params }: PageProps) {
               text-sm"
           >
             <time dateTime={meta.date}>
-              {new Date(meta.date).toLocaleDateString('en-GB', {
+              {new Date(meta.date).toLocaleDateString(dateLocale, {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric',
               })}
             </time>
             <span aria-hidden>·</span>
-            <span>{meta.readingTime} min read</span>
+            <span>
+              {meta.readingTime} {dict.blog.minRead}
+            </span>
             <span aria-hidden>·</span>
-            <ViewCounter slug={slug} />
+            <ViewCounter slug={slug} dict={dict} />
           </div>
           <h1 className="text-3xl font-bold tracking-tight lg:text-4xl">
             {meta.title}
           </h1>
           {meta.tags.length > 0 && (
-            <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tags">
+            <ul
+              className="mt-4 flex flex-wrap gap-2"
+              aria-label={dict.blog.tagsAria}
+            >
               {meta.tags.map((tag) => (
                 <li
                   key={tag}

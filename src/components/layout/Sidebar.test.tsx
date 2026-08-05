@@ -2,9 +2,18 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Sidebar } from './Sidebar';
+import { getDictionary } from '@/i18n/dictionaries';
+
+const dict = getDictionary('en');
+const renderSidebar = () => render(<Sidebar locale="en" dict={dict} />);
 
 vi.mock('@/components/ui/button', () => ({
   buttonVariants: () => '',
+}));
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/en',
+  useRouter: () => ({ push: vi.fn() }),
 }));
 
 vi.mock('next-themes', () => ({
@@ -48,14 +57,14 @@ afterEach(() => {
 
 describe('Sidebar', () => {
   it('renders the hamburger button on mobile', () => {
-    render(<Sidebar />);
+    renderSidebar();
     expect(
       screen.getByRole('button', { name: /open navigation menu/i }),
     ).toBeInTheDocument();
   });
 
   it('hamburger has aria-controls pointing at the drawer id', () => {
-    render(<Sidebar />);
+    renderSidebar();
     expect(
       screen.getByRole('button', { name: /open navigation menu/i }),
     ).toHaveAttribute('aria-controls', 'mobile-nav-drawer');
@@ -63,7 +72,7 @@ describe('Sidebar', () => {
 
   it('opens the mobile drawer when the hamburger is clicked', async () => {
     const user = userEvent.setup();
-    render(<Sidebar />);
+    renderSidebar();
 
     await user.click(
       screen.getByRole('button', { name: /open navigation menu/i }),
@@ -76,7 +85,7 @@ describe('Sidebar', () => {
 
   it('drawer panel has the id that aria-controls references', async () => {
     const user = userEvent.setup();
-    render(<Sidebar />);
+    renderSidebar();
 
     await user.click(
       screen.getByRole('button', { name: /open navigation menu/i }),
@@ -87,7 +96,7 @@ describe('Sidebar', () => {
 
   it('closes the drawer when the close button is clicked', async () => {
     const user = userEvent.setup();
-    render(<Sidebar />);
+    renderSidebar();
 
     await user.click(
       screen.getByRole('button', { name: /open navigation menu/i }),
@@ -101,7 +110,7 @@ describe('Sidebar', () => {
 
   it('closes the drawer when Escape is pressed', async () => {
     const user = userEvent.setup();
-    render(<Sidebar />);
+    renderSidebar();
 
     await user.click(
       screen.getByRole('button', { name: /open navigation menu/i }),
@@ -113,7 +122,7 @@ describe('Sidebar', () => {
 
   it('sets aria-expanded on the hamburger button when drawer is open', async () => {
     const user = userEvent.setup();
-    render(<Sidebar />);
+    renderSidebar();
 
     const btn = screen.getByRole('button', { name: /open navigation menu/i });
     expect(btn).toHaveAttribute('aria-expanded', 'false');

@@ -17,6 +17,9 @@ import { cn } from '@/lib/utils';
 import type { WorkProject } from '@/types';
 import type { GitHubRepo } from '@/lib/github';
 import { repoToTags } from '@/lib/github';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
+import { localePath } from '@/i18n/routing';
 
 // ── Card components ──────────────────────────────────────────────────────────
 
@@ -118,7 +121,17 @@ function RepoCard({ repo, index }: { repo: GitHubRepo; index: number }) {
   );
 }
 
-function WorkCard({ project, index }: { project: WorkProject; index: number }) {
+function WorkCard({
+  project,
+  index,
+  dict,
+  locale,
+}: {
+  project: WorkProject;
+  index: number;
+  dict: Dictionary;
+  locale: Locale;
+}) {
   return (
     <CardShell index={index}>
       <div className="flex items-start justify-between gap-2">
@@ -131,9 +144,9 @@ function WorkCard({ project, index }: { project: WorkProject; index: number }) {
         <div className="flex shrink-0 gap-1 pt-0.5">
           {project.private && (
             <span
-              title="Private / client work"
+              title={dict.projects.privateLabel}
               className="text-muted-foreground rounded-md p-1"
-              aria-label="Private project"
+              aria-label={dict.projects.privateLabel}
             >
               <FontAwesomeIcon icon={faLock} className="h-3.5 w-3.5" />
             </span>
@@ -166,11 +179,11 @@ function WorkCard({ project, index }: { project: WorkProject; index: number }) {
       </div>
       {project.caseStudy && (
         <Link
-          href={`/work/${project.caseStudy}`}
+          href={localePath(locale, `/work/${project.caseStudy}`)}
           className="text-primary group/link mt-1 inline-flex w-fit items-center
             gap-1.5 text-sm font-medium underline-offset-4 hover:underline"
         >
-          Read case study
+          {dict.projects.readCaseStudy}
           <FontAwesomeIcon
             icon={faArrowRight}
             className="h-3 w-3 transition-transform
@@ -188,16 +201,20 @@ function TagFilter({
   tags,
   active,
   onChange,
+  allLabel,
+  ariaLabel,
 }: {
   tags: string[];
   active: string | null;
   onChange: (tag: string | null) => void;
+  allLabel: string;
+  ariaLabel: string;
 }) {
   return (
     <div
       className="mb-6 flex flex-wrap gap-2"
       role="group"
-      aria-label="Filter by technology"
+      aria-label={ariaLabel}
     >
       <button
         onClick={() => onChange(null)}
@@ -208,7 +225,7 @@ function TagFilter({
             : 'border-border bg-muted text-muted-foreground hover:bg-muted/80',
         )}
       >
-        All
+        {allLabel}
       </button>
       {tags.map((tag) => (
         <button
@@ -236,9 +253,16 @@ type Tab = 'work' | 'github';
 interface ProjectsClientProps {
   repos: GitHubRepo[];
   workProjects: WorkProject[];
+  dict: Dictionary;
+  locale: Locale;
 }
 
-export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
+export function ProjectsClient({
+  repos,
+  workProjects,
+  dict,
+  locale,
+}: ProjectsClientProps) {
   const [tab, setTab] = useState<Tab>('work');
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -263,15 +287,14 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
   return (
     <section
       id="projects"
-      aria-label="Projects"
+      aria-label={dict.projects.ariaLabel}
       className="max-w-5xl px-8 py-20 lg:px-16"
     >
       <ScrollReveal>
         <SectionHeading
-          label="Work"
-          title="Selected work & projects"
-          intro="Client work lives behind NDAs and logins — the case studies
-            tell the story. The GitHub tab pulls my public repos live."
+          label={dict.projects.label}
+          title={dict.projects.title}
+          intro={dict.projects.intro}
         />
       </ScrollReveal>
 
@@ -294,7 +317,7 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
-              {t === 'work' ? 'Work' : 'GitHub'}
+              {t === 'work' ? dict.projects.tabWork : dict.projects.tabGithub}
             </button>
           ))}
         </div>
@@ -306,6 +329,8 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
           tags={tab === 'work' ? workTags : repoTags}
           active={activeTag}
           onChange={setActiveTag}
+          allLabel={dict.projects.filterAll}
+          ariaLabel={dict.projects.filterAria}
         />
       </ScrollReveal>
 
@@ -322,14 +347,20 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
             role="list"
           >
             {filteredWork.map((p, i) => (
-              <WorkCard key={p.title} project={p} index={i} />
+              <WorkCard
+                key={p.title}
+                project={p}
+                index={i}
+                dict={dict}
+                locale={locale}
+              />
             ))}
             {filteredWork.length === 0 && (
               <li
                 className="text-muted-foreground col-span-2 py-8 text-center
                   text-sm"
               >
-                No projects match that filter.
+                {dict.projects.noWork}
               </li>
             )}
           </motion.ul>
@@ -351,7 +382,7 @@ export function ProjectsClient({ repos, workProjects }: ProjectsClientProps) {
                 className="text-muted-foreground col-span-2 py-8 text-center
                   text-sm"
               >
-                No repositories match that filter.
+                {dict.projects.noRepos}
               </li>
             )}
           </motion.ul>

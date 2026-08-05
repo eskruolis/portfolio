@@ -2,20 +2,25 @@
 
 import Link from 'next/link';
 import { useActiveSection } from '@/hooks/use-active-section';
-import { NAV_ITEMS } from '@/lib/nav';
+import { getNavItems } from '@/lib/nav';
 import { cn } from '@/lib/utils';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
 
 interface NavProps {
+  dict: Dictionary;
+  locale: Locale;
   onItemClick?: () => void;
 }
 
-export function Nav({ onItemClick }: NavProps) {
+export function Nav({ dict, locale, onItemClick }: NavProps) {
   const activeSection = useActiveSection();
+  const navItems = getNavItems(dict, locale);
 
   return (
-    <nav aria-label="Page sections">
+    <nav aria-label={dict.common.pageSections}>
       <ul className="flex flex-col gap-0.5" role="list">
-        {NAV_ITEMS.map((item) => {
+        {navItems.map((item) => {
           const active = activeSection === item.sectionId;
           return (
             <li key={item.sectionId}>

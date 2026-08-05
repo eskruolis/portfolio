@@ -13,16 +13,32 @@ import Link from 'next/link';
 import { Nav } from './Nav';
 import { BrandLogo } from '@/components/shared/BrandLogo';
 import { AvailabilityBadge } from '@/components/shared/AvailabilityBadge';
+import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
+import { localePath } from '@/i18n/routing';
 
 const DRAWER_ID = 'mobile-nav-drawer';
 
-function SidebarContent({ onClose }: { onClose?: () => void }) {
+interface SidebarProps {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+function SidebarContent({
+  locale,
+  dict,
+  onClose,
+}: SidebarProps & { onClose?: () => void }) {
   return (
     <div className="flex h-full flex-col gap-8 px-6 py-8">
       <div className="flex flex-col gap-3">
-        <Link href="/" className="group flex w-fit items-center gap-2.5">
+        <Link
+          href={localePath(locale, '/')}
+          className="group flex w-fit items-center gap-2.5"
+        >
           <BrandLogo size={28} />
           <span
             className="text-sidebar-foreground group-hover:text-sidebar-primary
@@ -32,23 +48,29 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           </span>
         </Link>
         <p className="text-sidebar-foreground/60 text-sm">
-          Senior Software Engineer
+          {dict.sidebar.role}
           <span className="text-sidebar-foreground/40 block text-xs">
-            Full-Stack · React / Next.js / Node
+            {dict.sidebar.roleSub}
           </span>
         </p>
-        <AvailabilityBadge compact className="w-fit" />
+        <AvailabilityBadge
+          label={dict.common.availability}
+          compact
+          className="w-fit"
+        />
       </div>
 
-      <Nav onItemClick={onClose} />
+      <Nav dict={dict} locale={locale} onItemClick={onClose} />
 
       <div className="mt-auto flex flex-col gap-4">
+        <LanguageSwitcher locale={locale} label={dict.languageSwitcher.label} />
+
         <div className="flex items-center gap-1">
           <a
             href="https://github.com/eskruolis"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub profile"
+            aria-label={dict.sidebar.githubAria}
             className="text-sidebar-foreground/60 hover:bg-sidebar-accent
               hover:text-sidebar-accent-foreground
               focus-visible:ring-sidebar-ring rounded-md p-2 transition-colors
@@ -60,7 +82,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
             href="https://linkedin.com/in/eskruolis"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
+            aria-label={dict.sidebar.linkedinAria}
             className="text-sidebar-foreground/60 hover:bg-sidebar-accent
               hover:text-sidebar-accent-foreground
               focus-visible:ring-sidebar-ring rounded-md p-2 transition-colors
@@ -70,7 +92,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           </a>
           <a
             href="mailto:eskruolis@gmail.com"
-            aria-label="Send email"
+            aria-label={dict.sidebar.emailAria}
             className="text-sidebar-foreground/60 hover:bg-sidebar-accent
               hover:text-sidebar-accent-foreground
               focus-visible:ring-sidebar-ring rounded-md p-2 transition-colors
@@ -89,14 +111,14 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           )}
         >
           <FontAwesomeIcon icon={faDownload} className="h-3.5 w-3.5" />
-          Download CV
+          {dict.sidebar.downloadCv}
         </a>
       </div>
     </div>
   );
 }
 
-export function Sidebar() {
+export function Sidebar({ locale, dict }: SidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -145,17 +167,17 @@ export function Sidebar() {
     <>
       {/* Desktop sidebar */}
       <aside
-        aria-label="Site navigation"
+        aria-label={dict.common.siteNavigation}
         className="bg-sidebar border-sidebar-border sticky top-0 hidden h-screen
           shrink-0 flex-col overflow-y-auto border-r lg:flex lg:w-64 xl:w-72"
       >
-        <SidebarContent />
+        <SidebarContent locale={locale} dict={dict} />
       </aside>
 
       {/* Mobile hamburger button */}
       <button
         ref={hamburgerRef}
-        aria-label="Open navigation menu"
+        aria-label={dict.sidebar.openMenu}
         aria-expanded={mobileOpen}
         aria-controls={DRAWER_ID}
         onClick={() => setMobileOpen(true)}
@@ -171,7 +193,7 @@ export function Sidebar() {
       {mobileOpen && (
         <div
           role="dialog"
-          aria-label="Navigation menu"
+          aria-label={dict.sidebar.menuLabel}
           aria-modal="true"
           className="fixed inset-0 z-50 lg:hidden"
         >
@@ -188,13 +210,13 @@ export function Sidebar() {
           <aside
             id={DRAWER_ID}
             ref={drawerRef}
-            aria-label="Site navigation"
+            aria-label={dict.common.siteNavigation}
             className="bg-sidebar border-sidebar-border absolute top-0 left-0
               h-full w-72 overflow-y-auto border-r"
           >
             <button
               ref={closeButtonRef}
-              aria-label="Close navigation menu"
+              aria-label={dict.sidebar.closeMenu}
               onClick={() => {
                 setMobileOpen(false);
                 hamburgerRef.current?.focus();
@@ -207,6 +229,8 @@ export function Sidebar() {
               <FontAwesomeIcon icon={faXmark} className="h-4 w-4" />
             </button>
             <SidebarContent
+              locale={locale}
+              dict={dict}
               onClose={() => {
                 setMobileOpen(false);
                 hamburgerRef.current?.focus();

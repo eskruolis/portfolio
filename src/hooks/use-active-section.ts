@@ -3,12 +3,18 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+/** A home path is the bare locale root, e.g. `/en` or `/lt` (or `/`). */
+function isHomePath(pathname: string): boolean {
+  return pathname.split('/').filter(Boolean).length <= 1;
+}
+
 export function useActiveSection() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const onHome = isHomePath(pathname);
 
   useEffect(() => {
-    if (pathname !== '/') return;
+    if (!onHome) return;
 
     const sections = Array.from(document.querySelectorAll('section[id]'));
     if (sections.length === 0) return;
@@ -26,8 +32,8 @@ export function useActiveSection() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [pathname]);
+  }, [onHome]);
 
   // Off the homepage there are no observed sections — report none active.
-  return pathname === '/' ? activeSection : null;
+  return onHome ? activeSection : null;
 }
