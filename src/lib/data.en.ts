@@ -6,7 +6,7 @@ export const enContent: LocaleContent = {
   stats: [
     { value: '8+', label: 'years shipping production software' },
     { value: '6 weeks', label: 'from first commit to a live shop (myanart)' },
-    { value: '-84%', label: 'product-page p50 on a replayed production hour' },
+    { value: '-91%', label: 'backend calls per page request, in live production' },
     { value: '100%', label: 'WCAG conformance, enterprise-grade' },
   ],
 
@@ -117,7 +117,7 @@ export const enContent: LocaleContent = {
         "Spanish online store and workshop for electric scooters, vinyls and parts, built on Medusa.js 2 and Next.js. I've consulted for the business since June 2026; since September I'm the only engineer on the platform and own the code, releases, infrastructure and production database changes.",
       highlights: [
         'Moved product pages onto a Meilisearch read model: on a replayed production hour, backend requests fell 74% and product-page p50 went from 437 to 69 ms.',
-        'Traced a production memory leak to a translation plugin and fixed it — from 20+ GB with crashes to a stable 12–13 GB — then replaced the plugin with a native translation module for nine languages.',
+        'Traced a production memory leak to a translation plugin and fixed it (20+ GB with crashes → a stable 12–13 GB; about 3.5 GB on average today, after later work), then replaced the plugin with a native translation module for the store\'s nine languages.',
         'Made the codebase strictly typed without a feature freeze: explicit `any` from 4,594 to 0, strict mode in both apps, and a CI check that blocks new ones.',
         'Upgraded Medusa 2.8 → 2.19 in production, with the runbook rehearsed twice on a copy of the production database.',
         'Built the delivery pipeline — CI, a preview environment per pull request, automatic versioning — and shipped 185 releases since v1.0.0.',
@@ -340,6 +340,7 @@ export const enContent: LocaleContent = {
       ],
       outcomes: [
         'On the same replayed production hour: backend requests −74%, product-page p50 437 → 69 ms and p95 943 → 257 ms, with zero errors on either side.',
+        'In live production since then — a week in November against the 24 September baseline — backend calls per storefront request fell from 1.33 to 0.12 (−91%) while storefront traffic grew, with the read model plus the page caching and CDN work that followed.',
         'Product catalogue calls from product pages −94%, and their CPU time −92%.',
         'Parity: every live product in the sample matched the old API on content, prices, stock, images and translations.',
         'Related work on the same store: storefront builds ~10 → ~5 min, the image 2.9 → 1.1 GB, and page-cache entries 5–8× smaller in Redis.',

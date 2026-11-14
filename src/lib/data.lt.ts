@@ -6,7 +6,7 @@ export const ltContent: LocaleContent = {
   stats: [
     { value: '8+', label: 'metai kuriant produkcinę programinę įrangą' },
     { value: '6 sav.', label: 'nuo pirmo commit iki veikiančios parduotuvės (myanart)' },
-    { value: '-84%', label: 'produkto puslapio p50 atkurtoje produkcijos valandoje' },
+    { value: '-91%', label: 'backend užklausų vienai puslapio užklausai, gyvoje produkcijoje' },
     { value: '100%', label: 'WCAG atitiktis, enterprise lygio' },
   ],
 
@@ -117,7 +117,7 @@ export const ltContent: LocaleContent = {
         'Ispanijos internetinė parduotuvė ir dirbtuvės elektriniams paspirtukams, lipdukams ir dalims, sukurta su Medusa.js 2 ir Next.js. Konsultuoju šį verslą nuo 2026 m. birželio; nuo rugsėjo esu vienintelis platformos inžinierius ir atsakau už kodą, išleidimus, infrastruktūrą ir produkcinės duomenų bazės pakeitimus.',
       highlights: [
         'Perkėliau produktų puslapius į Meilisearch skaitymo modelį: atkurtoje produkcijos valandoje backend užklausų sumažėjo 74 %, o produkto puslapio p50 nukrito nuo 437 iki 69 ms.',
-        'Atsekiau produkcinį atminties nuotėkį iki vertimų įskiepio ir jį ištaisiau — nuo 20+ GB su gedimais iki stabilių 12–13 GB — o tada įskiepį pakeičiau nuosavu vertimų moduliu devynioms kalboms.',
+        'Atsekiau produkcinį atminties nuotėkį iki vertimų įskiepio ir jį ištaisiau (20+ GB su gedimais → stabilūs 12–13 GB; po vėlesnių darbų šiandien vidutiniškai apie 3,5 GB), o tada įskiepį pakeičiau nuosavu vertimų moduliu devynioms parduotuvės kalboms.',
         'Kodą padariau griežtai tipizuotą nestabdydamas funkcijų kūrimo: aiškių `any` nuo 4 594 iki 0, strict režimas abiejose aplikacijose ir CI patikra, blokuojanti naujus.',
         'Produkcijoje atnaujinau Medusa 2.8 → 2.19, runbook du kartus išbandęs su produkcinės duomenų bazės kopija.',
         'Sukūriau pristatymo procesą — CI, peržiūros aplinką kiekvienam pull request, automatinį versijavimą — ir nuo v1.0.0 išleidau 185 versijas.',
@@ -340,6 +340,7 @@ export const ltContent: LocaleContent = {
       ],
       outcomes: [
         'Toje pačioje atkurtoje produkcijos valandoje: backend užklausų −74 %, produkto puslapio p50 437 → 69 ms, p95 943 → 257 ms, abiem atvejais be klaidų.',
+        'Gyvoje produkcijoje nuo tada — lapkričio savaitė, palyginti su rugsėjo 24 d. atskaitos tašku — backend užklausų vienai storefront užklausai sumažėjo nuo 1,33 iki 0,12 (−91 %), nors storefront srautas išaugo; tai skaitymo modelio ir po jo sekusių puslapių talpyklos bei CDN darbų rezultatas.',
         'Produktų katalogo užklausų iš produktų puslapių −94 %, jų CPU laiko −92 %.',
         'Atitiktis: kiekvienas imtyje esantis produktas sutapo su senuoju API pagal turinį, kainas, likučius, paveikslėlius ir vertimus.',
         'Susiję darbai toje pačioje parduotuvėje: storefront kompiliavimas ~10 → ~5 min, Docker atvaizdas 2,9 → 1,1 GB, puslapių talpyklos įrašai Redis 5–8 kartus mažesni.',
