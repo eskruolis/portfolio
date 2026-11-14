@@ -118,7 +118,7 @@ export const ltContent: LocaleContent = {
       highlights: [
         'Perkėliau produktų puslapius į Meilisearch skaitymo modelį: atkurtoje produkcijos valandoje backend užklausų sumažėjo 74 %, o produkto puslapio p50 nukrito nuo 437 iki 69 ms.',
         'Atsekiau produkcinį atminties nuotėkį iki vertimų įskiepio ir jį ištaisiau (20+ GB su gedimais → stabilūs 12–13 GB; po vėlesnių darbų šiandien vidutiniškai apie 3,5 GB), o tada įskiepį pakeičiau nuosavu vertimų moduliu devynioms parduotuvės kalboms.',
-        'Kodą padariau griežtai tipizuotą nestabdydamas funkcijų kūrimo: aiškių `any` nuo 4 594 iki 0, strict režimas abiejose aplikacijose ir CI patikra, blokuojanti naujus.',
+        'Kodą padariau griežtai tipizuotą nestabdydamas funkcijų kūrimo: aiškių "any" nuo 4 594 iki 0, strict režimas abiejose aplikacijose ir CI patikra, blokuojanti naujus.',
         'Produkcijoje atnaujinau Medusa 2.8 → 2.19, runbook du kartus išbandęs su produkcinės duomenų bazės kopija.',
         'Sukūriau pristatymo procesą — CI, peržiūros aplinką kiekvienam pull request, automatinį versijavimą — ir nuo v1.0.0 išleidau 185 versijas.',
         'Produkcijos incidentams rašau pagrindinės priežasties analizes, perrašiau sunkiausias analitikos užklausas (bendras skydelis 13,6 s → 3,9 s).',
@@ -232,7 +232,7 @@ export const ltContent: LocaleContent = {
       title: 'Griežtas tipizavimas nestabdant darbų',
       company: 'MyUrbanScoot',
       description:
-        '55 modulių e-komercijos kodą nuo 4 594 aiškių `any` nuvedžiau iki nulio, įjungiau strict režimą abiejose aplikacijose ir pridėjau CI patikrą, kad naujų nebeatsirastų.',
+        '55 modulių e-komercijos kodą nuo 4 594 aiškių "any" nuvedžiau iki nulio, įjungiau strict režimą abiejose aplikacijose ir pridėjau CI patikrą, kad naujų nebeatsirastų.',
       tags: ['TypeScript', 'Medusa', 'CI/CD'],
       private: true,
     },

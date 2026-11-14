@@ -118,7 +118,7 @@ export const enContent: LocaleContent = {
       highlights: [
         'Moved product pages onto a Meilisearch read model: on a replayed production hour, backend requests fell 74% and product-page p50 went from 437 to 69 ms.',
         'Traced a production memory leak to a translation plugin and fixed it (20+ GB with crashes → a stable 12–13 GB; about 3.5 GB on average today, after later work), then replaced the plugin with a native translation module for the store\'s nine languages.',
-        'Made the codebase strictly typed without a feature freeze: explicit `any` from 4,594 to 0, strict mode in both apps, and a CI check that blocks new ones.',
+        'Made the codebase strictly typed without a feature freeze: explicit "any" from 4,594 to 0, strict mode in both apps, and a CI check that blocks new ones.',
         'Upgraded Medusa 2.8 → 2.19 in production, with the runbook rehearsed twice on a copy of the production database.',
         'Built the delivery pipeline — CI, a preview environment per pull request, automatic versioning — and shipped 185 releases since v1.0.0.',
         'Write root-cause reports for production incidents, and rewrote the heaviest analytics queries (combined dashboard 13.6 s → 3.9 s).',
@@ -232,7 +232,7 @@ export const enContent: LocaleContent = {
       title: 'Strict typing without a feature freeze',
       company: 'MyUrbanScoot',
       description:
-        'Took a 55-module commerce codebase from 4,594 explicit `any` to zero, turned on strict mode in both apps, and added a CI check so no new ones get in.',
+        'Took a 55-module commerce codebase from 4,594 explicit "any" to zero, turned on strict mode in both apps, and added a CI check so no new ones get in.',
       tags: ['TypeScript', 'Medusa', 'CI/CD'],
       private: true,
     },
