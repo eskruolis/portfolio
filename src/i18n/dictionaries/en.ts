@@ -45,7 +45,7 @@ export const en = {
     ariaLabel: 'Introduction',
     role: 'Senior Software Engineer · Full-Stack',
     intro:
-      'I build and ship production web software end to end — React and Next.js frontends, Node.js APIs, PostgreSQL, auth, and cloud deployment. Most recently the first frontend engineer at a Swiss SaaS platform trusted by major banks and insurers — built from zero to production. I deliver at AI speed with agentic workflows — ',
+      'I build and ship production web software end to end — React and Next.js frontends, Node.js APIs, PostgreSQL, auth, and cloud deployment. Today I consult for MyUrbanScoot, where I\'m the only engineer on a live online store, and I co-founded myanart, which I took from first commit to launch in six weeks. Before that, I was the first frontend engineer at a Swiss SaaS trusted by major banks and insurers. I deliver at AI speed with agentic workflows — ',
     introEmphasis: 'directed and reviewed by me at every step',
     startProject: 'Start a project',
     viewCv: 'View CV',

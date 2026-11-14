@@ -110,12 +110,18 @@ export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'Tailwind CSS', category: 'frontend' },
   { name: 'Storybook', category: 'frontend' },
   { name: 'Node.js', category: 'backend' },
+  { name: 'Medusa', category: 'backend' },
   { name: 'REST API design', category: 'backend' },
   { name: 'PostgreSQL', category: 'backend' },
   { name: 'Redis', category: 'backend' },
+  { name: 'Meilisearch', category: 'backend' },
+  { name: 'Stripe', category: 'backend' },
   { name: 'MySQL', category: 'backend' },
   { name: 'AWS', category: 'infra' },
   { name: 'Vercel', category: 'infra' },
+  { name: 'Railway', category: 'infra' },
+  { name: 'Cloudflare', category: 'infra' },
+  { name: 'Docker', category: 'infra' },
   { name: 'CI/CD', category: 'infra' },
   { name: 'Turborepo', category: 'infra' },
   { name: 'Git', category: 'infra' },
@@ -129,6 +135,7 @@ export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'Claude', category: 'ai' },
   { name: 'AI pair-programming', category: 'ai' },
   { name: 'Figma-to-code', category: 'ai' },
+  { name: 'AI image pipelines', category: 'ai' },
 ];
 
 // ── Localized data bundle ────────────────────────────────────────────────────

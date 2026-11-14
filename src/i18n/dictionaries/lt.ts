@@ -43,7 +43,7 @@ export const lt: Dictionary = {
     ariaLabel: 'Įžanga',
     role: 'Senior programinės įrangos inžinierius · Full-Stack',
     intro:
-      'Kuriu ir pristatau produkcinę web programinę įrangą nuo pradžios iki galo — React ir Next.js frontend, Node.js API, PostgreSQL, autentifikacija ir diegimas debesyje. Neseniai buvau pirmasis frontend inžinierius Šveicarijos SaaS platformoje, kuria pasitiki stambūs bankai ir draudikai — sukurta nuo nulio iki produkcijos. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
+      'Kuriu ir pristatau produkcinę web programinę įrangą nuo pradžios iki galo — React ir Next.js frontend, Node.js API, PostgreSQL, autentifikacija ir diegimas debesyje. Šiuo metu konsultuoju MyUrbanScoot, kur esu vienintelis veikiančios internetinės parduotuvės inžinierius, ir kartu su partneriu įkūriau myanart, kurį nuo pirmo commit iki paleidimo nuvedžiau per šešias savaites. Prieš tai buvau pirmasis frontend inžinierius Šveicarijos SaaS, kuriuo pasitiki stambūs bankai ir draudikai. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
     introEmphasis: 'kiekvieną žingsnį valdau ir peržiūriu pats',
     startProject: 'Pradėti projektą',
     viewCv: 'Peržiūrėti CV',
