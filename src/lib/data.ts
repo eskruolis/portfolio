@@ -160,6 +160,8 @@ export interface LocaleContent {
   lifecycle: z.infer<typeof LifecycleLayerSchema>[];
   /** CV-only content: the summary paragraph, education and spoken languages. */
   cvSummary: string;
+  /** Personal background, in the owner's own words — one paragraph per entry. */
+  story: string[];
   education: string[];
   languages: string[];
   services: z.infer<typeof ServiceSchema>[];

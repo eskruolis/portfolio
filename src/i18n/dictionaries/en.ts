@@ -12,6 +12,7 @@ export const en = {
     about: 'About',
     services: 'Services',
     howIWork: 'How I Work',
+    story: 'My Story',
     skills: 'Skills',
     experience: 'Experience',
     work: 'Work',
@@ -70,6 +71,11 @@ export const en = {
     title: 'How I approach a problem',
     intro:
       'The same steps on every project, whether it is a new product or a live system someone else built. Each one comes with an example from real work.',
+  },
+
+  story: {
+    label: 'Background',
+    title: 'How I got here',
   },
 
   skills: {

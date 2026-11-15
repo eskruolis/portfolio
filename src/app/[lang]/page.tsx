@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Hero } from '@/components/sections/Hero';
+import { Story } from '@/components/sections/Story';
 import { Services } from '@/components/sections/Services';
 import { HowIWork } from '@/components/sections/HowIWork';
 import { Skills } from '@/components/sections/Skills';
@@ -52,9 +53,12 @@ export default async function HomePage({
       <Skills dict={dict} data={data} />
 
       <SectionDivider flip />
-      <Experience dict={dict} data={data} />
+      <Story dict={dict} data={data} />
 
       <SectionDivider />
+      <Experience dict={dict} data={data} />
+
+      <SectionDivider flip />
       <Projects dict={dict} data={data} locale={locale} />
 
       {siteConfig.showBlog && (

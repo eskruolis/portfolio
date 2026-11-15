@@ -10,6 +10,7 @@ export const lt: Dictionary = {
     about: 'Apie',
     services: 'Paslaugos',
     howIWork: 'Kaip dirbu',
+    story: 'Mano istorija',
     skills: 'Įgūdžiai',
     experience: 'Patirtis',
     work: 'Darbai',
@@ -68,6 +69,11 @@ export const lt: Dictionary = {
     title: 'Kaip sprendžiu problemas',
     intro:
       'Tie patys žingsniai kiekviename projekte — ar tai naujas produktas, ar veikianti sistema, kurią sukūrė kiti. Prie kiekvieno — pavyzdys iš tikro darbo.',
+  },
+
+  story: {
+    label: 'Kelias',
+    title: 'Kaip čia atėjau',
   },
 
   skills: {

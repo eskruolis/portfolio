@@ -21,6 +21,7 @@ describe('locale data parity', () => {
       expect(d.caseStudies).toHaveLength(en.caseStudies.length);
       expect(d.stats).toHaveLength(en.stats.length);
       expect(d.lifecycle).toHaveLength(en.lifecycle.length);
+      expect(d.story).toHaveLength(en.story.length);
       expect(d.education).toHaveLength(en.education.length);
       expect(d.languages).toHaveLength(en.languages.length);
     }
