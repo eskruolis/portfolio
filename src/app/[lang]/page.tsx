@@ -40,7 +40,7 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero dict={dict} data={data} />
+      <Hero dict={dict} data={data} locale={locale} />
 
       <SectionDivider />
       <Services dict={dict} data={data} />

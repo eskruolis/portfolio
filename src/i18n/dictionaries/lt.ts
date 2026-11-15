@@ -50,7 +50,7 @@ export const lt: Dictionary = {
     lifecycleLabel: 'Kiekvienas sluoksnis, nuo pradžios iki galo',
     startProject: 'Pradėti projektą',
     viewCv: 'Peržiūrėti CV',
-    trustStrip: 'Sukūriau produktus, kuriais pasitiki komandos',
+    trustStrip: 'Dirbdamas Hypt AG kūriau produktus, kuriais naudojasi komandos iš',
     cvModalTitle: 'CV',
     cvDownload: 'Atsisiųsti',
     cvClose: 'Užverti CV peržiūrą',
@@ -60,21 +60,21 @@ export const lt: Dictionary = {
     label: 'Paslaugos',
     title: 'Ką galiu jums sukurti',
     intro:
-      'Dirbu su visu stack — nauji produktai, gelbėjimo darbai, migracijos ir našumo gerinimas esamose kodų bazėse. Prieinamas kaip freelanceris ar rangovas, taip pat pasiruošęs visą laiką skirti vienam ambicingam produktui.',
+      'Dirbu su visu stack: nauji produktai, gelbėjimo darbai, migracijos ir našumo gerinimas esamose kodų bazėse.',
   },
 
   howIWork: {
     label: 'Kaip dirbu',
-    title: 'Pagreitinta AI. Kryptį nurodo inžinierius.',
+    title: 'Kaip sprendžiu problemas',
     intro:
-      'Anksti perėjau prie agentinio AI kūrimo — ne tam, kad pakeisčiau inžinerinį sprendimą, o kad jį sustiprinčiau. Agentai rašo kodą; aš galvoju, peržiūriu ir pristatau.',
+      'Tie patys žingsniai kiekviename projekte — ar tai naujas produktas, ar veikianti sistema, kurią sukūrė kiti. Prie kiekvieno — pavyzdys iš tikro darbo.',
   },
 
   skills: {
     label: 'Įgūdžiai',
     title: 'Full-stack įrankių rinkinys',
     intro:
-      'Dauguma esamų technologijų — vienas inžinierius. Jei jūsų stack čia nėra, tikriausiai esu pristatęs ką nors panašaus — greitas prisitaikymas ir yra tikrasis įgūdis.',
+      'Įrankiai, su kuriais esu pristatęs produkcinius darbus, sugrupuoti pagal sluoksnį. Naujus išmokstu tada, kai jų prireikia projektui.',
     categories: {
       languages: 'Kalbos ir pagrindai',
       frontend: 'Frontend',
@@ -114,7 +114,7 @@ export const lt: Dictionary = {
     label: 'Kontaktai',
     title: 'Sukurkime ką nors kartu',
     intro:
-      'Priimu freelance ir rangos darbus — arba galiu visą laiką skirti vienam dideliam projektui jūsų komandoje. Pilni produktai, migracijos, našumo gelbėjimas ar senior full-stack inžinieriaus etatas. Papasakokite, ką kuriate, ir nuoširdžiai pasakysiu, ar esu tinkamas žmogus tam.',
+      'Priimu freelance ir rangos darbus, taip pat svarstyčiau etatinį darbą prie tinkamo produkto. Papasakokite, ką kuriate, ir nuoširdžiai pasakysiu, ar esu tinkamas žmogus tam.',
     yourName: 'Jūsų vardas',
     placeholders: [
       'Mums reikia full-stack inžinieriaus...',
@@ -140,12 +140,23 @@ export const lt: Dictionary = {
     challenge: 'Iššūkis',
     approach: 'Sprendimas',
     outcome: 'Rezultatas',
+    stillOpen: 'Kas dar neišspręsta',
     stack: 'Technologijos',
     metaSuffix: 'Atvejo analizė',
     ctaTitle: 'Turite panašią problemą?',
     ctaBody:
-      'Priimu freelance, rangos ir etatinį darbą — mielai aptarsiu jūsų situaciją ir ar galiu padėti.',
+      'Papasakokite, su kuo susiduriate, ir nuoširdžiai pasakysiu, ar galiu padėti.',
     ctaButton: 'Susisiekti',
+  },
+
+  cv: {
+    title: 'CV',
+    location: 'Valensija, Ispanija',
+    summary: 'Santrauka',
+    experience: 'Patirtis',
+    skills: 'Įgūdžiai',
+    education: 'Išsilavinimas',
+    languages: 'Kalbos',
   },
 
   blog: {

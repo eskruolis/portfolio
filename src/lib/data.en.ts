@@ -39,11 +39,38 @@ export const enContent: LocaleContent = {
   ],
 
   stats: [
-    { value: '8+', label: 'years shipping production software' },
-    { value: '6 weeks', label: 'from first commit to a live shop (myanart)' },
-    { value: '-91%', label: 'backend calls per page request, in live production' },
-    { value: '100%', label: 'WCAG conformance, enterprise-grade' },
+    {
+      value: '8+',
+      label: 'years shipping production software',
+      detail:
+        'Since 2017: agency platforms in Manchester, a Swiss SaaS used by banks, and two live online stores.',
+    },
+    {
+      value: '6 weeks',
+      label: 'from first commit to public launch',
+      detail:
+        'myanart, 18 Sep to 1 Nov 2026: an AI art builder and print shop with payments, in 5 languages and 52 countries.',
+    },
+    {
+      value: '-91%',
+      label: 'backend calls per page request',
+      detail:
+        'MyUrbanScoot: 1.33 → 0.12 after a Meilisearch read model, page caching and CDN work. One week in November against the 24 September baseline.',
+    },
+    {
+      value: '185+',
+      label: 'releases to a live store',
+      detail:
+        'MyUrbanScoot, from v1.0.0 on 19 June 2026 to mid-November, on the CI and release pipeline I built.',
+    },
   ],
+
+  cvSummary:
+    'Senior full-stack engineer with 8+ years shipping production web software. As a consultant I lead engineering for a live online store, and I co-founded an AI art studio that I took from first commit to launch in six weeks. Before that I led the frontend of a Swiss SaaS used by major banks and insurers. I work with AI coding agents every day, and I direct and review what they produce.',
+  education: [
+    'B.Sc. Computer Science — Kaunas University of Technology, Lithuania · 2014',
+  ],
+  languages: ['English — fluent', 'Lithuanian — native', 'Spanish — basic'],
 
   services: [
     {
@@ -95,24 +122,34 @@ export const enContent: LocaleContent = {
 
   principles: [
     {
+      title: 'Measure before changing',
+      description:
+        "I set a baseline first, so a fix only counts when the numbers move. Before switching MyUrbanScoot's product pages to a new data source, I replayed a real production hour against the old and the new code.",
+    },
+    {
+      title: 'Find the real cause',
+      description:
+        'I trace a problem to its source before patching it. A store that kept running out of memory came down to one translation plugin; fixing it took memory from 20+ GB to 12–13 GB.',
+    },
+    {
+      title: 'Rehearse the risky parts',
+      description:
+        'Changes that are hard to undo get a written runbook and a dry run. The Medusa 2.8 → 2.19 upgrade was rehearsed twice on a copy of the production database before it ran for real.',
+    },
+    {
+      title: 'Ship small, ship often',
+      description:
+        'Small changes, each through CI and its own preview environment, are easier to review and to roll back. That is 185 releases on MyUrbanScoot and 78 on myanart so far.',
+    },
+    {
+      title: 'Write it down',
+      description:
+        'Production incidents get a root-cause report in plain language: what happened, why, and what stops it happening again. The next person should not have to rediscover it.',
+    },
+    {
       title: 'AI drafts. I decide.',
       description:
-        'Agents generate code fast — but every architectural choice, trade-off, and merge is mine. Eight years of production experience is the filter the output goes through.',
-    },
-    {
-      title: 'Spec before code',
-      description:
-        'I write precise specifications — requirements, constraints, edge cases — before any agent runs. Tight direction in, quality out. Vague prompts produce vague software.',
-    },
-    {
-      title: 'Guardrails everywhere',
-      description:
-        'Type-safe schemas, tests, linting, and CI gate everything AI touches. Nothing lands on main without passing the same bar I hold hand-written code to.',
-    },
-    {
-      title: 'Speed you can measure',
-      description:
-        'The result is a delivery pace that used to need a small team — without sacrificing code review, accessibility, or performance budgets.',
+        'I work with AI coding agents every day. They write fast; I write the specification, review what they produce and own the result. Types, tests and CI hold AI-written code to the same bar as hand-written code.',
     },
   ],
 
@@ -353,8 +390,10 @@ export const enContent: LocaleContent = {
       outcomes: [
         'Public launch on 1 November 2026, six weeks after the first commit — with 429 merged pull requests and 78 releases by mid-November, each through CI.',
         'Sells in 52 countries, in 5 languages and 3 currencies.',
-        "First order from a stranger four days after launch. It's early: every ad channel has to prove itself in cost per upload and per order.",
+        'First order from a stranger four days after launch.',
       ],
+      stillOpen:
+        "It's early. One order from a stranger doesn't prove a business: every ad channel still has to prove itself in cost per upload and per order.",
     },
     {
       slug: 'myurbanscoot-performance',
@@ -380,6 +419,8 @@ export const enContent: LocaleContent = {
         'Parity: every live product in the sample matched the old API on content, prices, stock, images and translations.',
         'Related work on the same store: storefront builds ~10 → ~5 min, the image 2.9 → 1.1 GB, and page-cache entries 5–8× smaller in Redis.',
       ],
+      stillOpen:
+        'The read model fixed the common case, not everything: the backend still has rare, very slow requests, and those still need tracing.',
     },
     {
       slug: 'chatbot-builder',
@@ -401,7 +442,7 @@ export const enContent: LocaleContent = {
       outcomes: [
         'Platform adopted by major Swiss enterprises including UBS, Raiffeisen, Generali, and Nestlé.',
         '100% WCAG conformance on the chatbot product — a hard requirement from banking clients.',
-        'Two-person team shipped and operated a product competing with far larger vendors.',
+        'Shipped and operated by a two-person engineering team.',
       ],
     },
     {
@@ -423,8 +464,8 @@ export const enContent: LocaleContent = {
       ],
       outcomes: [
         'Full migration delivered to production — no feature freeze, no customer-facing regressions.',
-        'New stack (React + Next.js + Tailwind) measurably improved developer velocity and hiring reach.',
-        'Monorepo architecture still underpins the platform today.',
+        'The team now builds on React + Next.js + Tailwind, a more widely used stack than the Angular setup it replaced.',
+        'The monorepo structure was still in use when I left in 2026.',
       ],
     },
   ],

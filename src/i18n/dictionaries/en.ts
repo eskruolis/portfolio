@@ -52,7 +52,7 @@ export const en = {
     lifecycleLabel: 'Every layer, end to end',
     startProject: 'Start a project',
     viewCv: 'View CV',
-    trustStrip: 'Built products relied on by teams at',
+    trustStrip: 'At Hypt AG, I built products used by teams at',
     cvModalTitle: 'CV',
     cvDownload: 'Download',
     cvClose: 'Close CV preview',
@@ -62,21 +62,21 @@ export const en = {
     label: 'Services',
     title: 'What I can build for you',
     intro:
-      'I work across the full stack — greenfield products, rescues, migrations, and performance work on existing codebases. Available as a freelancer or contractor, and equally open to committing full-time to one ambitious product.',
+      'I work across the full stack: new products, rescues, migrations, and performance work on existing codebases.',
   },
 
   howIWork: {
     label: 'How I work',
-    title: 'AI-accelerated. Engineer-directed.',
+    title: 'How I approach a problem',
     intro:
-      'I transitioned early into agentic AI development — not to replace engineering judgement, but to multiply it. Agents do the typing; I do the thinking, the reviewing, and the shipping.',
+      'The same steps on every project, whether it is a new product or a live system someone else built. Each one comes with an example from real work.',
   },
 
   skills: {
     label: 'Skills',
     title: 'A full-stack toolkit',
     intro:
-      "Most of the technologies out there, one engineer. If your stack isn't listed, I've probably shipped something adjacent to it — adapting fast is the actual skill.",
+      "The tools I've shipped production work with, grouped by layer. I pick up new ones when a project needs them.",
     categories: {
       languages: 'Languages & Core',
       frontend: 'Frontend',
@@ -116,7 +116,7 @@ export const en = {
     label: 'Contact',
     title: "Let's build something",
     intro:
-      "I'm open to freelance and contract work — or committing my time fully to one big project as part of your team. Full products, migrations, performance rescues, or a senior full-stack hire. Tell me what you're building and I'll tell you honestly whether I'm the right person for it.",
+      "I take on freelance and contract work, and I'm open to a full-time role on the right product. Tell me what you're building and I'll tell you honestly whether I'm the right person for it.",
     yourName: 'Your name',
     placeholders: [
       'We need a full-stack engineer for...',
@@ -142,12 +142,23 @@ export const en = {
     challenge: 'The challenge',
     approach: 'The approach',
     outcome: 'The outcome',
+    stillOpen: "What's still open",
     stack: 'Stack',
     metaSuffix: 'Case Study',
     ctaTitle: 'Have a similar problem?',
     ctaBody:
-      "I'm open to freelance, contract, and full-time work — happy to talk through your situation and whether I can help.",
+      "Tell me what you're dealing with and I'll tell you honestly whether I can help.",
     ctaButton: 'Get in touch',
+  },
+
+  cv: {
+    title: 'CV',
+    location: 'Valencia, Spain',
+    summary: 'Summary',
+    experience: 'Experience',
+    skills: 'Skills',
+    education: 'Education',
+    languages: 'Languages',
   },
 
   blog: {

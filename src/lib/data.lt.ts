@@ -30,7 +30,7 @@ export const ltContent: LocaleContent = {
     },
     {
       title: 'Infrastruktūra ir pristatymas',
-      proof: 'Railway, Vercel, Docker ir CI/CD; 185 leidimai ir peržiūros aplinka kiekvienam PR.',
+      proof: 'Railway, Vercel, Docker ir CI/CD; 185 versijos ir peržiūros aplinka kiekvienam PR.',
     },
     {
       title: 'Patikimumas',
@@ -39,11 +39,38 @@ export const ltContent: LocaleContent = {
   ],
 
   stats: [
-    { value: '8+', label: 'metai kuriant produkcinę programinę įrangą' },
-    { value: '6 sav.', label: 'nuo pirmo commit iki veikiančios parduotuvės (myanart)' },
-    { value: '-91%', label: 'backend užklausų vienai puslapio užklausai, gyvoje produkcijoje' },
-    { value: '100%', label: 'WCAG atitiktis, enterprise lygio' },
+    {
+      value: '8+',
+      label: 'metai kuriant produkcinę programinę įrangą',
+      detail:
+        'Nuo 2017 m.: agentūros projektai Mančesteryje, Šveicarijos SaaS, kuriuo naudojasi bankai, ir dvi veikiančios internetinės parduotuvės.',
+    },
+    {
+      value: '6 sav.',
+      label: 'nuo pirmo commit iki viešo paleidimo',
+      detail:
+        'myanart, 2026 m. rugsėjo 18 d. – lapkričio 1 d.: AI meno kūrimo įrankis ir spaudos parduotuvė su mokėjimais, 5 kalbomis ir 52 šalyse.',
+    },
+    {
+      value: '-91%',
+      label: 'backend užklausų vienam puslapiui',
+      detail:
+        'MyUrbanScoot: nuo 1,33 iki 0,12 įdiegus Meilisearch skaitymo modelį, puslapių talpyklą ir CDN. Lapkričio savaitė, palyginti su rugsėjo 24 d. atskaitos tašku.',
+    },
+    {
+      value: '185+',
+      label: 'versijos, išleistos į veikiančią parduotuvę',
+      detail:
+        'MyUrbanScoot, nuo v1.0.0 2026 m. birželio 19 d. iki lapkričio vidurio, per mano sukurtą CI ir išleidimų procesą.',
+    },
   ],
+
+  cvSummary:
+    'Senior full-stack inžinierius, daugiau nei 8 metus kuriantis produkcinę web programinę įrangą. Kaip konsultantas vadovauju veikiančios internetinės parduotuvės inžinerijai, taip pat esu AI meno studijos bendraįkūrėjas — ją nuo pirmo commit iki paleidimo nuvedžiau per šešias savaites. Prieš tai vadovavau Šveicarijos SaaS, kuriuo naudojasi stambūs bankai ir draudikai, frontend kūrimui. Kasdien dirbu su AI programavimo agentais: nurodau kryptį ir peržiūriu, ką jie sukuria.',
+  education: [
+    'Informatikos bakalauras (B.Sc.) — Kauno technologijos universitetas, Lietuva · 2014',
+  ],
+  languages: ['Anglų — laisvai', 'Lietuvių — gimtoji', 'Ispanų — pagrindai'],
 
   services: [
     {
@@ -95,24 +122,34 @@ export const ltContent: LocaleContent = {
 
   principles: [
     {
+      title: 'Pirma išmatuoju, tada keičiu',
+      description:
+        'Pirmiausia nustatau atskaitos tašką, kad pataisymas būtų įskaitytas tik tada, kai pasikeičia skaičiai. Prieš perkeldamas MyUrbanScoot produktų puslapius prie naujo duomenų šaltinio, tikrą produkcijos valandą atkūriau ir su senu, ir su nauju kodu.',
+    },
+    {
+      title: 'Randu tikrąją priežastį',
+      description:
+        'Problemą atseku iki jos šaltinio ir tik tada taisau. Parduotuvė, kuriai nuolat pritrūkdavo atminties, strigo dėl vieno vertimų įskiepio; jį sutvarkius atminties naudojimas sumažėjo nuo 20+ GB iki 12–13 GB.',
+    },
+    {
+      title: 'Rizikingus žingsnius repetuoju',
+      description:
+        'Sunkiai atšaukiamiems pakeitimams parašau veiksmų planą ir atlieku bandomąjį paleidimą. Medusa 2.8 → 2.19 atnaujinimą prieš tikrąjį paleidimą du kartus išbandžiau su produkcinės duomenų bazės kopija.',
+    },
+    {
+      title: 'Mažais žingsniais ir dažnai',
+      description:
+        'Mažus pakeitimus, kurių kiekvienas praeina CI ir turi savo peržiūros aplinką, lengviau peržiūrėti ir atšaukti. Kol kas tai 185 versijos MyUrbanScoot ir 78 — myanart.',
+    },
+    {
+      title: 'Viską užrašau',
+      description:
+        'Produkcijos incidentams parašau priežasčių analizę paprasta kalba: kas nutiko, kodėl ir kas neleis tam pasikartoti. Kitam žmogui neturėtų tekti visko aiškintis iš naujo.',
+    },
+    {
       title: 'AI rašo. Aš sprendžiu.',
       description:
-        'Agentai greitai generuoja kodą — bet kiekvienas architektūrinis sprendimas, kompromisas ir sujungimas yra mano. Aštuonerių metų produkcinė patirtis yra filtras, per kurį praeina rezultatas.',
-    },
-    {
-      title: 'Specifikacija prieš kodą',
-      description:
-        'Prieš paleisdamas agentą surašau tikslias specifikacijas — reikalavimus, apribojimus, kraštutinius atvejus. Aiški kryptis viduje — kokybė išorėje. Miglotos užklausos duoda miglotą programinę įrangą.',
-    },
-    {
-      title: 'Apsaugos visur',
-      description:
-        'Tipams saugios schemos, testai, linting ir CI kontroliuoja viską, ką liečia AI. Niekas nepatenka į main neperėję to paties standarto, kurį taikau ranka rašytam kodui.',
-    },
-    {
-      title: 'Greitis, kurį galima išmatuoti',
-      description:
-        'Rezultatas — pristatymo tempas, kuriam anksčiau reikėjo nedidelės komandos, neaukojant kodo peržiūros, prieinamumo ar našumo biudžetų.',
+        'Su AI programavimo agentais dirbu kasdien. Jie rašo greitai; aš parašau specifikaciją, peržiūriu, ką jie sukūrė, ir atsakau už rezultatą. Tipai, testai ir CI AI parašytam kodui taiko tą patį standartą kaip ir rašytam ranka.',
     },
   ],
 
@@ -353,8 +390,10 @@ export const ltContent: LocaleContent = {
       outcomes: [
         'Viešas paleidimas 2026 m. lapkričio 1 d., praėjus šešioms savaitėms nuo pirmo commit — iki lapkričio vidurio 429 sujungti pull request ir 78 versijos, kiekviena per CI.',
         'Parduoda 52 šalyse, 5 kalbomis ir 3 valiutomis.',
-        'Pirmasis užsakymas iš nepažįstamo žmogaus — praėjus keturioms dienoms po paleidimo. Dar anksti: kiekvienas reklamos kanalas turi įrodyti savo vertę pagal kainą už įkėlimą ir užsakymą.',
+        'Pirmasis užsakymas iš nepažįstamo žmogaus — praėjus keturioms dienoms po paleidimo.',
       ],
+      stillOpen:
+        'Dar anksti. Vienas nepažįstamo žmogaus užsakymas dar neįrodo verslo: kiekvienas reklamos kanalas vis dar turi įrodyti savo vertę pagal kainą už įkėlimą ir užsakymą.',
     },
     {
       slug: 'myurbanscoot-performance',
@@ -380,6 +419,8 @@ export const ltContent: LocaleContent = {
         'Atitiktis: kiekvienas imtyje esantis produktas sutapo su senuoju API pagal turinį, kainas, likučius, paveikslėlius ir vertimus.',
         'Susiję darbai toje pačioje parduotuvėje: storefront kompiliavimas ~10 → ~5 min, Docker atvaizdas 2,9 → 1,1 GB, puslapių talpyklos įrašai Redis 5–8 kartus mažesni.',
       ],
+      stillOpen:
+        'Skaitymo modelis išsprendė dažniausią atvejį, bet ne viską: backend vis dar pasitaiko retų, labai lėtų užklausų, ir jas dar reikia atsekti.',
     },
     {
       slug: 'chatbot-builder',
@@ -401,7 +442,7 @@ export const ltContent: LocaleContent = {
       outcomes: [
         'Platformą perėmė stambios Šveicarijos įmonės, įskaitant UBS, Raiffeisen, Generali ir Nestlé.',
         '100% WCAG atitiktis chatbot produkte — griežtas bankinių klientų reikalavimas.',
-        'Dviejų žmonių komanda pristatė ir valdė produktą, konkuruojantį su gerokai didesniais tiekėjais.',
+        'Produktą pristatė ir prižiūrėjo dviejų žmonių inžinierių komanda.',
       ],
     },
     {
@@ -423,8 +464,8 @@ export const ltContent: LocaleContent = {
       ],
       outcomes: [
         'Pilna migracija pristatyta į produkciją — be funkcijų įšaldymo, be klientams matomų regresijų.',
-        'Naujas stack (React + Next.js + Tailwind) išmatuojamai pagerino kūrimo greitį ir įdarbinimo galimybes.',
-        'Monorepo architektūra iki šiol yra platformos pagrindas.',
+        'Komanda dabar kuria su React + Next.js + Tailwind — plačiau naudojamu stack nei jį pakeitęs Angular.',
+        'Monorepo struktūra tebebuvo naudojama, kai 2026 m. išėjau.',
       ],
     },
   ],

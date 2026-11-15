@@ -263,3 +263,22 @@
     animation: none;
   }
 }
+
+/* Print: only the CV page is meant to be printed (scripts/generate-cv-pdf.sh).
+   The dark canvas would waste ink and fail contrast on paper. */
+@page {
+  size: A4;
+  margin: 13mm 15mm;
+}
+@media print {
+  html,
+  body {
+    background: #fff !important;
+  }
+}
+/* The CV uses a plain system font: the site's variable web fonts split words
+   into separate text runs in the PDF, which breaks copy-paste and CV parsers. */
+.cv-sheet,
+.cv-sheet * {
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -57,7 +57,10 @@ export const ServiceSchema = z.object({
 
 export const StatSchema = z.object({
   value: z.string(),
+  /** What the number measures. */
   label: z.string(),
+  /** Where it comes from and how it was achieved. */
+  detail: z.string(),
 });
 
 export const LifecycleLayerSchema = z.object({
@@ -81,6 +84,8 @@ export const CaseStudySchema = z.object({
   challenge: z.string(),
   approach: z.array(z.string()),
   outcomes: z.array(z.string()),
+  /** What the work did not solve, or has not proven yet. */
+  stillOpen: z.string().optional(),
 });
 
 export const SiteConfigSchema = z.object({
@@ -153,6 +158,10 @@ export interface LocaleContent {
   stats: z.infer<typeof StatSchema>[];
   /** The web-software layers I own, each with one piece of real evidence. */
   lifecycle: z.infer<typeof LifecycleLayerSchema>[];
+  /** CV-only content: the summary paragraph, education and spoken languages. */
+  cvSummary: string;
+  education: string[];
+  languages: string[];
   services: z.infer<typeof ServiceSchema>[];
   principles: z.infer<typeof PrincipleSchema>[];
   experience: z.infer<typeof ExperienceSchema>[];

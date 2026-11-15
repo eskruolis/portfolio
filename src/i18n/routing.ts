@@ -17,6 +17,20 @@ export function localePath(locale: Locale, path = '/'): string {
   return `/${locale}${path}`;
 }
 
+/**
+ * Public path of the CV PDF for a locale. A static asset generated from the
+ * /[lang]/cv route by scripts/generate-cv-pdf.sh — not a localized route.
+ */
+export function cvPdfPath(locale: Locale): string {
+  return locale === DEFAULT_LOCALE ? '/cv.pdf' : `/cv-${locale}.pdf`;
+}
+
+/** File name offered to the browser when the CV is downloaded. */
+export function cvDownloadName(locale: Locale): string {
+  const suffix = locale === DEFAULT_LOCALE ? '' : `_${locale.toUpperCase()}`;
+  return `Eigirdas_Skruolis_CV${suffix}.pdf`;
+}
+
 /** Read the locale from a pathname's first segment, falling back to default. */
 export function localeFromPathname(pathname: string): Locale {
   const first = pathname.split('/').filter(Boolean)[0];
