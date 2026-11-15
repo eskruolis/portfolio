@@ -162,6 +162,8 @@ export interface LocaleContent {
   cvSummary: string;
   /** Personal background, in the owner's own words — one paragraph per entry. */
   story: string[];
+  /** Short personal notes: how I think, a normal day, life outside code. */
+  personal: z.infer<typeof PrincipleSchema>[];
   education: string[];
   languages: string[];
   services: z.infer<typeof ServiceSchema>[];

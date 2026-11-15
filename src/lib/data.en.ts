@@ -73,6 +73,28 @@ export const enContent: LocaleContent = {
     "Then the curiosity came back. I started the same way, with a private game server, but by now there were PHP and JavaScript frameworks and responsive design, and I loved it. I wanted hands-on experience in web work alone, so I moved to Manchester, where I joined Two Flamingos. I've been shipping production software ever since.",
     'Those early problems — a server that died with my home connection, pages copied by hand for every language — are the ones I now solve for a living: infrastructure that stays up, and translation that needs no duplicating.',
   ],
+  personal: [
+    {
+      title: "When I'm stuck",
+      description:
+        'I sleep on it. Then I go back to the beginning and make sure I understand the problem, or the solution I was chasing, because some rabbit holes lead nowhere. A fresh look usually gives a new angle, and I walk through the possible scenarios until one fits.',
+    },
+    {
+      title: 'A normal day',
+      description:
+        "It starts with walking the dog and taking my daughter to kindergarten. Then coffee, a clean inbox, and the dev environment for whatever I'm working on. When I hit something I don't know, I enjoy the research, and I keep up with where the field is going.",
+    },
+    {
+      title: "What I won't compromise on",
+      description:
+        "I run things as if the company were my own. So I won't quietly build a feature that experience tells me nobody will use: I'll say so, and argue for where the time is better spent. I'm there to raise what the team and the product deliver, not to please every request.",
+    },
+    {
+      title: 'Outside of code',
+      description:
+        "I train, swim in the sea out of season — I live on the Mediterranean coast — and ski or snowboard in winter. Kitesurfing is my newest sport. I'm always looking for a good sauna, or an adventure outside my comfort zone.",
+    },
+  ],
   education: [
     'B.Sc. Computer Science — Kaunas University of Technology, Lithuania · 2014',
   ],

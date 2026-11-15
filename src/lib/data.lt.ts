@@ -73,6 +73,28 @@ export const ltContent: LocaleContent = {
     'Paskui smalsumas grįžo. Pradėjau taip pat — nuo privataus žaidimo serverio, tik šįkart jau buvo PHP ir JavaScript karkasai bei prisitaikantis dizainas, ir man tai labai patiko. Norėjau praktinės patirties vien web srityje, todėl persikėliau į Mančesterį, kur pradėjau dirbti Two Flamingos. Nuo tada kuriu produkcinę programinę įrangą.',
     'Tos ankstyvos problemos — serveris, išsijungdavęs kartu su namų internetu, ir ranka kiekvienai kalbai kopijuojami puslapiai — yra tos pačios, kurias dabar sprendžiu profesionaliai: infrastruktūra, kuri nenutrūksta, ir vertimai, kuriems nereikia nieko dubliuoti.',
   ],
+  personal: [
+    {
+      title: 'Kai užstringu',
+      description:
+        'Pirmiausia su ta problema permiegu. Tada grįžtu į pradžią ir įsitikinu, kad gerai suprantu pačią problemą — arba sprendimą, kurio siekiau, nes kai kurie keliai niekur neveda. Šviežias žvilgsnis dažniausiai parodo naują kampą, ir tada po vieną pereinu galimus scenarijus, kol kuris nors tinka.',
+    },
+    {
+      title: 'Įprasta diena',
+      description:
+        'Ji prasideda nuo pasivaikščiojimo su šunimi ir dukros palydėjimo į darželį. Tada kava, sutvarkytas paštas ir kūrimo aplinka projektams, prie kurių dirbu. Susidūręs su tuo, ko nežinau, mėgstu gilintis, ir seku, kur juda ši sritis.',
+    },
+    {
+      title: 'Kur nenusileidžiu',
+      description:
+        'Dirbu taip, lyg įmonė būtų mano paties. Todėl tyliai nekursiu funkcijos, kuria, kaip rodo patirtis, niekas nesinaudos: pasakysiu tai tiesiai ir pagrįsiu, kur laiką verta skirti labiau. Esu tam, kad augtų komandos ir produkto rezultatai, o ne tam, kad įtikčiau kiekvienam prašymui.',
+    },
+    {
+      title: 'Ne prie kompiuterio',
+      description:
+        'Sportuoju, ne sezono metu plaukioju jūroje — gyvenu prie Viduržemio jūros — o žiemą slidinėju arba važinėju snieglente. Naujausias mano sportas — jėgos aitvarai. Visada ieškau geros pirties ar nuotykio, kuris išstumtų iš komforto zonos.',
+    },
+  ],
   education: [
     'Informatikos bakalauras (B.Sc.) — Kauno technologijos universitetas, Lietuva · 2014',
   ],

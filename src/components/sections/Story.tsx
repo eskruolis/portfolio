@@ -29,6 +29,22 @@ export function Story({ dict, data }: StoryProps) {
           ))}
         </div>
       </ScrollReveal>
+
+      <ul className="mt-12 grid gap-5 sm:grid-cols-2" role="list">
+        {data.personal.map((note, i) => (
+          <ScrollReveal key={note.title} delay={i * 0.08}>
+            <li
+              className="border-border bg-card card-glow h-full rounded-xl
+                border p-6"
+            >
+              <h3 className="mb-2 font-semibold">{note.title}</h3>
+              <p className="text-muted-foreground text-sm leading-7">
+                {note.description}
+              </p>
+            </li>
+          </ScrollReveal>
+        ))}
+      </ul>
     </section>
   );
 }
