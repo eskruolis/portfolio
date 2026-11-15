@@ -195,7 +195,7 @@ export const enContent: LocaleContent = {
         'Chose the AI image models through a side-by-side bake-off, and priced the AI cost into small per-preview style credits.',
         'Built the commerce plumbing on Medusa: three currencies converted from the euro price and rounded to clean .90 endings, VAT-inclusive prices per market, a custom shipping module with live Gelato quotes, gap-free invoices and AI-assisted bookkeeping.',
         'Translated the shop into 5 languages and built an AI translation plugin for Medusa: a new or changed product is translated automatically, and a translation edited by a person is never overwritten. Each language is indexed on its own, with its own sitemap entries and hreflang.',
-        'Built and run the marketing: Google Merchant Center feeds for 10 countries with Shopping and Search campaigns, Meta ads split by language, Pinterest and TikTok catalogues, consent-mode analytics, and ad budgets managed from a measured funnel.',
+        'Built and run the marketing: Google Merchant Center feeds for 10 countries with Shopping and Search campaigns, Meta ads split by language, a Pinterest catalogue, consent-mode analytics, and ad budgets managed from a measured funnel.',
       ],
       skills: [
         'Next.js',

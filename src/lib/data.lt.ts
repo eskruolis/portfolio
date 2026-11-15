@@ -195,7 +195,7 @@ export const ltContent: LocaleContent = {
         'AI vaizdų modelius pasirinkau lygindamas juos tarpusavyje, o AI kainą įtraukiau į nedidelius stiliaus kreditus už kiekvieną peržiūrą.',
         'Medusa pagrindu sukūriau e-komercijos sistemą: trys valiutos, perskaičiuojamos iš kainos eurais ir suapvalinamos iki tvarkingos ,90 galūnės, kainos su PVM kiekvienai rinkai, nuosavas pristatymo modulis su gyvomis Gelato kainomis, sąskaitos faktūros be numeracijos spragų ir AI padedama buhalterija.',
         'Išverčiau parduotuvę į 5 kalbas ir sukūriau AI vertimo įskiepį Medusa sistemai: naujas ar pakeistas produktas išverčiamas automatiškai, o žmogaus pataisytas vertimas niekada neperrašomas. Kiekviena kalba indeksuojama atskirai — su savo sitemap įrašais ir hreflang.',
-        'Kuriu ir valdau rinkodarą: Google Merchant Center produktų srautai 10 šalių su Shopping ir Search kampanijomis, Meta reklamos, suskirstytos pagal kalbą, Pinterest ir TikTok katalogai, analitika su Consent Mode ir reklamos biudžetai, valdomi pagal išmatuotą pardavimų piltuvą.',
+        'Kuriu ir valdau rinkodarą: Google Merchant Center produktų srautai 10 šalių su Shopping ir Search kampanijomis, Meta reklamos, suskirstytos pagal kalbą, Pinterest katalogas, analitika su Consent Mode ir reklamos biudžetai, valdomi pagal išmatuotą pardavimų piltuvą.',
       ],
       skills: [
         'Next.js',
