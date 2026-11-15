@@ -3,6 +3,41 @@ import type { LocaleContent } from './data';
 /** Lithuanian portfolio content. Structural fields (slug, tags, company, dates,
  *  url, skills) MUST match data.en.ts exactly — guarded by the parity test. */
 export const ltContent: LocaleContent = {
+  lifecycle: [
+    {
+      title: 'Produktas ir paleidimas',
+      proof: 'Suplanavau, sukūriau ir paleidau myanart: 5 kalbos, 3 valiutos, AI spaudos procesas.',
+    },
+    {
+      title: 'Frontend ir prieinamumas',
+      proof: 'React / Next.js programos ir dizaino sistemos, atitinkančios WCAG bankų klientams.',
+    },
+    {
+      title: 'API ir backend',
+      proof: 'REST API, Medusa e. prekyba, foniniai darbai ir trečiųjų šalių integracijos.',
+    },
+    {
+      title: 'Duomenys ir paieška',
+      proof: 'PostgreSQL, Redis ir Meilisearch; produkto puslapio p50 nuo 437 iki 69 ms.',
+    },
+    {
+      title: 'Podėlis ir CDN',
+      proof: 'Cloudflare kraštiniai serveriai, programos podėlis ir skaitymo modeliai veikiančiai parduotuvei.',
+    },
+    {
+      title: 'Autentifikacija, mokėjimai ir saugumas',
+      proof: 'Ory autentifikacija su sesijomis ir slapukais, Stripe mokėjimai, griežtas TypeScript be jokio „any“.',
+    },
+    {
+      title: 'Infrastruktūra ir pristatymas',
+      proof: 'Railway, Vercel, Docker ir CI/CD; 185 leidimai ir peržiūros aplinka kiekvienam PR.',
+    },
+    {
+      title: 'Patikimumas',
+      proof: 'Atmintis nuo 20+ GB iki 12–13 GB; rašytinė priežasčių analizė po produkcijos incidentų.',
+    },
+  ],
+
   stats: [
     { value: '8+', label: 'metai kuriant produkcinę programinę įrangą' },
     { value: '6 sav.', label: 'nuo pirmo commit iki veikiančios parduotuvės (myanart)' },
@@ -25,7 +60,7 @@ export const ltContent: LocaleContent = {
     {
       title: 'Veikiančių platformų perėmimas',
       description:
-        'Paveldėjote kodą, kurio niekas iki galo nesupranta? Perimu veikiančias sistemas: jas stabilizuoju, padarau griežtai tipizuotas, atnaujinu framework ir sukuriu patikimą išleidimų procesą — nestabdydamas naujų funkcijų kūrimo. Šiuo metu tai darau kaip vienintelis inžinierius veikiančioje internetinėje parduotuvėje.',
+        'Paveldėjote kodą, kurio niekas iki galo nesupranta? Perimu veikiančias sistemas: jas stabilizuoju, padarau griežtai tipizuotas, atnaujinu framework ir sukuriu patikimą išleidimų procesą — nestabdydamas naujų funkcijų kūrimo. Šiuo metu tai darau vadovaudamas veikiančios internetinės parduotuvės inžinerijai.',
       deliverables: [
         'Framework atnaujinimai su išbandytais runbook',
         'Griežto tipizavimo migracijos su CI apsaugomis',
@@ -114,7 +149,7 @@ export const ltContent: LocaleContent = {
       startDate: '2026',
       current: true,
       description:
-        'Ispanijos internetinė parduotuvė ir dirbtuvės elektriniams paspirtukams, lipdukams ir dalims, sukurta su Medusa.js 2 ir Next.js. Konsultuoju šį verslą nuo 2026 m. birželio; nuo rugsėjo esu vienintelis platformos inžinierius ir atsakau už kodą, išleidimus, infrastruktūrą ir produkcinės duomenų bazės pakeitimus.',
+        'Ispanijos internetinė parduotuvė ir dirbtuvės elektriniams paspirtukams, lipdukams ir dalims, sukurta su Medusa.js 2 ir Next.js. Konsultuoju šį verslą nuo 2026 m. birželio; nuo rugsėjo vadovauju jo inžinerijai: atsakau už kodą, išleidimus, infrastruktūrą, produkcinės duomenų bazės pakeitimus ir įrankius, kuriais visa komanda valdo parduotuvę.',
       highlights: [
         'Perkėliau produktų puslapius į Meilisearch skaitymo modelį: atkurtoje produkcijos valandoje backend užklausų sumažėjo 74 %, o produkto puslapio p50 nukrito nuo 437 iki 69 ms.',
         'Atsekiau produkcinį atminties nuotėkį iki vertimų įskiepio ir jį ištaisiau (20+ GB su gedimais → stabilūs 12–13 GB; po vėlesnių darbų šiandien vidutiniškai apie 3,5 GB), o tada įskiepį pakeičiau nuosavu vertimų moduliu devynioms parduotuvės kalboms.',
@@ -144,7 +179,7 @@ export const ltContent: LocaleContent = {
       endDate: '2026',
       current: false,
       description:
-        'Šveicarijos pokalbių atsiliepimų SaaS, aptarnaujantis UBS, Raiffeisen, Generali ir Nestlé. Prisijungiau kaip pirmasis frontend inžinierius ir sukūriau visą produktą nuo nulio kartu su vienu backend inžinieriumi.',
+        'Šveicarijos pokalbių atsiliepimų SaaS, aptarnaujantis UBS, Raiffeisen, Generali ir Nestlé. Prisijungiau kaip pirmasis frontend inžinierius ir vadovavau frontend kūrimui nuo nulio iki produkto, kuriuo pasitiki stambūs bankai ir draudikai, glaudžiai bendradarbiaudamas su CTO dėl API ir produkto krypties.',
       highlights: [
         'Suprojektavau ir sukūriau visą frontend, CI/CD procesus ir pagrindinį produktą nuo nulio — juo dabar pasitiki stambios Šveicarijos bankininkystės ir draudimo įmonės.',
         'Kartu su CTO suprojektavau ir pristačiau pilną REST API — maitinantį funnel builder ir realaus laiko analitikos skydelius, paremtą PostgreSQL.',
@@ -328,7 +363,7 @@ export const ltContent: LocaleContent = {
         'Elektrinių paspirtukų parduotuvės produktų puslapių perkėlimas į Meilisearch skaitymo modelį — produkto puslapio p50 nuo 437 iki 69 ms atkurtoje produkcijos valandoje.',
       company: 'MyUrbanScoot',
       year: '2026',
-      role: 'Laisvai samdomas konsultantas · vienintelis inžinierius',
+      role: 'Laisvai samdomas konsultantas · inžinerijos vadovas',
       tags: ['Meilisearch', 'Medusa', 'Next.js', 'Redis', 'PostgreSQL'],
       challenge:
         'Kiekvienas produkto puslapio peržiūrėjimas kreipdavosi į e-komercijos backend dėl produktų ir vertimų. Šios užklausos sudarė apie tris ketvirtadalius viso backend srauto, o lėtoji dalis — p95 beveik sekundė — pasiekdavo pirkėjus. Pakeitimas turėjo būti įdiegtas veikiančioje parduotuvėje, nė vienam klientui nepakeičiant turinio, kainų ar likučių.',

@@ -42,9 +42,12 @@ export const lt: Dictionary = {
   hero: {
     ariaLabel: 'Įžanga',
     role: 'Senior programinės įrangos inžinierius · Full-Stack',
+    headline:
+      'Web produktus nuvedu nuo idėjos iki produkcijos — ir atsakau už kiekvieną sluoksnį tarp jų.',
     intro:
-      'Kuriu ir pristatau produkcinę web programinę įrangą nuo pradžios iki galo — React ir Next.js frontend, Node.js API, PostgreSQL, autentifikacija ir diegimas debesyje. Šiuo metu konsultuoju MyUrbanScoot, kur esu vienintelis veikiančios internetinės parduotuvės inžinierius, ir kartu su partneriu įkūriau myanart, kurį nuo pirmo commit iki paleidimo nuvedžiau per šešias savaites. Prieš tai buvau pirmasis frontend inžinierius Šveicarijos SaaS, kuriuo pasitiki stambūs bankai ir draudikai. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
+      'Šiuo metu vadovauju MyUrbanScoot inžinerijai: atsakau už veikiančią parduotuvę nuo pradžios iki galo ir už įrankius, kuriais dirba visa komanda. Taip pat esu myanart bendraįkūrėjas ir CTO — šį projektą nuo pirmo commit iki paleidimo nuvedžiau per šešias savaites. Prieš tai vadovavau Šveicarijos SaaS, kuriuo pasitiki stambūs bankai ir draudikai, frontend kūrimui. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
     introEmphasis: 'kiekvieną žingsnį valdau ir peržiūriu pats',
+    lifecycleLabel: 'Kiekvienas sluoksnis, nuo pradžios iki galo',
     startProject: 'Pradėti projektą',
     viewCv: 'Peržiūrėti CV',
     trustStrip: 'Sukūriau produktus, kuriais pasitiki komandos',

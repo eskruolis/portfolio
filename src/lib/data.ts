@@ -60,6 +60,11 @@ export const StatSchema = z.object({
   label: z.string(),
 });
 
+export const LifecycleLayerSchema = z.object({
+  title: z.string(),
+  proof: z.string(),
+});
+
 export const PrincipleSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -146,6 +151,8 @@ export const skills: z.infer<typeof SkillSchema>[] = [
 /** The prose-bearing, per-locale slice of the portfolio data. */
 export interface LocaleContent {
   stats: z.infer<typeof StatSchema>[];
+  /** The web-software layers I own, each with one piece of real evidence. */
+  lifecycle: z.infer<typeof LifecycleLayerSchema>[];
   services: z.infer<typeof ServiceSchema>[];
   principles: z.infer<typeof PrincipleSchema>[];
   experience: z.infer<typeof ExperienceSchema>[];

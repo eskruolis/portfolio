@@ -20,6 +20,7 @@ describe('locale data parity', () => {
       expect(d.workProjects).toHaveLength(en.workProjects.length);
       expect(d.caseStudies).toHaveLength(en.caseStudies.length);
       expect(d.stats).toHaveLength(en.stats.length);
+      expect(d.lifecycle).toHaveLength(en.lifecycle.length);
     }
   });
 

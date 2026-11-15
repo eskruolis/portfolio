@@ -44,9 +44,12 @@ export const en = {
   hero: {
     ariaLabel: 'Introduction',
     role: 'Senior Software Engineer · Full-Stack',
+    headline:
+      'I take web products from idea to production — and own every layer in between.',
     intro:
-      'I build and ship production web software end to end — React and Next.js frontends, Node.js APIs, PostgreSQL, auth, and cloud deployment. Today I consult for MyUrbanScoot, where I\'m the only engineer on a live online store, and I co-founded myanart, which I took from first commit to launch in six weeks. Before that, I was the first frontend engineer at a Swiss SaaS trusted by major banks and insurers. I deliver at AI speed with agentic workflows — ',
+      'Today I lead engineering at MyUrbanScoot, owning their live store end to end and the tools the whole team runs it with, and I\'m co-founder & CTO of myanart, which I took from first commit to launch in six weeks. Before that, I led the frontend of a Swiss SaaS relied on by major banks and insurers. I work at AI speed with agentic workflows — ',
     introEmphasis: 'directed and reviewed by me at every step',
+    lifecycleLabel: 'Every layer, end to end',
     startProject: 'Start a project',
     viewCv: 'View CV',
     trustStrip: 'Built products relied on by teams at',

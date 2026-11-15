@@ -3,6 +3,41 @@ import type { LocaleContent } from './data';
 /** English portfolio content. Structural fields (slugs, tags, dates, urls,
  *  companies) must match data.lt.ts — guarded by the parity test. */
 export const enContent: LocaleContent = {
+  lifecycle: [
+    {
+      title: 'Product & launch',
+      proof: 'Scoped, built and launched myanart: 5 languages, 3 currencies, an AI print pipeline.',
+    },
+    {
+      title: 'Frontend & accessibility',
+      proof: 'React / Next.js apps and design systems, with WCAG conformance for enterprise banks.',
+    },
+    {
+      title: 'APIs & backend',
+      proof: 'REST APIs, Medusa commerce, background jobs and third-party integrations.',
+    },
+    {
+      title: 'Data & search',
+      proof: 'PostgreSQL, Redis and Meilisearch; product-page p50 from 437 to 69 ms.',
+    },
+    {
+      title: 'Caching & CDN',
+      proof: 'Cloudflare edge, app caching and read models in front of a live store.',
+    },
+    {
+      title: 'Auth, payments & security',
+      proof: 'Ory auth with sessions and cookies, Stripe payments, strict TypeScript with zero "any".',
+    },
+    {
+      title: 'Infrastructure & delivery',
+      proof: 'Railway, Vercel, Docker and CI/CD; 185 releases, with a preview environment per PR.',
+    },
+    {
+      title: 'Reliability',
+      proof: 'Memory from 20+ GB to 12–13 GB; a written root-cause report for production incidents.',
+    },
+  ],
+
   stats: [
     { value: '8+', label: 'years shipping production software' },
     { value: '6 weeks', label: 'from first commit to a live shop (myanart)' },
@@ -25,7 +60,7 @@ export const enContent: LocaleContent = {
     {
       title: 'Taking over live platforms',
       description:
-        'Inherited a codebase nobody fully understands? I take ownership of live systems: stabilise them, make them strictly typed, upgrade the framework, and set up releases you can trust — without freezing feature work. I do this today as the only engineer on a live online store.',
+        'Inherited a codebase nobody fully understands? I take ownership of live systems: stabilise them, make them strictly typed, upgrade the framework, and set up releases you can trust — without freezing feature work. I do this today, leading engineering for a live online store.',
       deliverables: [
         'Framework upgrades with rehearsed runbooks',
         'Strict-typing migrations with CI ratchets',
@@ -114,7 +149,7 @@ export const enContent: LocaleContent = {
       startDate: '2026',
       current: true,
       description:
-        "Spanish online store and workshop for electric scooters, vinyls and parts, built on Medusa.js 2 and Next.js. I've consulted for the business since June 2026; since September I'm the only engineer on the platform and own the code, releases, infrastructure and production database changes.",
+        "Spanish online store and workshop for electric scooters, vinyls and parts, built on Medusa.js 2 and Next.js. I've consulted for the business since June 2026; since September I lead its engineering: I own the code, releases, infrastructure and production database changes, and the tools the whole team runs the shop with.",
       highlights: [
         'Moved product pages onto a Meilisearch read model: on a replayed production hour, backend requests fell 74% and product-page p50 went from 437 to 69 ms.',
         'Traced a production memory leak to a translation plugin and fixed it (20+ GB with crashes → a stable 12–13 GB; about 3.5 GB on average today, after later work), then replaced the plugin with a native translation module for the store\'s nine languages.',
@@ -144,7 +179,7 @@ export const enContent: LocaleContent = {
       endDate: '2026',
       current: false,
       description:
-        'Swiss conversational-feedback SaaS serving UBS, Raiffeisen, Generali, and Nestlé. Joined as the first frontend engineer and built the entire product from zero alongside a single backend engineer.',
+        'Swiss conversational-feedback SaaS serving UBS, Raiffeisen, Generali, and Nestlé. Joined as the first frontend engineer and led the frontend from zero to a product relied on by major banks and insurers, working closely with the CTO on the API and product direction.',
       highlights: [
         'Architected and built the entire frontend, CI/CD pipelines, and core product from zero — now relied on by major Swiss banking and insurance enterprises.',
         'Co-designed and shipped the full REST API with the CTO — powering the funnel builder and real-time analytics dashboards, backed by PostgreSQL.',
@@ -328,7 +363,7 @@ export const enContent: LocaleContent = {
         "Moving an e-scooter shop's product pages onto a Meilisearch read model — product-page p50 from 437 to 69 ms on a replayed production hour.",
       company: 'MyUrbanScoot',
       year: '2026',
-      role: 'Freelance consultant · only engineer',
+      role: 'Freelance consultant · engineering lead',
       tags: ['Meilisearch', 'Medusa', 'Next.js', 'Redis', 'PostgreSQL'],
       challenge:
         "Every product page view called the commerce backend for products and translations. Those calls were about three quarters of the backend's traffic, and the slow tail — p95 close to a second — reached shoppers. The fix had to land on a live store without changing content, prices or stock for any customer.",

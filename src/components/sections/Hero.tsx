@@ -101,7 +101,7 @@ interface HeroProps {
 
 export function Hero({ dict, data }: HeroProps) {
   const [cvOpen, setCvOpen] = useState(false);
-  const { stats, clients } = data;
+  const { stats, clients, lifecycle } = data;
 
   return (
     <>
@@ -151,6 +151,16 @@ export function Hero({ dict, data }: HeroProps) {
               className="section-label mb-6"
             >
               {dict.hero.role}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="font-display text-foreground mb-5 max-w-xl text-xl
+                leading-snug font-semibold tracking-tight sm:text-2xl"
+            >
+              {dict.hero.headline}
             </motion.p>
 
             <motion.p
@@ -220,12 +230,44 @@ export function Hero({ dict, data }: HeroProps) {
           </motion.div>
         </div>
 
+        {/* Lifecycle: every layer of a web product, each backed by real work */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="relative z-10 mt-16"
+        >
+          <p className="section-label mb-4">{dict.hero.lifecycleLabel}</p>
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {lifecycle.map((layer, i) => (
+              <li
+                key={layer.title}
+                className="border-border bg-card/40 card-glow rounded-xl border
+                  p-4"
+              >
+                <p className="text-primary font-mono text-xs">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <p
+                  className="font-display text-foreground mt-1 text-sm
+                    font-semibold"
+                >
+                  {layer.title}
+                </p>
+                <p className="text-muted-foreground mt-2 text-xs leading-5">
+                  {layer.proof}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+
         {/* Stats */}
         <motion.dl
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="border-border relative z-10 mt-16 grid grid-cols-2 gap-8
+          transition={{ duration: 0.6, delay: 0.75 }}
+          className="border-border relative z-10 mt-12 grid grid-cols-2 gap-8
             border-t pt-8 sm:grid-cols-4"
         >
           {stats.map((stat) => (
