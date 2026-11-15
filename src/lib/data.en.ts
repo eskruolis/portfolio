@@ -191,10 +191,11 @@ export const enContent: LocaleContent = {
         'An AI art studio for your photos: customers pick a style and put their picture on prints, canvas, mugs and gifts, printed and shipped by Gelato. I co-founded it, and I build and run the whole platform.',
       highlights: [
         'Took it from first commit to public launch in six weeks (September → 1 November 2026); it sells in 52 countries, in 5 languages and 3 currencies.',
-        "Built the print pipeline: the customer's photo and crop — or an AI-styled version upscaled to about 8,192 px — becomes a 300 dpi print file that is sent to Gelato automatically, with live shipping quotes.",
+        "Built the print pipeline: the customer's photo and crop — or an AI-styled version upscaled to about 8,192 px — becomes a 300 dpi print file that is sent to Gelato automatically.",
         'Chose the AI image models through a side-by-side bake-off, and priced the AI cost into small per-preview style credits.',
-        'Built the commerce plumbing on Medusa: markets with FX and VAT-inclusive prices, gap-free invoices, AI-assisted bookkeeping, and product feeds for five ad channels.',
-        "Run growth hands-on: Meta, Google, TikTok and Pinterest campaigns, consent-mode analytics, and a measured funnel that decides where the budget goes.",
+        'Built the commerce plumbing on Medusa: three currencies converted from the euro price and rounded to clean .90 endings, VAT-inclusive prices per market, a custom shipping module with live Gelato quotes, gap-free invoices and AI-assisted bookkeeping.',
+        'Translated the shop into 5 languages and built an AI translation plugin for Medusa: a new or changed product is translated automatically, and a translation edited by a person is never overwritten. Each language is indexed on its own, with its own sitemap entries and hreflang.',
+        'Built and run the marketing: Google Merchant Center feeds for 10 countries with Shopping and Search campaigns, Meta ads split by language, Pinterest and TikTok catalogues, consent-mode analytics, and ad budgets managed from a measured funnel.',
       ],
       skills: [
         'Next.js',
@@ -422,7 +423,7 @@ export const enContent: LocaleContent = {
         'First order from a stranger four days after launch.',
       ],
       stillOpen:
-        "It's early. One order from a stranger doesn't prove a business: every ad channel still has to prove itself in cost per upload and per order.",
+        "It's early. One order from a stranger doesn't prove a business: every ad channel still has to prove itself in cost per upload and per order. The preview of a print on the wall is 2D today; a 3D preview is planned, not built.",
     },
     {
       slug: 'myurbanscoot-performance',

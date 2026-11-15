@@ -191,10 +191,11 @@ export const ltContent: LocaleContent = {
         'AI meno studija jūsų nuotraukoms: klientas pasirenka stilių ir perkelia savo nuotrauką ant spaudinių, drobės, puodelių ir dovanų, kuriuos atspausdina ir išsiunčia Gelato. Įkūriau ją kartu su partneriu, o visą platformą kuriu ir prižiūriu pats.',
       highlights: [
         'Nuo pirmo commit iki viešo paleidimo per šešias savaites (2026 m. rugsėjis → lapkričio 1 d.); parduoda 52 šalyse, 5 kalbomis ir 3 valiutomis.',
-        'Sukūriau spaudos procesą: kliento nuotrauka ir apkarpymas — arba AI stiliaus versija, padidinta iki maždaug 8 192 px — tampa 300 dpi spaudos failu, kuris automatiškai siunčiamas Gelato, su gyvais pristatymo kainų skaičiavimais.',
+        'Sukūriau spaudos procesą: kliento nuotrauka ir apkarpymas — arba AI stiliaus versija, padidinta iki maždaug 8 192 px — tampa 300 dpi spaudos failu, kuris automatiškai siunčiamas Gelato.',
         'AI vaizdų modelius pasirinkau lygindamas juos tarpusavyje, o AI kainą įtraukiau į nedidelius stiliaus kreditus už kiekvieną peržiūrą.',
-        'Medusa pagrindu sukūriau e-komercijos sistemą: rinkos su valiutų kursais ir kainomis su PVM, sąskaitos faktūros be numeracijos spragų, AI padedama buhalterija ir produktų srautai penkiems reklamos kanalams.',
-        'Pats rūpinuosi augimu: Meta, Google, TikTok ir Pinterest kampanijos, analitika su Consent Mode ir išmatuotas pardavimų piltuvas, pagal kurį skirstau biudžetą.',
+        'Medusa pagrindu sukūriau e-komercijos sistemą: trys valiutos, perskaičiuojamos iš kainos eurais ir suapvalinamos iki tvarkingos ,90 galūnės, kainos su PVM kiekvienai rinkai, nuosavas pristatymo modulis su gyvomis Gelato kainomis, sąskaitos faktūros be numeracijos spragų ir AI padedama buhalterija.',
+        'Išverčiau parduotuvę į 5 kalbas ir sukūriau AI vertimo įskiepį Medusa sistemai: naujas ar pakeistas produktas išverčiamas automatiškai, o žmogaus pataisytas vertimas niekada neperrašomas. Kiekviena kalba indeksuojama atskirai — su savo sitemap įrašais ir hreflang.',
+        'Kuriu ir valdau rinkodarą: Google Merchant Center produktų srautai 10 šalių su Shopping ir Search kampanijomis, Meta reklamos, suskirstytos pagal kalbą, Pinterest ir TikTok katalogai, analitika su Consent Mode ir reklamos biudžetai, valdomi pagal išmatuotą pardavimų piltuvą.',
       ],
       skills: [
         'Next.js',
@@ -422,7 +423,7 @@ export const ltContent: LocaleContent = {
         'Pirmasis užsakymas iš nepažįstamo žmogaus — praėjus keturioms dienoms po paleidimo.',
       ],
       stillOpen:
-        'Dar anksti. Vienas nepažįstamo žmogaus užsakymas dar neįrodo verslo: kiekvienas reklamos kanalas vis dar turi įrodyti savo vertę pagal kainą už įkėlimą ir užsakymą.',
+        'Dar anksti. Vienas nepažįstamo žmogaus užsakymas dar neįrodo verslo: kiekvienas reklamos kanalas vis dar turi įrodyti savo vertę pagal kainą už įkėlimą ir užsakymą. Spaudinio peržiūra ant sienos kol kas yra 2D; 3D peržiūra suplanuota, bet dar nesukurta.',
     },
     {
       slug: 'myurbanscoot-performance',
