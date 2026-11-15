@@ -47,7 +47,7 @@ export const en = {
     headline:
       'I take web products from idea to production — and own every layer in between.',
     intro:
-      'Today I lead engineering at MyUrbanScoot, owning their live store end to end and the tools the whole team runs it with, and I\'m co-founder & CTO of myanart, which I took from first commit to launch in six weeks. Before that, I led the frontend of a Swiss SaaS relied on by major banks and insurers. I work at AI speed with agentic workflows — ',
+      'Today I lead engineering at MyUrbanScoot, a Spanish e-scooter store and workshop, owning their live store end to end and the tools the whole team runs it with. I\'m also co-founder & CTO of myanart, an AI art studio that turns customers\' photos into prints, canvas and gifts shipped to 52 countries — I took it from first commit to launch in six weeks. Before that, I led the frontend of a Swiss SaaS relied on by major banks and insurers. I work at AI speed with agentic workflows — ',
     introEmphasis: 'directed and reviewed by me at every step',
     lifecycleLabel: 'Every layer, end to end',
     startProject: 'Start a project',

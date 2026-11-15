@@ -45,7 +45,7 @@ export const lt: Dictionary = {
     headline:
       'Web produktus nuvedu nuo idėjos iki produkcijos — ir atsakau už kiekvieną sluoksnį tarp jų.',
     intro:
-      'Šiuo metu vadovauju MyUrbanScoot inžinerijai: atsakau už veikiančią parduotuvę nuo pradžios iki galo ir už įrankius, kuriais dirba visa komanda. Taip pat esu myanart bendraįkūrėjas ir CTO — šį projektą nuo pirmo commit iki paleidimo nuvedžiau per šešias savaites. Prieš tai vadovavau Šveicarijos SaaS, kuriuo pasitiki stambūs bankai ir draudikai, frontend kūrimui. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
+      'Šiuo metu vadovauju MyUrbanScoot — Ispanijos elektrinių paspirtukų parduotuvės ir dirbtuvių — inžinerijai: atsakau už veikiančią parduotuvę nuo pradžios iki galo ir už įrankius, kuriais dirba visa komanda. Taip pat esu myanart bendraįkūrėjas ir CTO — tai AI meno studija, kuri klientų nuotraukas paverčia spaudiniais, drobėmis ir dovanomis, siunčiamomis į 52 šalis; nuo pirmo commit iki paleidimo ją nuvedžiau per šešias savaites. Prieš tai vadovavau Šveicarijos SaaS, kuriuo pasitiki stambūs bankai ir draudikai, frontend kūrimui. Dirbu AI greičiu su agentinėmis darbo eigomis — ',
     introEmphasis: 'kiekvieną žingsnį valdau ir peržiūriu pats',
     lifecycleLabel: 'Kiekvienas sluoksnis, nuo pradžios iki galo',
     startProject: 'Pradėti projektą',
