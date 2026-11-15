@@ -48,7 +48,7 @@ function CVModal({
           exit={{ opacity: 0, scale: 0.95, y: 16 }}
           transition={{ duration: 0.25 }}
           onClick={(e) => e.stopPropagation()}
-          className="border-border bg-card relative flex max-h-[90vh] w-full
+          className="border-border bg-card relative flex h-[85dvh] w-full
             max-w-3xl flex-col overflow-hidden rounded-xl border shadow-2xl"
         >
           <div
@@ -86,7 +86,6 @@ function CVModal({
           <iframe
             src="/cv.pdf"
             className="min-h-0 w-full flex-1 bg-white"
-            style={{ height: '75vh' }}
             title="Eigirdas Skruolis CV"
           />
         </motion.div>
