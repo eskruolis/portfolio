@@ -218,6 +218,7 @@ export const ltContent: LocaleContent = {
       highlights: [
         'Perkėliau produktų puslapius į Meilisearch skaitymo modelį: atkurtoje produkcijos valandoje backend užklausų sumažėjo 74 %, o produkto puslapio p50 nukrito nuo 437 iki 69 ms.',
         'Atsekiau produkcinį atminties nuotėkį iki vertimų įskiepio ir jį ištaisiau (20+ GB su gedimais → stabilūs 12–13 GB; po vėlesnių darbų šiandien vidutiniškai apie 3,5 GB), o tada įskiepį pakeičiau nuosavu vertimų moduliu devynioms parduotuvės kalboms.',
+        'Mėnesinę serverių sąskaitą nuo 2026 m. birželio iki spalio sumažinau daugiau nei 80 % — sutvarkiau atminties naudojimą ir sumažinau backend apkrovą; lapkritį ji turėtų būti mažesnė daugiau nei 90 %.',
         'Kodą padariau griežtai tipizuotą nestabdydamas funkcijų kūrimo: aiškių "any" nuo 4 594 iki 0, strict režimas abiejose aplikacijose ir CI patikra, blokuojanti naujus.',
         'Produkcijoje atnaujinau Medusa 2.8 → 2.19, runbook du kartus išbandęs su produkcinės duomenų bazės kopija.',
         'Sukūriau pristatymo procesą — CI, peržiūros aplinką kiekvienam pull request, automatinį versijavimą — ir nuo v1.0.0 išleidau 185 versijas.',
