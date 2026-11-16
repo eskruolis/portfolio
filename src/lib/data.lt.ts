@@ -49,7 +49,7 @@ export const ltContent: LocaleContent = {
       value: '6 sav.',
       label: 'nuo pirmo commit iki viešo paleidimo',
       detail:
-        'myanart, 2026 m. rugsėjo 18 d. – lapkričio 1 d.: AI meno kūrimo įrankis ir spaudos parduotuvė su mokėjimais, 5 kalbomis ir 52 šalyse.',
+        'myanart, 2026 m. rugsėjo 18 d. – lapkričio 1 d.: AI meno kūrimo įrankis, spaudos procesas ir visa parduotuvė su mokėjimais.',
     },
     {
       value: '-91%',

@@ -49,7 +49,7 @@ export const enContent: LocaleContent = {
       value: '6 weeks',
       label: 'from first commit to public launch',
       detail:
-        'myanart, 18 Sep to 1 Nov 2026: an AI art builder and print shop with payments, in 5 languages and 52 countries.',
+        'myanart, 18 Sep to 1 Nov 2026: an AI art builder, a print pipeline and a full shop with payments.',
     },
     {
       value: '-91%',
