@@ -28,6 +28,15 @@ describe('locale data parity', () => {
     }
   });
 
+  it('lifecycle layers name the same projects across locales', () => {
+    for (const locale of ENABLED_LOCALES) {
+      const d = getData(locale);
+      d.lifecycle.forEach((layer, i) => {
+        expect(layer.projects).toEqual(en.lifecycle[i].projects);
+      });
+    }
+  });
+
   it('case study slugs and tags match across locales', () => {
     for (const locale of ENABLED_LOCALES) {
       const d = getData(locale);

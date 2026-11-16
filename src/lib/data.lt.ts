@@ -7,34 +7,42 @@ export const ltContent: LocaleContent = {
     {
       title: 'Produktas ir paleidimas',
       proof: 'Suplanavau, sukūriau ir paleidau myanart: 5 kalbos, 3 valiutos, AI spaudos procesas.',
+      projects: ['myanart'],
     },
     {
       title: 'Frontend ir prieinamumas',
       proof: 'React / Next.js programos ir dizaino sistemos, atitinkančios WCAG bankų klientams.',
+      projects: ['Hypt AG'],
     },
     {
       title: 'API ir backend',
       proof: 'REST API, Medusa e. prekyba, foniniai darbai ir trečiųjų šalių integracijos.',
+      projects: ['Hypt AG', 'MyUrbanScoot', 'myanart'],
     },
     {
       title: 'Duomenys ir paieška',
       proof: 'PostgreSQL, Redis ir Meilisearch; produkto puslapio p50 nuo 437 iki 69 ms.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Podėlis ir CDN',
       proof: 'Cloudflare kraštiniai serveriai, programos podėlis ir skaitymo modeliai veikiančiai parduotuvei.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Autentifikacija, mokėjimai ir saugumas',
       proof: 'Ory autentifikacija su sesijomis ir slapukais, prisijungimas per Google ir Facebook, Stripe mokėjimai, griežtas TypeScript be jokio „any“.',
+      projects: ['Hypt AG', 'myanart', 'MyUrbanScoot'],
     },
     {
       title: 'Infrastruktūra ir pristatymas',
       proof: 'Railway, Vercel, Docker ir CI/CD; 185 versijos ir peržiūros aplinka kiekvienam PR.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Patikimumas',
       proof: 'Atmintis nuo 20+ GB iki 12–13 GB; rašytinė priežasčių analizė po produkcijos incidentų.',
+      projects: ['MyUrbanScoot'],
     },
   ],
 

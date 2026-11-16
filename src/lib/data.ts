@@ -66,6 +66,8 @@ export const StatSchema = z.object({
 export const LifecycleLayerSchema = z.object({
   title: z.string(),
   proof: z.string(),
+  /** Which company or product the evidence comes from (language-neutral). */
+  projects: z.array(z.string()),
 });
 
 export const PrincipleSchema = z.object({

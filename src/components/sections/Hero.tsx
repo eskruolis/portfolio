@@ -247,8 +247,8 @@ export function Hero({ dict, data, locale }: HeroProps) {
             {lifecycle.map((layer, i) => (
               <li
                 key={layer.title}
-                className="border-border bg-card/40 card-glow rounded-xl border
-                  p-4"
+                className="border-border bg-card/40 card-glow flex flex-col
+                  rounded-xl border p-4"
               >
                 <p className="text-primary font-mono text-xs">
                   {String(i + 1).padStart(2, '0')}
@@ -261,6 +261,12 @@ export function Hero({ dict, data, locale }: HeroProps) {
                 </p>
                 <p className="text-muted-foreground mt-2 text-xs leading-5">
                   {layer.proof}
+                </p>
+                <p
+                  className="text-primary/80 mt-auto pt-3 font-mono text-[11px]
+                    tracking-wide"
+                >
+                  {layer.projects.join(' · ')}
                 </p>
               </li>
             ))}

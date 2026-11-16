@@ -7,34 +7,42 @@ export const enContent: LocaleContent = {
     {
       title: 'Product & launch',
       proof: 'Scoped, built and launched myanart: 5 languages, 3 currencies, an AI print pipeline.',
+      projects: ['myanart'],
     },
     {
       title: 'Frontend & accessibility',
       proof: 'React / Next.js apps and design systems, with WCAG conformance for enterprise banks.',
+      projects: ['Hypt AG'],
     },
     {
       title: 'APIs & backend',
       proof: 'REST APIs, Medusa commerce, background jobs and third-party integrations.',
+      projects: ['Hypt AG', 'MyUrbanScoot', 'myanart'],
     },
     {
       title: 'Data & search',
       proof: 'PostgreSQL, Redis and Meilisearch; product-page p50 from 437 to 69 ms.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Caching & CDN',
       proof: 'Cloudflare edge, app caching and read models in front of a live store.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Auth, payments & security',
       proof: 'Ory auth with sessions and cookies, Google and Facebook sign-in, Stripe payments, strict TypeScript with zero "any".',
+      projects: ['Hypt AG', 'myanart', 'MyUrbanScoot'],
     },
     {
       title: 'Infrastructure & delivery',
       proof: 'Railway, Vercel, Docker and CI/CD; 185 releases, with a preview environment per PR.',
+      projects: ['MyUrbanScoot'],
     },
     {
       title: 'Reliability',
       proof: 'Memory from 20+ GB to 12–13 GB; a written root-cause report for production incidents.',
+      projects: ['MyUrbanScoot'],
     },
   ],
 
