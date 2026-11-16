@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faDownload,
@@ -107,6 +107,7 @@ interface HeroProps {
 export function Hero({ dict, data, locale }: HeroProps) {
   const [cvOpen, setCvOpen] = useState(false);
   const { stats, clients, lifecycle } = data;
+  const reduceMotion = useReducedMotion();
 
   return (
     <>
@@ -247,9 +248,19 @@ export function Hero({ dict, data, locale }: HeroProps) {
             {lifecycle.map((layer, i) => (
               <li
                 key={layer.title}
-                className="border-border bg-card/40 card-glow flex flex-col
-                  rounded-xl border p-4"
+                className="border-border bg-card/40 card-glow relative flex
+                  flex-col rounded-xl border p-4"
               >
+                {/* A signal passing through the layers, 01 to 08 */}
+                <motion.span
+                  aria-hidden="true"
+                  className="from-primary/80 absolute inset-x-4 top-0 h-px
+                    origin-left bg-linear-to-r to-transparent"
+                  initial={reduceMotion ? false : { scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.9 + i * 0.12 }}
+                />
                 <p className="text-primary font-mono text-xs">
                   {String(i + 1).padStart(2, '0')}
                 </p>

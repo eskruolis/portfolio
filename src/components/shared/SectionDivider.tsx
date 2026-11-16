@@ -2,82 +2,51 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
+/**
+ * Boundary between two homepage sections: a gradient hairline that draws in
+ * from its accent end, with a soft pool of light behind it so the canvas is
+ * not one flat colour. `flip` mirrors it, so consecutive dividers alternate.
+ */
 export function SectionDivider({ flip = false }: { flip?: boolean }) {
-  const ref = useRef<SVGSVGElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
 
-  const dotPositions = flip
-    ? [
-        { cx: 80, delay: 0.6 },
-        { cx: 40, delay: 0.8 },
-      ]
-    : [
-        { cx: 320, delay: 0.6 },
-        { cx: 360, delay: 0.8 },
-      ];
-
   return (
-    <div aria-hidden="true" className="mx-8 lg:mx-16">
-      <svg
-        ref={ref}
-        viewBox="0 0 400 16"
-        fill="none"
-        className="w-full overflow-visible"
-        style={{ height: '16px' }}
-      >
-        {/* Main line draws in from center */}
-        <motion.line
-          x1={flip ? 400 : 0}
-          y1="8"
-          x2={flip ? 0 : 400}
-          y2="8"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          className="text-border"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-        />
+    <div ref={ref} aria-hidden="true" className="relative mx-8 lg:mx-16">
+      {/* Light behind the boundary, on the accent side */}
+      <div
+        className={cn(
+          'pointer-events-none absolute -top-56 -z-10 h-[30rem] w-[44rem]',
+          'max-w-full',
+          flip ? 'accent-glow-cool right-0' : 'accent-glow left-0',
+        )}
+      />
 
-        {/* Accent dot at the active end */}
-        <motion.circle
-          cx={flip ? 400 : 0}
-          cy="8"
-          r="2"
-          className="fill-primary/40"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.3, delay: 0.9 }}
-        />
+      <motion.div
+        className={cn(
+          'via-border h-px to-transparent',
+          flip
+            ? 'from-primary/60 origin-right bg-linear-to-l'
+            : 'from-primary/60 origin-left bg-linear-to-r',
+        )}
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={inView ? { scaleX: 1, opacity: 1 } : {}}
+        transition={{ duration: 1, ease: 'easeInOut' }}
+      />
 
-        {/* Two small floating dots near the accent end */}
-        {dotPositions.map(({ cx, delay }) => (
-          <motion.circle
-            key={cx}
-            cx={cx}
-            cy="8"
-            r="1.5"
-            className="fill-primary/20"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={
-              inView
-                ? {
-                    opacity: [0, 0.6, 0.3],
-                    scale: [0, 1, 1],
-                    cy: [8, 5, 8],
-                  }
-                : {}
-            }
-            transition={{
-              duration: 3,
-              delay,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-      </svg>
+      {/* Glowing node at the accent end */}
+      <motion.span
+        className={cn(
+          'bg-primary divider-node absolute top-0 size-1.5 -translate-y-1/2',
+          'rounded-full',
+          flip ? 'right-0' : 'left-0',
+        )}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={inView ? { scale: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.3, delay: 0.2 }}
+      />
     </div>
   );
 }

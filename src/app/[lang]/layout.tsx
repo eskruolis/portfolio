@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { CardSpotlight } from '@/components/shared/CardSpotlight';
 import {
   DEFAULT_LOCALE,
   ENABLED_LOCALES,
@@ -170,9 +171,19 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <div className="flex min-h-screen">
             <Sidebar locale={locale} dict={dict} />
-            <main id="main-content" className="flex-1">
+            <main
+              id="main-content"
+              className="relative isolate flex-1 overflow-x-clip"
+            >
+              {/* Ambient light: pinned to the viewport, confined to <main> */}
+              <div
+                aria-hidden="true"
+                className="page-ambient pointer-events-none sticky top-0 -z-20
+                  -mb-[100vh] h-screen print:hidden"
+              />
               {children}
             </main>
+            <CardSpotlight />
           </div>
         </ThemeProvider>
       </body>
