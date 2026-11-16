@@ -26,7 +26,7 @@ export const ltContent: LocaleContent = {
     },
     {
       title: 'Autentifikacija, mokėjimai ir saugumas',
-      proof: 'Ory autentifikacija su sesijomis ir slapukais, Stripe mokėjimai, griežtas TypeScript be jokio „any“.',
+      proof: 'Ory autentifikacija su sesijomis ir slapukais, prisijungimas per Google ir Facebook, Stripe mokėjimai, griežtas TypeScript be jokio „any“.',
     },
     {
       title: 'Infrastruktūra ir pristatymas',

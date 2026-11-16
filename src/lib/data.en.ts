@@ -26,7 +26,7 @@ export const enContent: LocaleContent = {
     },
     {
       title: 'Auth, payments & security',
-      proof: 'Ory auth with sessions and cookies, Stripe payments, strict TypeScript with zero "any".',
+      proof: 'Ory auth with sessions and cookies, Google and Facebook sign-in, Stripe payments, strict TypeScript with zero "any".',
     },
     {
       title: 'Infrastructure & delivery',
