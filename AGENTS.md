@@ -35,6 +35,7 @@ src/
       page.tsx              Single scrollable homepage
       blog/[slug]/          Blog post pages (SSG; hidden via siteConfig.showBlog)
       work/[slug]/          Case study pages (SSG, from the locale's caseStudies)
+      cv/                   The CV as a print-styled page, rendered from lib/data (noindex); source of the PDFs
     og/route.tsx            OG image generation API route
     robots.ts, sitemap.ts   Per-locale robots + sitemap with hreflang alternates
   i18n/
@@ -45,9 +46,9 @@ src/
     views.ts                Server Action: increment Upstash view counter
   components/
     layout/                 Sidebar, Nav, Footer, ThemeProvider — shared shell
-    sections/               Hero, Services, HowIWork, Skills, Experience, Projects, Contact, BlogTeaser
+    sections/               Hero, Services, HowIWork, Skills, Story, Experience, Projects, Contact, BlogTeaser
     ui/                     shadcn components — DO NOT EDIT
-    shared/                 Reusable project-specific components (AvailabilityBadge, SectionHeading, TechPill, ScrollReveal…)
+    shared/                 Reusable project-specific components (AvailabilityBadge, SectionHeading, SectionDivider, CardSpotlight, TechPill, ScrollReveal…)
   content/
     blog/                   .mdx blog posts
   hooks/
@@ -64,7 +65,9 @@ src/
   test/
     setup.ts                Vitest global setup
 public/
-  cv.pdf                  Downloadable CV
+  cv.pdf, cv-lt.pdf       Downloadable CVs — GENERATED from /[lang]/cv by `pnpm cv:pdf`; never edit by hand
+scripts/
+  generate-cv-pdf.sh      Prints /[lang]/cv to the PDFs with headless Chrome (see "CV" below)
 ```
 
 ## Conventions
@@ -136,9 +139,25 @@ The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gra
 - Do not use `<a>` for internal links — use `next/link`
 - Do not add packages without checking if the functionality already exists
 - Do not hardcode content — CV data lives in `lib/data.en.ts` + `lib/data.lt.ts` (both, always), UI copy in `i18n/dictionaries/`
+- Do not edit `public/cv*.pdf` by hand, and do not leave them stale — see "CV" below
 - Do not write tests that only verify a component renders — test behaviour
 - Do not commit `.env.local` — it is gitignored
 - Do not use `console.log` in production code — remove before committing
+
+## CV
+
+The CV has one source of truth: `lib/data.en.ts` / `lib/data.lt.ts`. The `/[lang]/cv` page renders it, and the PDFs in `public/` are printed from that page, so the site and the CV cannot drift apart.
+
+**After changing experience, skills, `cvSummary`, `education` or `languages`, regenerate the PDFs in the same PR:**
+
+```bash
+CV_PHONE='<phone>' pnpm build && CV_PHONE='<phone>' pnpm start   # in one terminal
+pnpm cv:pdf                                                      # in another
+```
+
+- The phone number is printed only when `CV_PHONE` is set on the server that renders the page. It stays out of the repo's source and off the public `/cv` page. Ask the owner for it; never commit it to a source file.
+- Both PDFs should stay at two pages. If one grows to three, shorten the content rather than the font.
+- `cvPdfPath(locale)` in `i18n/routing.ts` maps a locale to its PDF. A new locale needs its PDF generated too (add it to the loop in `scripts/generate-cv-pdf.sh`).
 
 ## Testing approach
 Focus on integration tests that cover real user flows:
