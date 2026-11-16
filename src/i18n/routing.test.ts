@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
+  cvDownloadName,
+  cvPdfPath,
   localePath,
   localeFromPathname,
   switchLocalePath,
@@ -44,5 +46,17 @@ describe('switchLocalePath', () => {
 
   it('prepends a locale when the path has none', () => {
     expect(switchLocalePath('/', 'lt')).toBe('/lt');
+  });
+});
+
+describe('cvPdfPath', () => {
+  it('serves the default locale from /cv.pdf and others from a suffixed file', () => {
+    expect(cvPdfPath('en')).toBe('/cv.pdf');
+    expect(cvPdfPath('lt')).toBe('/cv-lt.pdf');
+  });
+
+  it('names the download after the locale', () => {
+    expect(cvDownloadName('en')).toBe('Eigirdas_Skruolis_CV.pdf');
+    expect(cvDownloadName('lt')).toBe('Eigirdas_Skruolis_CV_LT.pdf');
   });
 });

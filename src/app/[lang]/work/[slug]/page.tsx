@@ -163,6 +163,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </ul>
         </Block>
 
+        {caseStudy.stillOpen && (
+          <Block label={dict.caseStudy.stillOpen}>
+            <p className="text-muted-foreground leading-8">
+              {caseStudy.stillOpen}
+            </p>
+          </Block>
+        )}
+
         <Block label={dict.caseStudy.stack}>
           <div className="flex flex-wrap gap-2">
             {caseStudy.tags.map((tag) => (

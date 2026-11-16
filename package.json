@@ -10,6 +10,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md,mdx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,md,mdx}\"",
     "test": "vitest run",
+    "cv:pdf": "bash scripts/generate-cv-pdf.sh",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",

@@ -15,6 +15,7 @@ export function getNavItems(dict: Dictionary, locale: Locale): NavItem[] {
     { label: dict.nav.services, sectionId: 'services' },
     { label: dict.nav.howIWork, sectionId: 'how-i-work' },
     { label: dict.nav.skills, sectionId: 'skills' },
+    { label: dict.nav.story, sectionId: 'story' },
     { label: dict.nav.experience, sectionId: 'experience' },
     { label: dict.nav.work, sectionId: 'projects' },
     ...(siteConfig.showBlog

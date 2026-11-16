@@ -57,7 +57,17 @@ export const ServiceSchema = z.object({
 
 export const StatSchema = z.object({
   value: z.string(),
+  /** What the number measures. */
   label: z.string(),
+  /** Where it comes from and how it was achieved. */
+  detail: z.string(),
+});
+
+export const LifecycleLayerSchema = z.object({
+  title: z.string(),
+  proof: z.string(),
+  /** Which company or product the evidence comes from (language-neutral). */
+  projects: z.array(z.string()),
 });
 
 export const PrincipleSchema = z.object({
@@ -76,6 +86,8 @@ export const CaseStudySchema = z.object({
   challenge: z.string(),
   approach: z.array(z.string()),
   outcomes: z.array(z.string()),
+  /** What the work did not solve, or has not proven yet. */
+  stillOpen: z.string().optional(),
 });
 
 export const SiteConfigSchema = z.object({
@@ -110,12 +122,18 @@ export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'Tailwind CSS', category: 'frontend' },
   { name: 'Storybook', category: 'frontend' },
   { name: 'Node.js', category: 'backend' },
+  { name: 'Medusa', category: 'backend' },
   { name: 'REST API design', category: 'backend' },
   { name: 'PostgreSQL', category: 'backend' },
   { name: 'Redis', category: 'backend' },
+  { name: 'Meilisearch', category: 'backend' },
+  { name: 'Stripe', category: 'backend' },
   { name: 'MySQL', category: 'backend' },
   { name: 'AWS', category: 'infra' },
   { name: 'Vercel', category: 'infra' },
+  { name: 'Railway', category: 'infra' },
+  { name: 'Cloudflare', category: 'infra' },
+  { name: 'Docker', category: 'infra' },
   { name: 'CI/CD', category: 'infra' },
   { name: 'Turborepo', category: 'infra' },
   { name: 'Git', category: 'infra' },
@@ -129,6 +147,7 @@ export const skills: z.infer<typeof SkillSchema>[] = [
   { name: 'Claude', category: 'ai' },
   { name: 'AI pair-programming', category: 'ai' },
   { name: 'Figma-to-code', category: 'ai' },
+  { name: 'AI image pipelines', category: 'ai' },
 ];
 
 // ── Localized data bundle ────────────────────────────────────────────────────
@@ -139,6 +158,16 @@ export const skills: z.infer<typeof SkillSchema>[] = [
 /** The prose-bearing, per-locale slice of the portfolio data. */
 export interface LocaleContent {
   stats: z.infer<typeof StatSchema>[];
+  /** The web-software layers I own, each with one piece of real evidence. */
+  lifecycle: z.infer<typeof LifecycleLayerSchema>[];
+  /** CV-only content: the summary paragraph, education and spoken languages. */
+  cvSummary: string;
+  /** Personal background, in the owner's own words — one paragraph per entry. */
+  story: string[];
+  /** Short personal notes: how I think, a normal day, life outside code. */
+  personal: z.infer<typeof PrincipleSchema>[];
+  education: string[];
+  languages: string[];
   services: z.infer<typeof ServiceSchema>[];
   principles: z.infer<typeof PrincipleSchema>[];
   experience: z.infer<typeof ExperienceSchema>[];

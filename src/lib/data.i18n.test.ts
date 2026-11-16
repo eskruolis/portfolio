@@ -20,6 +20,20 @@ describe('locale data parity', () => {
       expect(d.workProjects).toHaveLength(en.workProjects.length);
       expect(d.caseStudies).toHaveLength(en.caseStudies.length);
       expect(d.stats).toHaveLength(en.stats.length);
+      expect(d.lifecycle).toHaveLength(en.lifecycle.length);
+      expect(d.story).toHaveLength(en.story.length);
+      expect(d.personal).toHaveLength(en.personal.length);
+      expect(d.education).toHaveLength(en.education.length);
+      expect(d.languages).toHaveLength(en.languages.length);
+    }
+  });
+
+  it('lifecycle layers name the same projects across locales', () => {
+    for (const locale of ENABLED_LOCALES) {
+      const d = getData(locale);
+      d.lifecycle.forEach((layer, i) => {
+        expect(layer.projects).toEqual(en.lifecycle[i].projects);
+      });
     }
   });
 

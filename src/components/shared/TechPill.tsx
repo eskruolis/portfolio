@@ -23,6 +23,13 @@ import {
   siClaude,
   siFramer,
   siReactivex,
+  siMedusa,
+  siStripe,
+  siCloudflare,
+  siRailway,
+  siMeilisearch,
+  siDocker,
+  siGithubactions,
 } from 'simple-icons';
 
 type SimpleIcon = { path: string; hex: string; title: string };
@@ -55,6 +62,13 @@ const ICON_MAP: Record<string, SimpleIcon> = {
   Claude: siClaude,
   'Framer Motion': siFramer,
   RxJS: siReactivex,
+  Medusa: siMedusa,
+  Stripe: siStripe,
+  Cloudflare: siCloudflare,
+  Railway: siRailway,
+  Meilisearch: siMeilisearch,
+  Docker: siDocker,
+  'GitHub Actions': siGithubactions,
 };
 
 interface TechPillProps {

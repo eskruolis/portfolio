@@ -22,18 +22,25 @@ This version has breaking changes — APIs, conventions, and file structure may 
 | DB | Upstash Redis | View counters only. Client in `lib/redis.ts` |
 | Testing | Vitest + React Testing Library | Integration tests over unit tests |
 | Component dev | Storybook (`@storybook/nextjs-vite`) | Vite builder (webpack `@storybook/nextjs` breaks on Next 16). Stories co-located as `*.stories.tsx`. Run with `pnpm storybook` |
-| Deploy | Vercel | `main` = production, `dev` = staging |
+| Deploy | Vercel | `main` = production; every PR gets a Vercel preview deployment |
 
 ## Folder structure
 
 ```
 src/
+  proxy.ts                  Locale routing (Next 16 proxy): redirects unprefixed paths to /en or /lt
   app/
-    layout.tsx              Root layout — ThemeProvider (dark forced), Sidebar, fonts, JSON-LD
-    page.tsx                Single scrollable homepage
-    blog/[slug]/            Blog post pages (SSG via generateStaticParams; hidden via siteConfig.showBlog)
-    work/[slug]/            Case study pages (SSG, data-driven from lib/data.ts caseStudies)
+    [lang]/
+      layout.tsx            Root layout per locale — html lang, ThemeProvider, Sidebar, fonts, JSON-LD, hreflang metadata
+      page.tsx              Single scrollable homepage
+      blog/[slug]/          Blog post pages (SSG; hidden via siteConfig.showBlog)
+      work/[slug]/          Case study pages (SSG, from the locale's caseStudies)
     og/route.tsx            OG image generation API route
+    robots.ts, sitemap.ts   Per-locale robots + sitemap with hreflang alternates
+  i18n/
+    config.ts               LOCALES, DEFAULT_LOCALE, ENABLED_LOCALES (the language toggle)
+    dictionaries/{en,lt}.ts UI microcopy — en.ts defines the shape, lt.ts is type-checked against it
+    routing.ts, metadata.ts localePath() helpers, per-locale site metadata
   actions/
     views.ts                Server Action: increment Upstash view counter
   components/
@@ -47,7 +54,8 @@ src/
     use-active-section.ts   IntersectionObserver — tracks active sidebar nav item
     use-media-query.ts      Responsive breakpoint detection (useSyncExternalStore)
   lib/
-    data.ts                 Zod-typed experience, skills, projects data
+    data.ts                 Zod schemas, siteConfig, shared skills/clients, getData(locale)
+    data.en.ts, data.lt.ts  Localized CV content — slugs/tags/dates must match (parity test)
     mdx.ts                  MDX parsing helpers
     redis.ts                Upstash Redis client
     utils.ts                cn() and shared utilities
@@ -107,11 +115,11 @@ The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gra
 - MDX files: `kebab-case` (`angular-to-react-migration.mdx`)
 
 ### Git
-- Branch from `dev`, not `main`
+- **No `dev` branch in this repo.** It's a small personal site: branch from `main` and open PRs straight into `main`. The Vercel preview on the PR is the staging check. This overrides any general "PRs go to `dev`" rule. (GitHub auto-deletes merged head branches here, which is why a long-lived `dev` kept disappearing.)
 - Branch naming: `feat/`, `fix/`, `chore/`
 - Conventional commits: `feat(sidebar): add active section highlight`
-- Never commit directly to `main` or `dev`
-- PRs require passing build before merge
+- Never commit directly to `main`. Every change goes through a PR
+- PRs require passing CI (lint, type-check, build, tests) before merge
 
 ## Accessibility
 - Semantic HTML always — `<nav>`, `<main>`, `<article>`, `<section>` with `aria-label`
@@ -127,7 +135,7 @@ The `btn-gradient` class is defined in `src/app/globals.css` and uses `--btn-gra
 - Do not use `<img>` — use `next/image`
 - Do not use `<a>` for internal links — use `next/link`
 - Do not add packages without checking if the functionality already exists
-- Do not hardcode content — all CV data lives in `lib/data.ts`
+- Do not hardcode content — CV data lives in `lib/data.en.ts` + `lib/data.lt.ts` (both, always), UI copy in `i18n/dictionaries/`
 - Do not write tests that only verify a component renders — test behaviour
 - Do not commit `.env.local` — it is gitignored
 - Do not use `console.log` in production code — remove before committing

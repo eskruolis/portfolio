@@ -18,7 +18,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Dictionary } from '@/i18n/dictionaries';
 import type { Locale } from '@/i18n/config';
-import { localePath } from '@/i18n/routing';
+import { cvDownloadName, cvPdfPath, localePath } from '@/i18n/routing';
 
 const DRAWER_ID = 'mobile-nav-drawer';
 
@@ -103,8 +103,8 @@ function SidebarContent({
         </div>
 
         <a
-          href="/cv.pdf"
-          download="Eigirdas_Skruolis_CV.pdf"
+          href={cvPdfPath(locale)}
+          download={cvDownloadName(locale)}
           className={cn(
             buttonVariants({ variant: 'default', size: 'sm' }),
             'btn-gradient w-full gap-2',
@@ -169,7 +169,8 @@ export function Sidebar({ locale, dict }: SidebarProps) {
       <aside
         aria-label={dict.common.siteNavigation}
         className="bg-sidebar border-sidebar-border sticky top-0 hidden h-screen
-          shrink-0 flex-col overflow-y-auto border-r lg:flex lg:w-64 xl:w-72"
+          shrink-0 flex-col overflow-y-auto border-r lg:flex lg:w-64 xl:w-72
+          print:hidden"
       >
         <SidebarContent locale={locale} dict={dict} />
       </aside>
@@ -184,7 +185,7 @@ export function Sidebar({ locale, dict }: SidebarProps) {
         className="bg-background text-foreground ring-border
           focus-visible:ring-ring fixed top-4 right-4 z-40 rounded-md p-2
           shadow-sm ring-1 focus-visible:ring-2 focus-visible:outline-none
-          lg:hidden"
+          lg:hidden print:hidden"
       >
         <FontAwesomeIcon icon={faBars} className="h-5 w-5" />
       </button>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faDownload,
@@ -15,14 +15,18 @@ import { BrandLogo } from '@/components/shared/BrandLogo';
 import { AvailabilityBadge } from '@/components/shared/AvailabilityBadge';
 import { cn } from '@/lib/utils';
 import type { Dictionary } from '@/i18n/dictionaries';
+import type { Locale } from '@/i18n/config';
+import { cvDownloadName, cvPdfPath } from '@/i18n/routing';
 import type { PortfolioData } from '@/lib/data';
 
 function CVModal({
   onClose,
   dict,
+  locale,
 }: {
   onClose: () => void;
   dict: Dictionary;
+  locale: Locale;
 }) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -48,7 +52,7 @@ function CVModal({
           exit={{ opacity: 0, scale: 0.95, y: 16 }}
           transition={{ duration: 0.25 }}
           onClick={(e) => e.stopPropagation()}
-          className="border-border bg-card relative flex max-h-[90vh] w-full
+          className="border-border bg-card relative flex h-[85dvh] w-full
             max-w-3xl flex-col overflow-hidden rounded-xl border shadow-2xl"
         >
           <div
@@ -60,8 +64,8 @@ function CVModal({
             </p>
             <div className="flex items-center gap-2">
               <a
-                href="/cv.pdf"
-                download="Eigirdas_Skruolis_CV.pdf"
+                href={cvPdfPath(locale)}
+                download={cvDownloadName(locale)}
                 className={cn(
                   buttonVariants({ variant: 'default', size: 'sm' }),
                   'btn-gradient gap-2',
@@ -84,9 +88,8 @@ function CVModal({
           </div>
 
           <iframe
-            src="/cv.pdf"
+            src={cvPdfPath(locale)}
             className="min-h-0 w-full flex-1 bg-white"
-            style={{ height: '75vh' }}
             title="Eigirdas Skruolis CV"
           />
         </motion.div>
@@ -98,11 +101,13 @@ function CVModal({
 interface HeroProps {
   dict: Dictionary;
   data: PortfolioData;
+  locale: Locale;
 }
 
-export function Hero({ dict, data }: HeroProps) {
+export function Hero({ dict, data, locale }: HeroProps) {
   const [cvOpen, setCvOpen] = useState(false);
-  const { stats, clients } = data;
+  const { stats, clients, lifecycle } = data;
+  const reduceMotion = useReducedMotion();
 
   return (
     <>
@@ -130,7 +135,7 @@ export function Hero({ dict, data }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
-              className="mb-6"
+              className="mb-6 lg:hidden"
             >
               <AvailabilityBadge label={dict.common.availability} />
             </motion.div>
@@ -152,6 +157,16 @@ export function Hero({ dict, data }: HeroProps) {
               className="section-label mb-6"
             >
               {dict.hero.role}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="font-display text-foreground mb-5 max-w-xl text-xl
+                leading-snug font-semibold tracking-tight sm:text-2xl"
+            >
+              {dict.hero.headline}
             </motion.p>
 
             <motion.p
@@ -221,13 +236,61 @@ export function Hero({ dict, data }: HeroProps) {
           </motion.div>
         </div>
 
+        {/* Lifecycle: every layer of a web product, each backed by real work */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="relative z-10 mt-16"
+        >
+          <p className="section-label mb-4">{dict.hero.lifecycleLabel}</p>
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {lifecycle.map((layer, i) => (
+              <li
+                key={layer.title}
+                className="border-border bg-card/40 card-glow relative flex
+                  flex-col rounded-xl border p-4"
+              >
+                {/* A signal passing through the layers, 01 to 08 */}
+                <motion.span
+                  aria-hidden="true"
+                  className="from-primary/80 absolute inset-x-4 top-0 h-px
+                    origin-left bg-linear-to-r to-transparent"
+                  initial={reduceMotion ? false : { scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.9 + i * 0.12 }}
+                />
+                <p className="text-primary font-mono text-xs">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <p
+                  className="font-display text-foreground mt-1 text-sm
+                    font-semibold"
+                >
+                  {layer.title}
+                </p>
+                <p className="text-muted-foreground mt-2 text-xs leading-5">
+                  {layer.proof}
+                </p>
+                <p
+                  className="text-primary/80 mt-auto pt-3 font-mono text-[11px]
+                    tracking-wide"
+                >
+                  {layer.projects.join(' · ')}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+
         {/* Stats */}
         <motion.dl
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="border-border relative z-10 mt-16 grid grid-cols-2 gap-8
-            border-t pt-8 sm:grid-cols-4"
+          transition={{ duration: 0.6, delay: 0.75 }}
+          className="border-border relative z-10 mt-12 grid gap-8 border-t
+            pt-8 sm:grid-cols-2 lg:grid-cols-4"
         >
           {stats.map((stat) => (
             <div key={stat.label}>
@@ -238,8 +301,11 @@ export function Hero({ dict, data }: HeroProps) {
               >
                 {stat.value}
               </dd>
-              <dd className="text-muted-foreground mt-1 text-xs leading-5">
+              <dd className="text-foreground mt-1 text-sm font-medium">
                 {stat.label}
+              </dd>
+              <dd className="text-muted-foreground mt-2 text-xs leading-5">
+                {stat.detail}
               </dd>
             </div>
           ))}
@@ -272,7 +338,13 @@ export function Hero({ dict, data }: HeroProps) {
         </motion.div>
       </section>
 
-      {cvOpen && <CVModal onClose={() => setCvOpen(false)} dict={dict} />}
+      {cvOpen && (
+        <CVModal
+          onClose={() => setCvOpen(false)}
+          dict={dict}
+          locale={locale}
+        />
+      )}
     </>
   );
 }
