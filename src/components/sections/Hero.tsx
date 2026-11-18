@@ -256,10 +256,14 @@ export function Hero({ dict, data, locale }: HeroProps) {
                   aria-hidden="true"
                   className="from-primary/80 absolute inset-x-4 top-0 h-px
                     origin-left bg-linear-to-r to-transparent"
-                  initial={reduceMotion ? false : { scaleX: 0, opacity: 0 }}
+                  initial={{ scaleX: 0, opacity: 0 }}
                   whileInView={{ scaleX: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.9 + i * 0.12 }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { duration: 0.5, delay: 0.9 + i * 0.12 }
+                  }
                 />
                 <p className="text-primary font-mono text-xs">
                   {String(i + 1).padStart(2, '0')}

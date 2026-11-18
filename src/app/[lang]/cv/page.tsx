@@ -38,7 +38,7 @@ export async function generateMetadata({
   const locale: Locale = isEnabledLocale(lang) ? lang : DEFAULT_LOCALE;
   const dict = getDictionary(locale);
   return {
-    title: `${dict.cv.title} — Eigirdas Skruolis`,
+    title: dict.cv.title,
     description: getData(locale).cvSummary,
     // The homepage carries the same content; keep the CV out of search results.
     robots: { index: false, follow: true },
